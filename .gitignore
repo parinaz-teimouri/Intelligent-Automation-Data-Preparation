@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+.env
+.DS_Store
+venv/
+.venv/
+.vscode/
+temp_uploads/
+output/
+meta_models/*.pkl
+processed_*.csv
+human_readable_*.csv
+report_*.json
+# LaTeX build artifacts
+*.pdf
+*.log
+*.aux
+*.out
+*.toc
+*.fls
+*.fdb_latexmk

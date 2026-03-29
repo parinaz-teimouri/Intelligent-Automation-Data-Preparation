@@ -1,0 +1,22 @@
+customer_id,full_name,signup_date,last_purchase_amount,rating,region,membership_status,is_verified,age
+101,John Doe,2021-05-12,150.50,4,North,Gold,True,34
+102,Jane Smith,2020-08-23,200.00,5,South,Silver,True,28
+103,Bob Wilson,2022-01-15,,3,East,Bronze,False,45
+104,Alice Brown,2019-11-30,50.25,4,West,Free,True,
+105,Charlie Davis,2023-03-10,1200.00,5,North,Gold,True,30
+101,John Doe,2021-05-12,150.50,4,North,Gold,True,34
+106,Eve White,2021-07-19,75.00,,South,Free,False,22
+107,Frank Miller,2020-02-14,300.50,4,,Silver,True,40
+108,Grace Lee,2022-09-05,1000000.00,5,East,Gold,True,35
+109,Henry Green,2018-12-01,25.00,2,West,Bronze,,55
+110,Ivy Hall,,180.00,4,North,Silver,True,29
+111,Jack King,2021-04-22,210.75,3,South,,False,33
+112,Kelly Scott,2023-01-01,95.50,5,East,Gold,True,27
+113,Larry Baker,2019-06-15,5.00,1,West,Free,False,60
+114,Mona Young,2022-11-11,320.00,4,North,Silver,True,31
+115,Nick Adams,2020-10-10,,3,South,Bronze,False,
+116,Ophelia Hill,2021-03-03,150000.00,2,East,Free,True,24
+117,Paul Carter,2019-08-20,60.00,4,West,Silver,True,42
+118,Quinn Turner,2022-05-15,130.25,,North,Gold,False,38
+119,Rachel Phillips,2020-01-25,250.00,5,South,Platinum,True,26
+120,Steve Parker,2023-02-28,90.00,3,East,,True,32

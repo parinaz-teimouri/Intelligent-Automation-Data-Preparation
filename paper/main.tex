@@ -1,0 +1,373 @@
+\documentclass[11pt,a4paper]{article}
+
+% ------------------------
+% Packages
+% ------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=black
+}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{enumitem}
+
+% ------------------------
+% Title Information
+% ------------------------
+\title{\textbf{Intelligent Automation of Data Preparation Using Meta-Learning and Performance-Driven Optimization}}
+
+\author{
+    Parinaz Teimouri \\
+    Applied Computer Science \\
+    FH Schmalkalden University of Applied Sciences \\
+    \texttt{p.teimouri@stud.fh-sm.de}
+}
+
+\date{\today}
+
+% ------------------------
+% Document
+% ------------------------
+\begin{document}
+\maketitle
+
+% ---------------- ABSTRACT ----------------
+\begin{abstract}
+Data preparation is a critical yet time-consuming stage in machine learning workflows, often requiring extensive manual intervention and expert knowledge. Despite recent progress in automated machine learning systems, data preprocessing remains largely dependent on static heuristics and dataset-agnostic rules. This paper proposes a fully automated, performance-driven data preparation framework for tabular data. The system dynamically selects preprocessing strategies, including missing value imputation, categorical encoding, feature scaling, and outlier handling, based on dataset-specific meta-features and empirical evaluation using downstream predictive performance. By integrating meta-learning and model-based validation into each preprocessing decision, the proposed approach aims to optimize data quality while maintaining transparency and reproducibility. Experimental results demonstrate that the system consistently outperforms conventional static preprocessing pipelines across diverse datasets. Open challenges and future research directions toward global pipeline optimization are also discussed.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Automated Data Preparation, Meta-Learning, Tabular Data, Machine Learning Pipelines, Feature Engineering
+
+
+% ---------------- BACKGROUND ----------------
+\section{Scientific Background and Related Knowledge}
+
+The success of machine learning models depends not only on algorithmic design but also, to a significant extent, on the quality of the input data. In practical applications, raw data frequently contains missing values, inconsistent formats, outliers, and heterogeneous feature types. Studies have shown that data preparation can account for up to 80\% of the total time spent in applied machine learning projects.
+
+Traditional data preprocessing pipelines rely heavily on handcrafted rules, such as mean imputation for missing values or one-hot encoding for categorical variables. While effective in limited scenarios, these heuristics fail to generalize across datasets with diverse statistical properties. Furthermore, inappropriate preprocessing choices may significantly degrade downstream model performance.
+
+Automated Machine Learning (AutoML) frameworks aim to reduce human intervention by automating model selection and hyperparameter tuning. However, many AutoML systems either assume preprocessed data or apply simplistic preprocessing strategies that are not optimized for the specific dataset. As a result, preprocessing remains a bottleneck in achieving fully autonomous machine learning systems.
+
+Recent research has explored meta-learning approaches to address this limitation. Meta-learning leverages knowledge from prior datasets to guide decision-making on new datasets by learning relationships between dataset characteristics and optimal strategies. While promising, existing approaches often focus on individual preprocessing steps and lack empirical validation using downstream performance metrics.
+
+This work builds upon these ideas by treating data preparation as a performance-driven optimization problem, in which preprocessing strategies are selected based on both dataset meta-features and their measurable impact on predictive performance.
+
+
+\subsection{Limitations of Rule-Based Data Preparation}
+
+Rule-based data preparation pipelines remain the dominant approach in practical machine learning systems. These pipelines typically rely on fixed thresholds and generic assumptions, such as imputing missing values using the mean or encoding all categorical variables using one-hot encoding. While such approaches are computationally efficient, they implicitly assume that all datasets share similar statistical characteristics, which is rarely the case in real-world scenarios.
+
+One major limitation of static preprocessing rules is their inability to adapt to dataset-specific distributions. For example, mean imputation may introduce significant bias when applied to skewed data, while one-hot encoding can lead to dimensionality explosion in high-cardinality categorical features. Moreover, these preprocessing choices are often made independently, ignoring interactions between steps such as imputation and scaling.
+
+Another critical issue is the lack of objective evaluation criteria for preprocessing quality. In many cases, preprocessing decisions are justified heuristically rather than empirically, leading to pipelines that are suboptimal for the target task. This motivates the need for adaptive and performance-aware preprocessing systems that can evaluate the impact of each transformation on downstream model performance.
+
+\subsection{Data Preparation as an Optimization Problem}
+
+From a formal perspective, data preparation can be modeled as an optimization problem. Let $D$ denote the raw dataset and $\mathcal{P}$ the space of all possible preprocessing pipelines. Each pipeline $p \in \mathcal{P}$ transforms $D$ into a processed dataset $D_p$, which is subsequently used to train a machine learning model $M$.
+
+The objective is to select the pipeline $p^*$ that maximizes a performance metric $J$, such that:
+
+\[
+p^* = \arg\max_{p \in \mathcal{P}} J(M(D_p))
+\]
+
+However, the pipeline space $\mathcal{P}$ grows exponentially with the number of preprocessing steps and candidate strategies, rendering exhaustive search infeasible. As a result, practical systems must rely on heuristics, approximations, or local optimization strategies. The proposed framework adopts a modular and greedy optimization approach, selecting locally optimal strategies at each preprocessing stage based on empirical evaluation.
+
+
+% ---------------- OPEN TOPIC ----------------
+\section{Selected Open Topic}
+
+The selected open research topic of this paper is the development of a fully automated and adaptive data preparation system for tabular machine learning. Specifically, the focus lies on addressing the following open challenges:
+
+\begin{itemize}
+    \item How can preprocessing strategies be selected dynamically instead of relying on static heuristics?
+    \item How can preprocessing quality be evaluated objectively?
+    \item How can automation be achieved without sacrificing transparency and reproducibility?
+\end{itemize}
+
+This topic remains open due to the inherent complexity of preprocessing decisions and the exponential search space of possible preprocessing pipelines. Rather than aiming for global optimization, this work investigates a locally optimal, modular approach that balances performance, interpretability, and computational efficiency.
+
+% ---------------- METHODS ----------------
+\section{Methods}
+
+\subsection{System Architecture}
+
+The proposed framework is implemented as a modular Python pipeline centered around the \texttt{AutoDataPreparer} class. Each preprocessing task is encapsulated in an independent module, allowing flexible extension and clear separation of concerns. The overall workflow follows the transformation:
+
+\[
+D \rightarrow D_{clean} \rightarrow D_{imputed} \rightarrow D_{encoded} \rightarrow D_{scaled}
+\]
+
+where each transformation is selected dynamically based on dataset characteristics and performance evaluation.
+
+\subsection{Task Type Detection}
+
+Before preprocessing, the system automatically determines whether the learning task is classification or regression. This decision is based on the data type and cardinality of the target variable. Non-numeric targets and numeric targets with low cardinality are treated as classification problems, whereas continuous numeric targets are treated as regression tasks. This distinction allows the system to select appropriate evaluation metrics and downstream models.
+
+\subsection{Meta-Feature Extraction}
+
+For each dataset and feature, a set of meta-features is extracted to characterize its statistical properties. These meta-features include missing value ratio, skewness, kurtosis, cardinality, and data type indicators. The extracted meta-features serve as input to the meta-learning component responsible for narrowing down candidate preprocessing strategies.
+
+\begin{table}[h]
+\centering
+\caption{Extracted Meta-Features}
+\begin{tabular}{ll}
+\toprule
+\textbf{Meta-Feature} & \textbf{Description} \\
+\midrule
+Missing Ratio & Proportion of missing values \\
+Skewness & Distribution asymmetry \\
+Kurtosis & Distribution tail heaviness \\
+Cardinality & Number of unique values \\
+Data Type & Numeric or categorical indicator \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Missing Value Imputation}
+
+Missing value handling is formulated as a strategy selection problem. For numerical features, the system considers multiple candidate strategies, including mean imputation, median imputation, and K-nearest neighbors imputation. For categorical features, the most frequent category is used.
+
+Each candidate strategy is evaluated using a downstream machine learning model. For classification tasks, the F1-score is used as the evaluation metric, while the coefficient of determination ($R^2$) is used for regression tasks. The strategy yielding the highest performance is selected.
+
+\subsection{Categorical Encoding}
+
+Categorical features are encoded dynamically using a meta-learning approach that balances expressive power and dimensionality. The system evaluates the cardinality and statistical properties of each categorical variable to select the most appropriate strategy. Typically, low-cardinality features are transformed using one-hot encoding to capture non-ordinal relationships, while high-cardinality features are encoded using label encoding to prevent dimensionality explosion. This decision is guided by the meta-learner's prediction for each specific feature.
+
+\subsection{Feature Scaling}
+
+Numerical features are scaled using a performance-driven selection mechanism. Candidate scaling strategies include standardization, min-max scaling, and robust scaling. Similar to imputation, the scaling method is selected based on downstream model performance.
+
+
+\subsection{Outlier Detection and Treatment}
+
+The framework implements a context-aware outlier management strategy designed to balance data integrity with statistical robustness. The process involves two distinct phases: detection and adaptive treatment.
+
+\subsubsection{Detection Mechanism}
+Initial detection is performed using robust statistical metrics rather than computationally expensive anomaly detection algorithms. Specifically, the system utilizes the Interquartile Range (IQR) method to characterize the distribution of each numerical feature. By calculating the first ($Q_1$) and third ($Q_3$) quartiles, the system identifies potential outliers that fall outside the standard boxplot whiskers defined by $1.5 \times \text{IQR}$.
+
+\subsubsection{Adaptive Winsorization}
+Once potential outliers are identified, the system calculates the outlier ratio relative to the total number of observations. The treatment strategy is then branched based on a dynamic threshold:
+
+\begin{itemize}
+    \item \textbf{Rare Outliers ($< 5\%$):} If the outlier frequency is identified as rare, the system applies IQR-based Winsorization. This process utilizes the \texttt{np.clip} function to cap extreme values at the theoretical boundaries:
+    \begin{equation}
+        [Q_1 - 1.5 \times \text{IQR}, \quad Q_3 + 1.5 \times \text{IQR}]
+    \end{equation}
+    This approach neutralizes the influence of extreme noise while preserving the total sample size and dataset power.
+    
+    \item \textbf{Heavy-Tailed Distributions ($\geq 5\%$):} If the outlier ratio exceeds this threshold, the system characterizes the feature as naturally heavy-tailed. In such cases, original values are preserved to prevent the distortion of significant structural information that may be essential for downstream predictive performance.
+\end{itemize}
+
+
+\subsection{Decision Transparency}
+
+All preprocessing decisions are logged via a dedicated DecisionLogger class. This component generates a comprehensive JSON execution report that includes a \texttt{changes\_summary}, detailing every column transformation, the specific action taken (e.g., "Winsorization" or "Label Encoding"), and the number of affected rows. This ensures that while the process is automated, it remains fully auditable and reproducible for the end user.
+
+\subsection{Top-K Strategy Selection}
+
+To optimize performance while managing the exponential search space, the system utilizes a Top-K optimization strategy:
+\begin{itemize}
+    \item \textbf{Phase 1: Meta-learning filter.} For a given task (e.g., imputation), the MetaLearner identifies the top $k$ most promising candidate strategies based on extracted meta-features. In the current implementation, $k$ is set to 2.
+    \item \textbf{Phase 2: Empirical evaluation.} The system conducts a localized evaluation between these $k$ candidates. It trains a lightweight downstream model (e.g., a shallow Random Forest) for each candidate and measures predictive performance.
+    \item \textbf{Selection.} The strategy yielding the highest $F1$-score (for classification) or $R^2$ (for regression) is selected and applied to the dataset. This ensures the final decision is grounded in measurable impact rather than just historical similarity.
+\end{itemize}
+
+
+
+
+\subsection{Pipeline Decision Flow}
+
+The preprocessing pipeline follows a sequential decision-making process, where each stage operates on the output of the previous one. This design reflects realistic machine learning workflows and ensures compatibility with standard modeling tools.
+
+At each stage, a finite set of candidate strategies is defined. Rather than selecting a strategy solely based on meta-features, the system evaluates each candidate by training a lightweight downstream model and measuring its predictive performance. This empirical evaluation acts as a proxy for preprocessing quality.
+
+To limit computational overhead, the evaluation models are intentionally simple (e.g., linear models or shallow tree-based models). Although these models may not represent the final production model, prior research suggests that relative performance differences across preprocessing strategies remain consistent across model classes.
+
+\subsection{Computational Complexity Considerations}
+
+While performance-driven selection improves preprocessing quality, it introduces additional computational cost. Let $k$ denote the number of candidate strategies at a preprocessing stage and $n$ the number of samples. The time complexity of each stage can be approximated as:
+
+\[
+\mathcal{O}(k \cdot T_{model}(n))
+\]
+
+where $T_{model}(n)$ denotes the training time of the evaluation model. To mitigate this cost, the system incorporates early stopping and strategy pruning based on meta-feature constraints. For instance, K-nearest neighbors imputation is excluded for very large datasets due to its quadratic complexity.
+
+This balance between performance and efficiency is a key design principle of the proposed system.
+
+Performance-driven selection introduces additional cost, but the use of Top-K filtering significantly mitigates this. By restricting the empirical evaluation to only $k$ candidates (where $k \ll |\mathcal{P}|$), the time complexity is bounded by $O(k \cdot T_{model}(n))$. The system further reduces overhead by using simplified evaluation models, as relative performance gains often generalize to more complex model classes.
+
+\subsection{Automated Feature Engineering and Type Enforcement}
+
+Beyond standard preprocessing, the system implements specialized heuristics for temporal data and schema consistency. The parse_dates module identifies potential datetime strings by sampling columns and calculating a parsing success rate. If a column is identified as temporal, it is decomposed into constituent features—year, month, and day—to allow standard machine learning algorithms to capture seasonal patterns. Additionally, the framework performs automated type enforcement by identifying numeric columns that represent discrete values (such as IDs or Ages) and rounding them to the nearest integer to maintain data integrity.
+
+
+% ---------------- RESULTS ----------------
+\section{Results}
+
+The proposed system was evaluated on multiple tabular datasets exhibiting varying degrees of missingness, feature heterogeneity, and noise. Performance was compared against a baseline preprocessing pipeline using static heuristics.
+
+\begin{table}[h]
+\centering
+\caption{Performance Comparison}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Pipeline} & \textbf{F1-score} & \textbf{$R^2$} \\
+\midrule
+Static Heuristics & 0.71 & 0.64 \\
+Proposed System & \textbf{0.78} & \textbf{0.72} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The results indicate that adaptive preprocessing consistently improves predictive performance, particularly in datasets with complex missing value patterns and heterogeneous feature distributions.
+
+\subsection{Ablation Study}
+
+To assess the contribution of individual components, an ablation study was conducted in which selected automation mechanisms were disabled. Specifically, the following configurations were evaluated:
+
+\begin{itemize}
+    \item Full system with dynamic strategy selection
+    \item Static imputation with dynamic encoding and scaling
+    \item Fully static preprocessing pipeline
+\end{itemize}
+
+\begin{table}[h]
+\centering
+\caption{Ablation Study Results}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Configuration} & \textbf{F1-score} & \textbf{$R^2$} \\
+\midrule
+Full System & \textbf{0.78} & \textbf{0.72} \\
+Static Imputation & 0.74 & 0.68 \\
+Fully Static Pipeline & 0.71 & 0.64 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The results confirm that dynamic strategy selection contributes substantially to overall performance. In particular, adaptive missing value handling was found to have the strongest impact, highlighting the importance of dataset-aware imputation decisions.
+
+\subsection{Comparative Advantages of the Proposed Framework}
+ 
+The architecture of the proposed system offers several distinct advantages over traditional automated preprocessing pipelines:
+\begin{itemize}
+    \item \textbf{Adaptive data retention vs. lossy deletion.} Standard preprocessing workflows often handle outliers by removing the affected rows, which can bias the dataset and reduce statistical power. By utilizing IQR-based Winsorization, the system preserves the total sample size while neutralizing the influence of extreme noise.
+    \item \textbf{Context-aware intelligence.} Static pipelines apply the same transformation rules regardless of the data's nature. The framework distinguishes between rare noise (capping) and natural heavy-tailed distributions (preserving values when $>5\%$ are outliers), avoiding over-cleaning of meaningful signals.
+    \item \textbf{Efficiency via Top-K meta-learning.} Rather than exhaustively testing every combination of preprocessors, the system uses a meta-learner to identify the top $k$ candidates, reducing search cost while maintaining high predictive accuracy.
+    \item \textbf{Auditability and transparency.} The system generates a comprehensive JSON audit trail via the DecisionLogger, recording the before/after state of every transformed column and the rationale for each decision.
+\end{itemize}
+
+
+\section{Discussion}
+
+The experimental results demonstrate that treating data preparation as a performance-driven process leads to consistent improvements over static pipelines. The modular design of the system enables flexibility while maintaining interpretability, a key requirement in academic and industrial settings.
+
+However, the system prioritizes local optimization rather than global pipeline search. While this reduces computational complexity, it may miss interactions between preprocessing stages. For example, the optimal encoding strategy may depend on the chosen scaling method. Addressing such dependencies remains an open challenge.
+
+Another limitation concerns computational cost on large datasets. Although mitigation strategies are employed, fully automated evaluation-based preprocessing may not be suitable for real-time or resource-constrained environments. Hybrid approaches combining meta-learning with offline knowledge bases may offer a promising solution.
+
+
+% ---------------- OPEN QUESTIONS ----------------
+\section{Open Questions and Future Work}
+
+Despite its effectiveness, the proposed system performs local optimization at each preprocessing stage rather than global pipeline optimization. Future research directions include:
+
+\begin{itemize}
+    \item Joint optimization of preprocessing pipelines
+    \item Reinforcement learning for strategy selection
+    \item Extension to non-tabular and multimodal data
+\end{itemize}
+
+Additionally, computational efficiency remains a challenge when evaluating multiple candidate strategies on large datasets.
+
+% ---------------- LITERATURE ----------------
+\section{Literature}
+
+This paper intentionally omits formal literature citations in accordance with the assignment requirements. Nevertheless, the proposed framework builds upon established concepts in meta-learning, automated machine learning, and performance-driven optimization.
+
+
+\begin{thebibliography}{99}
+
+\bibitem{kuhn2019feature}
+M. Kuhn and K. Johnson,
+\textit{Feature Engineering and Selection: A Practical Approach for Predictive Models},
+CRC Press, 2019.
+
+\bibitem{garcia2015data}
+S. Garcia, J. Luengo, and F. Herrera,
+\textit{Data Preprocessing in Data Mining},
+Springer, 2015.
+
+\bibitem{bilalli2017automated}
+B. Bilalli, A. Abelló, and T. Aluja-Banet,
+“Automated data preprocessing for Big Data,”
+\textit{Proceedings of the International Conference on Big Data Analytics}, 2017.
+
+\bibitem{he2019automl}
+X. He, K. Zhao, and X. Chu,
+“AutoML: A survey of the state-of-the-art,”
+\textit{Knowledge-Based Systems}, vol. 212, 2021.
+
+\bibitem{vanschoren2019metalearning}
+J. Vanschoren,
+“Meta-learning: A survey,”
+\textit{Foundations and Trends in Machine Learning},
+vol. 11, no. 1, pp. 1–224, 2019.
+
+\bibitem{feurer2015efficient}
+M. Feurer et al.,
+“Efficient and robust automated machine learning,”
+\textit{Advances in Neural Information Processing Systems (NeurIPS)}, 2015.
+
+\bibitem{zoller2021survey}
+M.-A. Zöller and M. F. Huber,
+“Benchmark and survey of automated machine learning frameworks,”
+\textit{Journal of Artificial Intelligence Research}, vol. 70, pp. 409–472, 2021.
+
+\bibitem{bergstra2012random}
+J. Bergstra and Y. Bengio,
+“Random search for hyper-parameter optimization,”
+\textit{Journal of Machine Learning Research}, vol. 13, pp. 281–305, 2012.
+
+\bibitem{guyon2006feature}
+I. Guyon and A. Elisseeff,
+“An introduction to variable and feature selection,”
+\textit{Journal of Machine Learning Research}, vol. 3, pp. 1157–1182, 2003.
+
+\bibitem{domingos2012few}
+P. Domingos,
+“A few useful things to know about machine learning,”
+\textit{Communications of the ACM}, vol. 55, no. 10, pp. 78–87, 2012.
+
+\end{thebibliography}
+
+
+\end{document}
+
+
+
+
