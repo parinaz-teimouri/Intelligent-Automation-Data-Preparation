@@ -91,21 +91,54 @@ class AutoDataPreparer:
         self.raw_data_snapshot = None # Keep a copy for evaluation
         self.logger = DecisionLogger()
         self.target_col = target_col
-        self.task_type = "classification" # Default 
+        self.target = None # Target series, kept apart from the features during preprocessing
+        self.task_type = "classification" # Default
         self.start_time = None
         
         # Initialize Meta-Learner
         self.meta_learner = MetaLearner()
         self.meta_learner.load_models()
         
+    def _separate_target(self):
+        """
+        Removes the target column from the features so that no preprocessing step
+        (capping, imputation, scaling) or candidate evaluation can touch or see it.
+        Rows without a target value are dropped: they cannot be used for supervised evaluation.
+        """
+        if not self.target_col or self.data is None:
+            return
+        if self.target_col not in self.data.columns:
+            raise ValueError(f"Target column '{self.target_col}' not found in data")
+
+        missing = self.data[self.target_col].isnull()
+        n_missing = int(missing.sum())
+        if n_missing > 0:
+            self.data = self.data[~missing].copy()
+            self.logger.log("Target", "Dropped Rows", "Rows without a target value cannot be used for supervised evaluation",
+                           {"column": self.target_col, "count": n_missing})
+            self.logger.log_change("Target", self.target_col, "NaN", "Row dropped", n_missing)
+
+        self.target = self.data.pop(self.target_col)
+
+    def _align_target(self):
+        """Keeps the target aligned with the feature rows after rows are dropped."""
+        if self.target is not None:
+            self.target = self.target.loc[self.data.index]
+
+    def _with_target(self):
+        """Returns the features with the target column re-attached as the last column."""
+        if self.target is None:
+            return self.data
+        return pd.concat([self.data, self.target], axis=1)
+
     def _detect_task_type(self):
         """
         Detects if the problem is Classification or Regression based on target column.
         """
-        if not self.target_col or self.data is None or self.target_col not in self.data.columns:
+        if self.target is None:
             return
 
-        target_series = self.data[self.target_col]
+        target_series = self.target
         
         # Heuristic:
         # 1. If non-numeric -> Classification
@@ -156,10 +189,12 @@ class AutoDataPreparer:
         """Cleans data by handling duplicates and outliers dynamically."""
         if self.data is None: return
         
-        # Remove duplicates
+        # Remove duplicates (a row is only a duplicate if its target matches too)
         if drop_duplicates:
             initial_rows = len(self.data)
-            self.data.drop_duplicates(inplace=True)
+            duplicated = self._with_target().duplicated()
+            self.data = self.data[~duplicated]
+            self._align_target()
             dropped = initial_rows - len(self.data)
             if dropped > 0:
                 self.logger.log("Deduplication", "Removed Duplicates", "Exact duplicate rows found", {"count": dropped})
@@ -244,16 +279,11 @@ class AutoDataPreparer:
                 scoring = 'f1_macro'
 
             steps.append(('model', model))
-            
+
             pipeline = Pipeline(steps)
-            
-            # Cross-validate
-            # Ensure y is not null
-            valid_mask = ~pd.isnull(y)
-            X_valid = X[valid_mask]
-            y_valid = y[valid_mask]
-            
-            scores = cross_val_score(pipeline, X_valid, y_valid, cv=3, scoring=scoring)
+
+            # Cross-validate (rows without a target were already dropped)
+            scores = cross_val_score(pipeline, X, y, cv=3, scoring=scoring)
             return scores.mean()
         except Exception as e:
             # print(f"Eval failed for {strategy}: {e}")
@@ -273,21 +303,18 @@ class AutoDataPreparer:
                 meta_features = MetaFeatureExtractor.extract_features(self.data, worst_col)
                 
                 # Decision Logic
-                if self.target_col and self.target_col in self.data.columns:
+                if self.target is not None:
                     # OPTIMIZATION MODE
                     candidates = self.meta_learner.predict_top_k("imputation", meta_features, k=2)
                     self.logger.log("Imputation", "Optimizing...", f"Evaluating Top-K: {candidates}")
-                    
+
                     best_score = -1
                     best_strategy = candidates[0]
-                    
+
                     # Prepare X, y for evaluation
                     # We use numeric columns only for this test to avoid encoding issues
                     X_eval = self.data[num_cols].copy()
-                    y_eval = self.data[self.target_col]
-                    # Drop target from X if present
-                    if self.target_col in X_eval.columns:
-                        X_eval = X_eval.drop(columns=[self.target_col])
+                    y_eval = self.target
 
                     for strategy in candidates:
                         score = self._evaluate_candidate_strategy("imputation", strategy, X_eval, y_eval)
@@ -419,13 +446,6 @@ class AutoDataPreparer:
                     self.logger.log("Encoding", "Boolean to Int", f"Converted {col} to 0/1", {"column": col})
                     continue
 
-                # Target Column Handling: Always Label Encode for Classification
-                if self.target_col and col == self.target_col:
-                    le = LabelEncoder()
-                    self.data[col] = le.fit_transform(self.data[col].astype(str))
-                    self.logger.log("Encoding", "Target Encoding", f"Label Encoded Target Variable", {"column": col})
-                    continue
-
                 # Meta-Learning Decision
                 meta_features = MetaFeatureExtractor.extract_features(self.data, col)
                 strategy = self.meta_learner.predict("encoding", meta_features)
@@ -445,6 +465,17 @@ class AutoDataPreparer:
                                   {"column": col})
                     self.logger.log_change("Encoding", col, "Categorical Strings", "Encoded to Integers", len(self.data))
 
+    def encode_target(self):
+        """Label encodes a non-numeric classification target; numeric targets are left untouched."""
+        if self.target is None or pd.api.types.is_numeric_dtype(self.target):
+            return
+
+        le = LabelEncoder()
+        self.target = pd.Series(le.fit_transform(self.target.astype(str)), index=self.target.index, name=self.target.name)
+        mapping = {str(label): int(code) for code, label in enumerate(le.classes_)}
+        self.logger.log("Encoding", "Target Encoding", "Label Encoded Target Variable",
+                        {"column": self.target_col, "mapping": mapping})
+
     def scale_features(self):
         """Scales numerical features using Meta-Learning with Top-K Optimization."""
         if self.data is None: return
@@ -462,27 +493,19 @@ class AutoDataPreparer:
             meta_features = MetaFeatureExtractor.extract_features(self.data, max_skew_col)
             
             # Decision Logic
-            if self.target_col and self.target_col in self.data.columns:
+            if self.target is not None:
                 # OPTIMIZATION MODE
                 candidates = self.meta_learner.predict_top_k("scaling", meta_features, k=2)
                 self.logger.log("Scaling", "Optimizing...", f"Evaluating Top-K: {candidates}")
-                
+
                 best_score = -1
                 best_strategy = candidates[0]
-                
+
                 # Prepare X, y for evaluation
-                # Data is already encoded and numeric now
-                X_eval = self.data[cols_to_scale].copy()
-                y_eval = self.data[self.target_col]
-                
-                # Note: X_eval here only contains columns to scale. 
-                # Ideally we should use ALL features for training to get a real score, 
-                # but we only want to compare scalers on these columns.
-                # Adding unscaled binary columns back to X_eval might be better for model performance.
-                other_cols = [c for c in self.data.columns if c not in cols_to_scale and c != self.target_col]
-                if other_cols:
-                    X_eval = pd.concat([X_eval, self.data[other_cols]], axis=1)
-                
+                # Data is already encoded and numeric now; the target is held separately
+                X_eval = self.data.copy()
+                y_eval = self.target
+
                 for strategy in candidates:
                     score = self._evaluate_candidate_strategy("scaling", strategy, X_eval, y_eval)
                     metric_name = "R2" if self.task_type == "regression" else "F1"
@@ -504,13 +527,13 @@ class AutoDataPreparer:
             # Apply Winner
             if strategy == "robust":
                 scaler = RobustScaler()
-                if not self.target_col: self.logger.log("Scaling", "RobustScaler", "Predicted by Meta-Model")
+                if self.target is None: self.logger.log("Scaling", "RobustScaler", "Predicted by Meta-Model")
             elif strategy == "minmax":
                 scaler = MinMaxScaler()
-                if not self.target_col: self.logger.log("Scaling", "MinMaxScaler", "Predicted by Meta-Model")
+                if self.target is None: self.logger.log("Scaling", "MinMaxScaler", "Predicted by Meta-Model")
             else:
                 scaler = StandardScaler()
-                if not self.target_col: self.logger.log("Scaling", "StandardScaler", "Predicted by Meta-Model")
+                if self.target is None: self.logger.log("Scaling", "StandardScaler", "Predicted by Meta-Model")
                 
             for col in cols_to_scale:
                 old_min, old_max = self.data[col].min(), self.data[col].max()
@@ -519,9 +542,9 @@ class AutoDataPreparer:
             self.data[cols_to_scale] = scaler.fit_transform(self.data[cols_to_scale])
 
     def save_data(self, output_path):
-        """Saves the processed data."""
+        """Saves the processed data (features plus target)."""
         if self.data is None: return
-        self.data.to_csv(output_path, index=False)
+        self._with_target().to_csv(output_path, index=False)
         # print(f"\nProcessed data saved to {output_path}")
 
     def run_pipeline(self, output_path='processed_data.csv'):
@@ -534,6 +557,7 @@ class AutoDataPreparer:
         initial_metrics = DataEvaluator.calculate_quality_metrics(self.data)
         
         self.analyze_data()
+        self._separate_target() # Keep the target out of all feature preprocessing
         self._detect_task_type() # Detect Classification vs Regression
         self.clean_data() # Dynamic Outlier Handling
         self.parse_dates() # Safer Date Parsing
@@ -556,13 +580,14 @@ class AutoDataPreparer:
         self.logger.log("Output", "Save Human Readable", "Saved intermediate cleaned data", {"path": human_readable_path})
 
         self.encode_categorical() # Dynamic Thresholds
+        self.encode_target()
         self.scale_features() # Dynamic Scaler Selection
         self.analyze_data() 
         self.save_data(output_path)
         self.logger.log("Output", "Save ML Ready", "Saved final processed data", {"path": output_path})
         
         # Final Evaluation
-        final_metrics = DataEvaluator.calculate_quality_metrics(self.data)
+        final_metrics = DataEvaluator.calculate_quality_metrics(self._with_target())
         
         # Save Report
         report_path = os.path.join(dirname, f'report_{basename.replace(".csv", ".json")}')
