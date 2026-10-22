@@ -112,18 +112,18 @@ class PipelineResult:
 
 
 @pytest.fixture
-def run_pipeline(tmp_path, monkeypatch):
-    """Runs the full pipeline on a DataFrame inside an isolated working directory."""
-    # Meta-models and feedback files live under the working directory, so
-    # isolate each test from the repository's meta_models/ folder.
-    monkeypatch.chdir(tmp_path)
+def run_pipeline(tmp_path):
+    """Runs the full pipeline on a DataFrame inside an isolated directory."""
 
     def _run(df, target_col=None):
         input_path = tmp_path / "input.csv"
         df.to_csv(input_path, index=False)
         output_path = tmp_path / "processed_input.csv"
 
-        AutoDataPreparer(str(input_path), target_col=target_col).run_pipeline(str(output_path))
+        # Isolate meta-models and feedback files from the repository's meta_models/ folder.
+        preparer = AutoDataPreparer(str(input_path), target_col=target_col,
+                                    models_dir=str(tmp_path / "meta_models"))
+        preparer.run_pipeline(str(output_path))
 
         with open(tmp_path / "report_processed_input.json") as f:
             report = json.load(f)

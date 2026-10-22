@@ -30,8 +30,19 @@ class MetaFeatureExtractor:
 
         return [n_samples, missing_ratio, skewness, kurtosis, unique_ratio, dtype_val]
 
+DEFAULT_MODELS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "meta_models")
+
+# Candidate strategies per task, in the order used to break ties / fill the Top-K list.
+STRATEGIES = {
+    "imputation": ["mean", "median", "knn"],
+    "scaling": ["standard", "robust", "minmax"],
+    "encoding": ["onehot", "label"],
+}
+
 class MetaLearner:
-    def __init__(self, models_dir="meta_models"):
+    def __init__(self, models_dir=None):
+        # Resolve relative to this file so the app works from any working directory.
+        models_dir = models_dir or DEFAULT_MODELS_DIR
         self.models_dir = models_dir
         if not os.path.exists(models_dir):
             os.makedirs(models_dir)
@@ -71,36 +82,39 @@ class MetaLearner:
                 self.is_fitted[task] = True
                 print(f"Loaded {task} meta-model.")
 
-    def predict(self, task, meta_features):
+    def predict(self, task, meta_features, exclude=()):
         """Predicts the best strategy for a given task."""
-        if not self.is_fitted[task]:
-            return self._fallback_heuristic(task, meta_features)
-        
-        model = getattr(self, f"{task}_model")
-        # Ensure 2D array
-        prediction = model.predict([meta_features])[0]
-        return prediction
+        return self.rank_strategies(task, meta_features, exclude)[0]
 
-    def predict_top_k(self, task, meta_features, k=2):
+    def predict_top_k(self, task, meta_features, k=2, exclude=()):
         """Returns the top k most probable strategies."""
-        if not self.is_fitted[task]:
-            # If not fitted, return a default list or fallback
-            return [self._fallback_heuristic(task, meta_features)]
-        
-        model = getattr(self, f"{task}_model")
-        X = pd.DataFrame([meta_features])
-        
-        try:
-            probs = model.predict_proba(X)[0]
-            classes = model.classes_
-            
-            # Sort by probability descending
-            top_indices = np.argsort(probs)[::-1][:k]
-            top_strategies = classes[top_indices]
-            return list(top_strategies)
-        except AttributeError:
-            # If model doesn't support predict_proba
-            return [model.predict(X)[0]]
+        return self.rank_strategies(task, meta_features, exclude)[:k]
+
+    def rank_strategies(self, task, meta_features, exclude=()):
+        """
+        Ranks all candidate strategies for a task, most promising first.
+        Uses the meta-model's probabilities when fitted, otherwise the fallback heuristic
+        followed by the remaining strategies. Strategies in `exclude` are never returned.
+        """
+        if self.is_fitted[task]:
+            model = getattr(self, f"{task}_model")
+            X = pd.DataFrame([meta_features])
+            try:
+                probs = model.predict_proba(X)[0]
+                # Sort by probability descending
+                ranked = [str(s) for s in model.classes_[np.argsort(probs)[::-1]]]
+            except AttributeError:
+                # If model doesn't support predict_proba
+                ranked = [str(model.predict(X)[0])]
+        else:
+            ranked = [self._fallback_heuristic(task, meta_features)]
+
+        # Fill up with the remaining known strategies so there is always something to compare.
+        ranked += [s for s in STRATEGIES.get(task, []) if s not in ranked]
+        ranked = [s for s in ranked if s not in exclude]
+        if not ranked:
+            raise ValueError(f"No {task} strategies left after excluding {sorted(exclude)}")
+        return ranked
 
     def store_feedback(self, task, meta_features, best_strategy):
         """Stores the result of a real-world evaluation for future training."""

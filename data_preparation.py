@@ -106,7 +106,10 @@ class DataEvaluator:
 
 
 class AutoDataPreparer:
-    def __init__(self, file_path, target_col=None):
+    # KNN imputation is quadratic in the number of rows, so it is pruned from the candidates above this size.
+    KNN_MAX_ROWS = 10_000
+
+    def __init__(self, file_path, target_col=None, models_dir=None):
         self.file_path = file_path
         self.data = None
         self.raw_data_snapshot = None # Keep a copy for evaluation
@@ -117,7 +120,7 @@ class AutoDataPreparer:
         self.start_time = None
         
         # Initialize Meta-Learner
-        self.meta_learner = MetaLearner()
+        self.meta_learner = MetaLearner(models_dir)
         self.meta_learner.load_models()
         
     def _separate_target(self):
@@ -317,12 +320,21 @@ class AutoDataPreparer:
         except Exception as e:
             return None, f"{type(e).__name__}: {e}"
 
+    def _excluded_strategies(self, task):
+        """Strategies pruned up front because they are too expensive for this dataset."""
+        if task == "imputation" and len(self.data) > self.KNN_MAX_ROWS:
+            self.logger.log("Imputation", "KNN Excluded",
+                            f"{len(self.data)} rows exceeds {self.KNN_MAX_ROWS}; KNN imputation scales quadratically")
+            return {"knn"}
+        return set()
+
     def _optimize_strategy(self, task, step, meta_features, X, y, scale_cols=None):
         """
         Top-K optimisation: the meta-learner proposes candidates, each is scored with a
         downstream model, and the best one wins. Feedback is only stored for real evaluations.
         """
-        candidates = self.meta_learner.predict_top_k(task, meta_features, k=2)
+        candidates = self.meta_learner.predict_top_k(task, meta_features, k=2,
+                                                     exclude=self._excluded_strategies(task))
         self.logger.log(step, "Optimizing...", f"Evaluating Top-K: {candidates}")
 
         metric_name = "R2" if self.task_type == "regression" else "F1"
@@ -379,7 +391,8 @@ class AutoDataPreparer:
 
                 else:
                     # FAST MODE (Prediction only)
-                    strategy = self.meta_learner.predict("imputation", meta_features)
+                    strategy = self.meta_learner.predict("imputation", meta_features,
+                                                         exclude=self._excluded_strategies("imputation"))
                     self.logger.log("Imputation", f"{strategy.title()} Strategy", "Predicted by Meta-Model", 
                                   {"predicted_strategy": strategy})
                 

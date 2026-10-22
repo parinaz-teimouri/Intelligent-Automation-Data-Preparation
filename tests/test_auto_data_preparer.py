@@ -62,11 +62,11 @@ def test_candidate_strategies_are_actually_compared(run_pipeline, name):
     make_df, target = DATASETS[name]
     result = run_pipeline(make_df(), target)
 
+    assert not [d for d in result.decisions("Evaluation") if "(Failed)" in d["decision"]]
     for step in ["Imputation", "Scaling"]:
         details = result.winner(step)["details"]
         assert len(details["candidates"]) >= 2, f"{step}: nothing to compare"
-        assert math.isfinite(details["best_score"])
-        assert details["best_score"] > -1, f"{step}: evaluation failed"
+        assert all(math.isfinite(score) for score in details["scores"].values())
 
 
 def test_failed_evaluations_are_reported_and_not_stored_as_feedback(run_pipeline, monkeypatch):
