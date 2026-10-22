@@ -7,7 +7,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from sklearn.model_selection import cross_val_score, KFold, StratifiedKFold
-from sklearn.preprocessing import FunctionTransformer
+from sklearn.preprocessing import FunctionTransformer, OrdinalEncoder
 import os
 import re
 import json
@@ -95,9 +95,83 @@ def make_scaler(strategy):
     raise ValueError(f"Unknown scaling strategy: {strategy}")
 
 
+def make_encoder(strategy):
+    """Returns the sklearn encoder for an encoding strategy name (used for evaluation)."""
+    if strategy == "onehot": return OneHotEncoder(handle_unknown="ignore")
+    if strategy == "label": return OrdinalEncoder(handle_unknown="use_encoded_value", unknown_value=-1)
+    raise ValueError(f"Unknown encoding strategy: {strategy}")
+
+
 def _as_str(X):
     # Categorical columns can mix types (e.g. 1 and "Y"); the encoder needs one type.
     return X.astype(str)
+
+
+# --- Candidate evaluation --------------------------------------------------------
+# Shared by the pipeline (Top-K optimisation) and train_meta_model.py (meta-training labels),
+# so both judge strategies the same way.
+
+def evaluation_model_for(task, task_type):
+    """
+    Downstream model used to score candidates. Tree models ignore feature scale,
+    so scalers are compared with a scale-sensitive k-NN model instead.
+    """
+    regression = task_type == "regression"
+    if task == "scaling":
+        return KNeighborsRegressor(n_neighbors=5) if regression else KNeighborsClassifier(n_neighbors=5)
+    if regression:
+        return RandomForestRegressor(n_estimators=50, random_state=42)
+    return RandomForestClassifier(n_estimators=50, random_state=42)
+
+
+def cv_splitter(y, task_type):
+    """Stratified folds for classification, reduced so every class appears in each fold."""
+    if task_type == "classification":
+        n_splits = min(3, int(pd.Series(y).value_counts().min()))
+        if n_splits >= 2:
+            return StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
+    return KFold(n_splits=min(3, len(y)), shuffle=True, random_state=42)
+
+
+def build_eval_pipeline(task, strategy, X, task_type, scale_cols=None):
+    """
+    Builds the full preprocessing + model pipeline used to score one candidate.
+    The candidate is plugged into its own step; the other steps use safe defaults.
+    """
+    model = evaluation_model_for(task, task_type)
+
+    if task == "scaling":
+        # Features are already imputed and encoded; scale the same columns the pipeline would.
+        preprocess = ColumnTransformer([("scale", make_scaler(strategy), scale_cols)], remainder="passthrough")
+    else:
+        num_cols = X.select_dtypes(include=[np.number]).columns.tolist()
+        cat_cols = [c for c in X.columns if c not in num_cols]
+        imputer = make_imputer(strategy if task == "imputation" else "median")
+        encoder = make_encoder(strategy if task == "encoding" else "onehot")
+        numeric = Pipeline([("imputer", imputer), ("scaler", StandardScaler())])
+        categorical = Pipeline([
+            ("imputer", SimpleImputer(strategy="most_frequent")),
+            ("as_str", FunctionTransformer(_as_str)),
+            ("encoder", encoder),
+        ])
+        preprocess = ColumnTransformer([("num", numeric, num_cols), ("cat", categorical, cat_cols)])
+
+    return Pipeline([("preprocess", preprocess), ("model", model)])
+
+
+def evaluate_strategy(task, strategy, X, y, task_type, scale_cols=None):
+    """
+    Cross-validates one candidate strategy with a downstream model.
+    Returns (score, error): score is F1 (classification) or R2 (regression),
+    error is the failure message if the evaluation could not run.
+    """
+    scoring = "r2" if task_type == "regression" else "f1_macro"
+    try:
+        pipeline = build_eval_pipeline(task, strategy, X, task_type, scale_cols)
+        scores = cross_val_score(pipeline, X, y, cv=cv_splitter(y, task_type), scoring=scoring, error_score="raise")
+        return float(scores.mean()), None
+    except Exception as e:
+        return None, f"{type(e).__name__}: {e}"
 
 class DecisionLogger:
     def __init__(self):
@@ -407,59 +481,9 @@ class AutoDataPreparer:
                     self.logger.log("Outlier Handling", "Kept As-Is", f"High outlier count in {col}, likely natural distribution", 
                                   {"column": col, "ratio": f"{outlier_ratio:.1%}", "action": "None"})
 
-    def _evaluation_model(self, task):
-        """
-        Downstream model used to score candidates. Tree models ignore feature scale,
-        so scalers are compared with a scale-sensitive k-NN model instead.
-        """
-        regression = self.task_type == "regression"
-        if task == "scaling":
-            return KNeighborsRegressor(n_neighbors=5) if regression else KNeighborsClassifier(n_neighbors=5)
-        if regression:
-            return RandomForestRegressor(n_estimators=50, random_state=42)
-        return RandomForestClassifier(n_estimators=50, random_state=42)
-
-    def _cv_splitter(self, y):
-        """Stratified folds for classification, reduced so every class appears in each fold."""
-        if self.task_type == "classification":
-            n_splits = min(3, int(y.value_counts().min()))
-            if n_splits >= 2:
-                return StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
-        return KFold(n_splits=min(3, len(y)), shuffle=True, random_state=42)
-
-    def _build_eval_pipeline(self, task, strategy, X, scale_cols=None):
-        """Builds the full preprocessing + model pipeline used to score one candidate."""
-        model = self._evaluation_model(task)
-
-        if task == "scaling":
-            # Features are already imputed and encoded; scale the same columns the pipeline would.
-            preprocess = ColumnTransformer([("scale", make_scaler(strategy), scale_cols)], remainder="passthrough")
-        else:
-            num_cols = X.select_dtypes(include=[np.number]).columns.tolist()
-            cat_cols = [c for c in X.columns if c not in num_cols]
-            numeric = Pipeline([("imputer", make_imputer(strategy)), ("scaler", StandardScaler())])
-            categorical = Pipeline([
-                ("imputer", SimpleImputer(strategy="most_frequent")),
-                ("as_str", FunctionTransformer(_as_str)),
-                ("encoder", OneHotEncoder(handle_unknown="ignore")),
-            ])
-            preprocess = ColumnTransformer([("num", numeric, num_cols), ("cat", categorical, cat_cols)])
-
-        return Pipeline([("preprocess", preprocess), ("model", model)])
-
     def _evaluate_candidate_strategy(self, task, strategy, X, y, scale_cols=None):
-        """
-        Evaluates a specific strategy using a downstream model.
-        Returns (score, error): score is F1 (classification) or R2 (regression),
-        error is the failure message if the evaluation could not run.
-        """
-        scoring = "r2" if self.task_type == "regression" else "f1_macro"
-        try:
-            pipeline = self._build_eval_pipeline(task, strategy, X, scale_cols)
-            scores = cross_val_score(pipeline, X, y, cv=self._cv_splitter(y), scoring=scoring, error_score="raise")
-            return float(scores.mean()), None
-        except Exception as e:
-            return None, f"{type(e).__name__}: {e}"
+        """Evaluates a specific strategy using a downstream model. Returns (score, error)."""
+        return evaluate_strategy(task, strategy, X, y, self.task_type, scale_cols)
 
     def _excluded_strategies(self, task):
         """Strategies pruned up front because they are too expensive for this dataset."""
@@ -479,7 +503,7 @@ class AutoDataPreparer:
         self.logger.log(step, "Optimizing...", f"Evaluating Top-K: {candidates}")
 
         metric_name = "R2" if self.task_type == "regression" else "F1"
-        evaluation_model = type(self._evaluation_model(task)).__name__
+        evaluation_model = type(evaluation_model_for(task, self.task_type)).__name__
         scores = {}
         best_strategy, best_score = None, -np.inf
 
