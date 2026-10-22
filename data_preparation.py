@@ -249,8 +249,21 @@ class AutoDataPreparer:
     # KNN imputation is quadratic in the number of rows, so it is pruned from the candidates above this size.
     KNN_MAX_ROWS = 10_000
 
-    def __init__(self, file_path, target_col=None, models_dir=None):
+    def __init__(self, file_path, target_col=None, models_dir=None, fixed_strategies=None,
+                 standardize=True, optimize=True, record_feedback=True):
+        """
+        fixed_strategies: e.g. {"imputation": "mean", "scaling": "standard", "encoding": "onehot"}
+                          to skip strategy selection for those tasks (static pipelines, benchmarks).
+        standardize:      repair text values and exclude identifier columns.
+        optimize:         score candidates against the target (otherwise strategies are only predicted).
+        record_feedback:  store evaluation winners for future meta-training.
+        """
         self.file_path = file_path
+        self.fixed_strategies = fixed_strategies or {}
+        self.standardize = standardize
+        self.optimize = optimize
+        self.record_feedback = record_feedback
+        self.chosen_strategies = {} # task -> strategy actually applied ("encoding": {column: strategy})
         self.data = None
         self.raw_data_snapshot = None # Keep a copy for evaluation
         self.logger = DecisionLogger()
@@ -531,8 +544,22 @@ class AutoDataPreparer:
         self.logger.log(step, f"{best_strategy.title()} (Winner)", f"Selected after evaluation (Score: {best_score:.4f})", details)
 
         # Feedback Loop
-        self.meta_learner.store_feedback(task, meta_features, best_strategy)
+        if self.record_feedback:
+            self.meta_learner.store_feedback(task, meta_features, best_strategy)
         return best_strategy
+
+    def _choose_strategy(self, task, step, meta_features, X=None, scale_cols=None):
+        """Fixed by configuration, optimised against the target, or predicted by the meta-model."""
+        if task in self.fixed_strategies:
+            strategy = self.fixed_strategies[task]
+            self.logger.log(step, f"{strategy.title()} (Fixed)", "Strategy set by configuration")
+        elif self.optimize and self.target is not None and X is not None:
+            strategy = self._optimize_strategy(task, step, meta_features, X, self.target, scale_cols)
+        else:
+            # FAST MODE (Prediction only)
+            strategy = self.meta_learner.predict(task, meta_features, exclude=self._excluded_strategies(task))
+            self.logger.log(step, f"{strategy.title()} Strategy", "Predicted by Meta-Model", {"predicted_strategy": strategy})
+        return strategy
 
     def handle_missing_values(self):
         """Handles missing values using Meta-Learning with Top-K Optimization."""
@@ -556,20 +583,12 @@ class AutoDataPreparer:
                 worst_col = self.data[cols_with_missing].isnull().sum().idxmax()
                 meta_features = MetaFeatureExtractor.extract_features(self.data, worst_col)
                 
-                # Decision Logic
-                if self.target is not None:
-                    # OPTIMIZATION MODE: score candidates on all features
-                    # (date columns are dropped later, so they are not part of the evaluation)
-                    X_eval = self.data.select_dtypes(exclude=['datetime64', 'datetime64[ns]'])
-                    strategy = self._optimize_strategy("imputation", "Imputation", meta_features, X_eval, self.target)
+                # Decision Logic: candidates are scored on all features
+                # (date columns are dropped later, so they are not part of the evaluation)
+                X_eval = self.data.select_dtypes(exclude=['datetime64', 'datetime64[ns]'])
+                strategy = self._choose_strategy("imputation", "Imputation", meta_features, X_eval)
+                self.chosen_strategies["imputation"] = strategy
 
-                else:
-                    # FAST MODE (Prediction only)
-                    strategy = self.meta_learner.predict("imputation", meta_features,
-                                                         exclude=self._excluded_strategies("imputation"))
-                    self.logger.log("Imputation", f"{strategy.title()} Strategy", "Predicted by Meta-Model", 
-                                  {"predicted_strategy": strategy})
-                
                 # Apply Winner
                 missing_mask = self.data[num_cols].isnull()
                 for col in num_cols:
@@ -663,9 +682,13 @@ class AutoDataPreparer:
                     continue
 
                 # Meta-Learning Decision
-                meta_features = MetaFeatureExtractor.extract_features(self.data, col)
-                strategy = self.meta_learner.predict("encoding", meta_features)
-                
+                if "encoding" in self.fixed_strategies:
+                    strategy = self.fixed_strategies["encoding"]
+                else:
+                    meta_features = MetaFeatureExtractor.extract_features(self.data, col)
+                    strategy = self.meta_learner.predict("encoding", meta_features)
+                self.chosen_strategies.setdefault("encoding", {})[col] = strategy
+
                 if strategy == "onehot":
                     dummies = pd.get_dummies(self.data[col], prefix=col, drop_first=True)
                     new_cols = list(dummies.columns)
@@ -709,18 +732,12 @@ class AutoDataPreparer:
             meta_features = MetaFeatureExtractor.extract_features(self.data, max_skew_col)
             
             # Decision Logic
-            if self.target is not None:
-                # OPTIMIZATION MODE
-                # Data is already encoded and numeric now; the target is held separately
-                strategy = self._optimize_strategy("scaling", "Scaling", meta_features, self.data, self.target,
-                                                   scale_cols=cols_to_scale)
+            # Data is already encoded and numeric now; the target is held separately
+            strategy = self._choose_strategy("scaling", "Scaling", meta_features, self.data, scale_cols=cols_to_scale)
+            self.chosen_strategies["scaling"] = strategy
 
-            else:
-                strategy = self.meta_learner.predict("scaling", meta_features)
-            
             # Apply Winner
             scaler = make_scaler(strategy)
-            if self.target is None: self.logger.log("Scaling", type(scaler).__name__, "Predicted by Meta-Model")
 
             for col in cols_to_scale:
                 old_min, old_max = self.data[col].min(), self.data[col].max()
@@ -747,10 +764,12 @@ class AutoDataPreparer:
         self.analyze_data()
         self._separate_target() # Keep the target out of all feature preprocessing
         self._detect_task_type() # Detect Classification vs Regression
-        self.standardize_values() # Booleans, numbers stored as text, category spellings
+        if self.standardize:
+            self.standardize_values() # Booleans, numbers stored as text, category spellings
         self.parse_dates() # Safer Date Parsing
         self.remove_duplicates() # After standardisation, so 'Male' and 'male' rows can match
-        self._separate_identifiers() # IDs / free text stay out of the ML features
+        if self.standardize:
+            self._separate_identifiers() # IDs / free text stay out of the ML features
         self._record_integer_columns()
         self.clean_data() # Dynamic Outlier Handling
 

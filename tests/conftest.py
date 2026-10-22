@@ -94,12 +94,13 @@ DATASETS = {
 # --- Pipeline runner ------------------------------------------------------------
 
 class PipelineResult:
-    def __init__(self, raw, processed, human_readable, report, workdir):
+    def __init__(self, raw, processed, human_readable, report, workdir, chosen_strategies):
         self.raw = raw
         self.processed = processed
         self.human_readable = human_readable
         self.report = report
         self.workdir = workdir
+        self.chosen_strategies = chosen_strategies
 
     def decisions(self, step):
         return [d for d in self.report["decisions"] if d["step"] == step]
@@ -115,14 +116,14 @@ class PipelineResult:
 def run_pipeline(tmp_path):
     """Runs the full pipeline on a DataFrame inside an isolated directory."""
 
-    def _run(df, target_col=None):
+    def _run(df, target_col=None, **options):
         input_path = tmp_path / "input.csv"
         df.to_csv(input_path, index=False)
         output_path = tmp_path / "processed_input.csv"
 
         # Isolate meta-models and feedback files from the repository's meta_models/ folder.
         preparer = AutoDataPreparer(str(input_path), target_col=target_col,
-                                    models_dir=str(tmp_path / "meta_models"))
+                                    models_dir=str(tmp_path / "meta_models"), **options)
         preparer.run_pipeline(str(output_path))
 
         with open(tmp_path / "report_processed_input.json") as f:
@@ -133,6 +134,7 @@ def run_pipeline(tmp_path):
             human_readable=pd.read_csv(tmp_path / "human_readable_input.csv"),
             report=report,
             workdir=tmp_path,
+            chosen_strategies=preparer.chosen_strategies,
         )
 
     return _run

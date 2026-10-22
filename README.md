@@ -75,6 +75,15 @@ evaluates the next-best candidate.
 pytest
 ```
 
+### Run the benchmark:
+```bash
+python benchmark.py                     # options: --repeats 3 --no-openml --models-dir --output-dir
+```
+Compares a static pipeline, static + cleaning, meta-model prediction only, and the full system
+on 7 datasets (3 OpenML datasets are downloaded on first use). Results are written to
+[`benchmark_results/RESULTS.md`](benchmark_results/RESULTS.md); the protocol is described in
+the docstring of `benchmark.py`.
+
 ## How It Works
 
 1. **Target Separation**: The target column is set aside so no preprocessing step can alter it or leak it into evaluation; rows without a target are dropped
