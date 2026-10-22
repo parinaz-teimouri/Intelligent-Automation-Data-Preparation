@@ -3,14 +3,35 @@ import numpy as np
 from sklearn.impute import SimpleImputer, KNNImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder, LabelEncoder, MinMaxScaler, RobustScaler
 from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline, make_pipeline
-from sklearn.ensemble import IsolationForest, RandomForestClassifier, RandomForestRegressor
-from sklearn.model_selection import cross_val_score
-from sklearn.metrics import f1_score, mean_squared_error, r2_score
+from sklearn.pipeline import Pipeline
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
+from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
+from sklearn.model_selection import cross_val_score, KFold, StratifiedKFold
+from sklearn.preprocessing import FunctionTransformer
 import os
 import json
 from datetime import datetime
 from meta_learning import MetaLearner, MetaFeatureExtractor
+
+
+def make_imputer(strategy):
+    """Returns the imputer for a numeric imputation strategy name."""
+    if strategy == "knn": return KNNImputer(n_neighbors=5)
+    if strategy in ("mean", "median", "most_frequent"): return SimpleImputer(strategy=strategy)
+    raise ValueError(f"Unknown imputation strategy: {strategy}")
+
+
+def make_scaler(strategy):
+    """Returns the scaler for a scaling strategy name."""
+    if strategy == "standard": return StandardScaler()
+    if strategy == "minmax": return MinMaxScaler()
+    if strategy == "robust": return RobustScaler()
+    raise ValueError(f"Unknown scaling strategy: {strategy}")
+
+
+def _as_str(X):
+    # Categorical columns can mix types (e.g. 1 and "Y"); the encoder needs one type.
+    return X.astype(str)
 
 class DecisionLogger:
     def __init__(self):
@@ -141,22 +162,26 @@ class AutoDataPreparer:
         target_series = self.target
         
         # Heuristic:
-        # 1. If non-numeric -> Classification
-        # 2. If numeric but low cardinality (<20 unique or <5% unique) -> Classification
-        # 3. Else -> Regression
-        
-        if not pd.api.types.is_numeric_dtype(target_series):
+        # 1. If non-numeric or boolean -> Classification
+        # 2. If numeric with fractional values (e.g. a 3.3 rating) -> Regression
+        # 3. If integer-valued with low cardinality (<20 unique or <5% unique) -> Classification
+        # 4. Else -> Regression
+
+        integer_valued = None
+        if not pd.api.types.is_numeric_dtype(target_series) or pd.api.types.is_bool_dtype(target_series):
             self.task_type = "classification"
         else:
+            integer_valued = bool(np.allclose(target_series, np.round(target_series)))
             unique_count = target_series.nunique()
             total_count = len(target_series)
-            if unique_count < 20 or (unique_count / total_count < 0.05):
+            if integer_valued and (unique_count < 20 or (unique_count / total_count < 0.05)):
                 self.task_type = "classification"
             else:
                 self.task_type = "regression"
-        
+
         self.logger.log("Task Detection", self.task_type.title(), f"Detected based on target '{self.target_col}' properties",
-                       {"target_dtype": str(target_series.dtype), "unique_values": int(target_series.nunique())})
+                       {"target_dtype": str(target_series.dtype), "unique_values": int(target_series.nunique()),
+                        "integer_valued": integer_valued})
 
     def load_data(self):
         """Loads data from CSV or Excel files."""
@@ -238,56 +263,99 @@ class AutoDataPreparer:
                     self.logger.log("Outlier Handling", "Kept As-Is", f"High outlier count in {col}, likely natural distribution", 
                                   {"column": col, "ratio": f"{outlier_ratio:.1%}", "action": "None"})
 
-    def _evaluate_candidate_strategy(self, task, strategy, X, y):
+    def _evaluation_model(self, task):
+        """
+        Downstream model used to score candidates. Tree models ignore feature scale,
+        so scalers are compared with a scale-sensitive k-NN model instead.
+        """
+        regression = self.task_type == "regression"
+        if task == "scaling":
+            return KNeighborsRegressor(n_neighbors=5) if regression else KNeighborsClassifier(n_neighbors=5)
+        if regression:
+            return RandomForestRegressor(n_estimators=50, random_state=42)
+        return RandomForestClassifier(n_estimators=50, random_state=42)
+
+    def _cv_splitter(self, y):
+        """Stratified folds for classification, reduced so every class appears in each fold."""
+        if self.task_type == "classification":
+            n_splits = min(3, int(y.value_counts().min()))
+            if n_splits >= 2:
+                return StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
+        return KFold(n_splits=min(3, len(y)), shuffle=True, random_state=42)
+
+    def _build_eval_pipeline(self, task, strategy, X, scale_cols=None):
+        """Builds the full preprocessing + model pipeline used to score one candidate."""
+        model = self._evaluation_model(task)
+
+        if task == "scaling":
+            # Features are already imputed and encoded; scale the same columns the pipeline would.
+            preprocess = ColumnTransformer([("scale", make_scaler(strategy), scale_cols)], remainder="passthrough")
+        else:
+            num_cols = X.select_dtypes(include=[np.number]).columns.tolist()
+            cat_cols = [c for c in X.columns if c not in num_cols]
+            numeric = Pipeline([("imputer", make_imputer(strategy)), ("scaler", StandardScaler())])
+            categorical = Pipeline([
+                ("imputer", SimpleImputer(strategy="most_frequent")),
+                ("as_str", FunctionTransformer(_as_str)),
+                ("encoder", OneHotEncoder(handle_unknown="ignore")),
+            ])
+            preprocess = ColumnTransformer([("num", numeric, num_cols), ("cat", categorical, cat_cols)])
+
+        return Pipeline([("preprocess", preprocess), ("model", model)])
+
+    def _evaluate_candidate_strategy(self, task, strategy, X, y, scale_cols=None):
         """
         Evaluates a specific strategy using a downstream model.
-        Returns score (F1 for classification, R2 for regression).
+        Returns (score, error): score is F1 (classification) or R2 (regression),
+        error is the failure message if the evaluation could not run.
         """
+        scoring = "r2" if self.task_type == "regression" else "f1_macro"
         try:
-            # Build a temporary pipeline for evaluation
-            steps = []
-            
-            # 1. Imputation
-            if task == "imputation":
-                if strategy == "knn": imputer = KNNImputer(n_neighbors=5)
-                elif strategy == "median": imputer = SimpleImputer(strategy='median')
-                elif strategy == "mean": imputer = SimpleImputer(strategy='mean')
-                steps.append(('imputer', imputer))
-            else:
-                # Default safe imputer if we are testing something else
-                steps.append(('imputer', SimpleImputer(strategy='mean'))) # Or median
-            
-            # 2. Encoding (For X only)
-            # We need to handle categorical columns. 
-            # If X is raw, we need an encoder.
-            # Simplified: Use OneHot for evaluation to be safe.
-            
-            if task == "scaling":
-                if strategy == "robust": scaler = RobustScaler()
-                elif strategy == "minmax": scaler = MinMaxScaler()
-                elif strategy == "standard": scaler = StandardScaler()
-                steps.append(('scaler', scaler))
-            else:
-                steps.append(('scaler', StandardScaler()))
-                
-            # 3. Model & Metric Selection
-            if self.task_type == "regression":
-                model = RandomForestRegressor(n_estimators=10, random_state=42)
-                scoring = 'r2'
-            else:
-                model = RandomForestClassifier(n_estimators=10, random_state=42)
-                scoring = 'f1_macro'
-
-            steps.append(('model', model))
-
-            pipeline = Pipeline(steps)
-
-            # Cross-validate (rows without a target were already dropped)
-            scores = cross_val_score(pipeline, X, y, cv=3, scoring=scoring)
-            return scores.mean()
+            pipeline = self._build_eval_pipeline(task, strategy, X, scale_cols)
+            scores = cross_val_score(pipeline, X, y, cv=self._cv_splitter(y), scoring=scoring, error_score="raise")
+            return float(scores.mean()), None
         except Exception as e:
-            # print(f"Eval failed for {strategy}: {e}")
-            return -1e9 if self.task_type == "regression" else -1
+            return None, f"{type(e).__name__}: {e}"
+
+    def _optimize_strategy(self, task, step, meta_features, X, y, scale_cols=None):
+        """
+        Top-K optimisation: the meta-learner proposes candidates, each is scored with a
+        downstream model, and the best one wins. Feedback is only stored for real evaluations.
+        """
+        candidates = self.meta_learner.predict_top_k(task, meta_features, k=2)
+        self.logger.log(step, "Optimizing...", f"Evaluating Top-K: {candidates}")
+
+        metric_name = "R2" if self.task_type == "regression" else "F1"
+        evaluation_model = type(self._evaluation_model(task)).__name__
+        scores = {}
+        best_strategy, best_score = None, -np.inf
+
+        for strategy in candidates:
+            score, error = self._evaluate_candidate_strategy(task, strategy, X, y, scale_cols)
+            if error:
+                scores[strategy] = None
+                self.logger.log("Evaluation", f"{strategy} (Failed)", error)
+                continue
+            scores[strategy] = score
+            self.logger.log("Evaluation", f"{strategy}", f"{metric_name} Score: {score:.4f}")
+            if score > best_score:
+                best_score, best_strategy = score, strategy
+
+        details = {"candidates": candidates, "scores": scores, "metric": metric_name,
+                   "evaluation_model": evaluation_model}
+
+        if best_strategy is None:
+            strategy = candidates[0]
+            self.logger.log(step, f"{strategy.title()} (Fallback)",
+                            "All candidate evaluations failed; using the meta-model's top prediction", details)
+            return strategy
+
+        details["best_score"] = best_score
+        self.logger.log(step, f"{best_strategy.title()} (Winner)", f"Selected after evaluation (Score: {best_score:.4f})", details)
+
+        # Feedback Loop
+        self.meta_learner.store_feedback(task, meta_features, best_strategy)
+        return best_strategy
 
     def handle_missing_values(self):
         """Handles missing values using Meta-Learning with Top-K Optimization."""
@@ -304,33 +372,11 @@ class AutoDataPreparer:
                 
                 # Decision Logic
                 if self.target is not None:
-                    # OPTIMIZATION MODE
-                    candidates = self.meta_learner.predict_top_k("imputation", meta_features, k=2)
-                    self.logger.log("Imputation", "Optimizing...", f"Evaluating Top-K: {candidates}")
+                    # OPTIMIZATION MODE: score candidates on all features
+                    # (date columns are dropped later, so they are not part of the evaluation)
+                    X_eval = self.data.select_dtypes(exclude=['datetime64', 'datetime64[ns]'])
+                    strategy = self._optimize_strategy("imputation", "Imputation", meta_features, X_eval, self.target)
 
-                    best_score = -1
-                    best_strategy = candidates[0]
-
-                    # Prepare X, y for evaluation
-                    # We use numeric columns only for this test to avoid encoding issues
-                    X_eval = self.data[num_cols].copy()
-                    y_eval = self.target
-
-                    for strategy in candidates:
-                        score = self._evaluate_candidate_strategy("imputation", strategy, X_eval, y_eval)
-                        metric_name = "R2" if self.task_type == "regression" else "F1"
-                        self.logger.log("Evaluation", f"{strategy}", f"{metric_name} Score: {score:.4f}")
-                        if score > best_score:
-                            best_score = score
-                            best_strategy = strategy
-                    
-                    strategy = best_strategy
-                    self.logger.log("Imputation", f"{strategy.title()} (Winner)", f"Selected after evaluation (Score: {best_score:.4f})", 
-                                  {"candidates": candidates, "best_score": best_score})
-                    
-                    # Feedback Loop
-                    self.meta_learner.store_feedback("imputation", meta_features, best_strategy)
-                    
                 else:
                     # FAST MODE (Prediction only)
                     strategy = self.meta_learner.predict("imputation", meta_features)
@@ -344,15 +390,8 @@ class AutoDataPreparer:
                     if n_missing > 0:
                         self.logger.log_change("Imputation", col, "NaN", f"Filled using {strategy}", int(n_missing))
 
-                if strategy == "knn":
-                    imputer = KNNImputer(n_neighbors=5)
-                    self.data[num_cols] = imputer.fit_transform(self.data[num_cols])
-                elif strategy == "median":
-                    imputer = SimpleImputer(strategy='median')
-                    self.data[num_cols] = imputer.fit_transform(self.data[num_cols])
-                elif strategy == "mean":
-                    imputer = SimpleImputer(strategy='mean')
-                    self.data[num_cols] = imputer.fit_transform(self.data[num_cols])
+                imputer = make_imputer(strategy)
+                self.data[num_cols] = imputer.fit_transform(self.data[num_cols])
         
         # Categorical Imputation
         cat_cols = self.data.select_dtypes(include=['object', 'category']).columns
@@ -495,46 +534,17 @@ class AutoDataPreparer:
             # Decision Logic
             if self.target is not None:
                 # OPTIMIZATION MODE
-                candidates = self.meta_learner.predict_top_k("scaling", meta_features, k=2)
-                self.logger.log("Scaling", "Optimizing...", f"Evaluating Top-K: {candidates}")
-
-                best_score = -1
-                best_strategy = candidates[0]
-
-                # Prepare X, y for evaluation
                 # Data is already encoded and numeric now; the target is held separately
-                X_eval = self.data.copy()
-                y_eval = self.target
+                strategy = self._optimize_strategy("scaling", "Scaling", meta_features, self.data, self.target,
+                                                   scale_cols=cols_to_scale)
 
-                for strategy in candidates:
-                    score = self._evaluate_candidate_strategy("scaling", strategy, X_eval, y_eval)
-                    metric_name = "R2" if self.task_type == "regression" else "F1"
-                    self.logger.log("Evaluation", f"{strategy}", f"{metric_name} Score: {score:.4f}")
-                    if score > best_score:
-                        best_score = score
-                        best_strategy = strategy
-                
-                strategy = best_strategy
-                self.logger.log("Scaling", f"{strategy.title()} (Winner)", f"Selected after evaluation (Score: {best_score:.4f})", 
-                              {"candidates": candidates, "best_score": best_score})
-                
-                # Feedback Loop
-                self.meta_learner.store_feedback("scaling", meta_features, best_strategy)
-                
             else:
                 strategy = self.meta_learner.predict("scaling", meta_features)
             
             # Apply Winner
-            if strategy == "robust":
-                scaler = RobustScaler()
-                if self.target is None: self.logger.log("Scaling", "RobustScaler", "Predicted by Meta-Model")
-            elif strategy == "minmax":
-                scaler = MinMaxScaler()
-                if self.target is None: self.logger.log("Scaling", "MinMaxScaler", "Predicted by Meta-Model")
-            else:
-                scaler = StandardScaler()
-                if self.target is None: self.logger.log("Scaling", "StandardScaler", "Predicted by Meta-Model")
-                
+            scaler = make_scaler(strategy)
+            if self.target is None: self.logger.log("Scaling", type(scaler).__name__, "Predicted by Meta-Model")
+
             for col in cols_to_scale:
                 old_min, old_max = self.data[col].min(), self.data[col].max()
                 self.logger.log_change("Scaling", col, f"Range [{old_min:.2f}, {old_max:.2f}]", f"Scaled using {strategy}", len(self.data))

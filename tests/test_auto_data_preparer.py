@@ -6,6 +6,7 @@ import pandas as pd
 import pytest
 
 from conftest import DATASETS
+from data_preparation import AutoDataPreparer, make_imputer, make_scaler
 
 
 @pytest.mark.parametrize("name", DATASETS)
@@ -66,6 +67,27 @@ def test_candidate_strategies_are_actually_compared(run_pipeline, name):
         assert len(details["candidates"]) >= 2, f"{step}: nothing to compare"
         assert math.isfinite(details["best_score"])
         assert details["best_score"] > -1, f"{step}: evaluation failed"
+
+
+def test_failed_evaluations_are_reported_and_not_stored_as_feedback(run_pipeline, monkeypatch):
+    def broken_pipeline(self, *args, **kwargs):
+        raise RuntimeError("model exploded")
+    monkeypatch.setattr(AutoDataPreparer, "_build_eval_pipeline", broken_pipeline)
+
+    result = run_pipeline(DATASETS["classification"][0](), "segment")
+
+    failures = [d for d in result.decisions("Evaluation") if "(Failed)" in d["decision"]]
+    assert failures and "model exploded" in failures[0]["reason"]
+    for step in ["Imputation", "Scaling"]:
+        assert any("(Fallback)" in d["decision"] for d in result.decisions(step))
+        assert not any("Winner" in d["decision"] for d in result.decisions(step))
+    assert not list((result.workdir / "meta_models").glob("*_feedback.csv"))
+
+
+@pytest.mark.parametrize("factory", [make_imputer, make_scaler])
+def test_unknown_strategy_names_raise(factory):
+    with pytest.raises(ValueError):
+        factory("not-a-strategy")
 
 
 def test_target_does_not_leak_into_evaluation_features(run_pipeline):
