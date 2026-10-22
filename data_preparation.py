@@ -9,9 +9,75 @@ from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from sklearn.model_selection import cross_val_score, KFold, StratifiedKFold
 from sklearn.preprocessing import FunctionTransformer
 import os
+import re
 import json
+import warnings
 from datetime import datetime
 from meta_learning import MetaLearner, MetaFeatureExtractor
+
+# Value standardisation
+TRUE_TOKENS = {"true", "yes", "y", "t", "1"}
+FALSE_TOKENS = {"false", "no", "n", "f", "0"}
+# Currency markers and percent signs around a number, e.g. "$75", "USD 30", "84%"
+NUMBER_DECORATION = re.compile(r"^\s*(?:USD|EUR|GBP|\$|€|£)\s*|\s*(?:USD|EUR|GBP|%)\s*$", re.IGNORECASE)
+THOUSANDS_SEPARATOR = re.compile(r"(?<=\d),(?=\d{3}\b)")
+NUMERIC_PARSE_THRESHOLD = 0.9
+# Dates need a separator between digit groups ("2021-05-12", "12/05/2021")
+DATE_LIKE = re.compile(r"\d{1,4}[-/.]\d{1,2}")
+IDENTIFIER_UNIQUE_RATIO = 0.95
+# Single-letter abbreviations ('m' -> 'male') are only merged in columns with at most this many categories
+ABBREVIATION_MAX_CATEGORIES = 10
+
+
+def _parse_numeric_text(series):
+    """Converts text like '$75', 'USD 1,200' or '84%' to numbers (NaN where not parseable)."""
+    cleaned = series.astype(str).str.strip()
+    cleaned = cleaned.str.replace(NUMBER_DECORATION, "", regex=True)
+    cleaned = cleaned.str.replace(THOUSANDS_SEPARATOR, "", regex=True)
+    return pd.to_numeric(cleaned, errors="coerce").where(series.notna())
+
+
+def _category_mapping(series):
+    """
+    Maps spelling variants of the same category onto one canonical label.
+    Variants differing only in case/whitespace collapse to their most frequent spelling;
+    in small categorical columns a single-letter value is merged into the only longer value
+    starting with that letter (e.g. 'f' -> 'Female'). Returns {original: canonical} for values that change.
+    """
+    values = series.dropna().astype(str)
+    keys = values.str.strip().str.replace(r"\s+", " ", regex=True).str.casefold()
+
+    canonical = {}  # key -> most frequent original spelling
+    for key, group in values.groupby(keys):
+        canonical[key] = group.str.strip().value_counts().index[0]
+
+    # In code-like columns with many values (e.g. ticker symbols) a single letter is a value of its own.
+    if len(canonical) > ABBREVIATION_MAX_CATEGORIES:
+        return {original: canonical[key] for original, key in zip(values, keys) if original != canonical[key]}
+
+    for key in list(canonical):
+        if len(key) == 1:
+            longer = [k for k in canonical if len(k) > 1 and k.startswith(key)]
+            if len(longer) == 1:
+                canonical[key] = canonical[longer[0]]
+
+    return {original: canonical[key] for original, key in zip(values, keys) if original != canonical[key]}
+
+
+def _is_identifier(name, series):
+    """Identifier / free-text columns: (almost) every value unique, so nothing generalises."""
+    non_null = series.dropna()
+    if len(non_null) < 10:
+        return False
+    unique_ratio = non_null.nunique() / len(non_null)
+    if unique_ratio < IDENTIFIER_UNIQUE_RATIO:
+        return False
+    if series.dtype == "object":
+        return True
+    # Numeric columns only when named like an ID ("customer_id", "ID") and integer valued
+    name_tokens = re.split(r"[^a-z0-9]+", str(name).lower())
+    return "id" in name_tokens and pd.api.types.is_numeric_dtype(series) \
+        and bool(np.allclose(non_null, np.round(non_null)))
 
 
 def make_imputer(strategy):
@@ -116,6 +182,8 @@ class AutoDataPreparer:
         self.logger = DecisionLogger()
         self.target_col = target_col
         self.target = None # Target series, kept apart from the features during preprocessing
+        self.identifiers = None # ID / free-text columns, kept for the human-readable output only
+        self.integer_columns = set() # Columns whose original values are whole numbers
         self.task_type = "classification" # Default
         self.start_time = None
         
@@ -145,15 +213,86 @@ class AutoDataPreparer:
         self.target = self.data.pop(self.target_col)
 
     def _align_target(self):
-        """Keeps the target aligned with the feature rows after rows are dropped."""
+        """Keeps the target and identifiers aligned with the feature rows after rows are dropped."""
         if self.target is not None:
             self.target = self.target.loc[self.data.index]
+        if self.identifiers is not None:
+            self.identifiers = self.identifiers.loc[self.data.index]
 
     def _with_target(self):
         """Returns the features with the target column re-attached as the last column."""
         if self.target is None:
             return self.data
         return pd.concat([self.data, self.target], axis=1)
+
+    def _human_readable_frame(self):
+        """Identifiers, features and target: everything a person needs to trace a row."""
+        if self.identifiers is None:
+            return self._with_target()
+        return pd.concat([self.identifiers, self._with_target()], axis=1)
+
+    def standardize_values(self):
+        """
+        Repairs inconsistent text values in feature columns:
+        boolean-like text -> 0/1, numbers stored as text -> numeric, and spelling
+        variants of the same category -> one label.
+        """
+        if self.data is None: return
+
+        for col in self.data.select_dtypes(include=['object']).columns:
+            series = self.data[col]
+            non_null = series.dropna()
+            if len(non_null) == 0:
+                continue
+            tokens = non_null.astype(str).str.strip().str.casefold()
+
+            # 1. Booleans written as text ("Y", "False", "1", ...)
+            if set(tokens) <= TRUE_TOKENS | FALSE_TOKENS:
+                self.data[col] = tokens.map(lambda t: 1.0 if t in TRUE_TOKENS else 0.0).reindex(series.index)
+                self.logger.log("Standardization", "Boolean Text to 0/1", f"Column {col} holds yes/no style values",
+                                {"column": col, "values": sorted(set(non_null.astype(str)))})
+                self.logger.log_change("Standardization", col, "Yes/No style text", "0/1", len(non_null))
+                continue
+
+            # 2. Numbers stored as text ("$75", "USD 30", "84%")
+            parsed = _parse_numeric_text(series)
+            parse_rate = parsed.notna().sum() / len(non_null)
+            if parse_rate >= NUMERIC_PARSE_THRESHOLD:
+                unparseable = int(len(non_null) - parsed.notna().sum())
+                self.data[col] = parsed
+                self.logger.log("Standardization", "Text to Number", f"Column {col} holds numbers stored as text",
+                                {"column": col, "parse_rate": f"{parse_rate:.1%}", "unparseable_set_to_missing": unparseable})
+                self.logger.log_change("Standardization", col, "Numeric text (currency/percent)", "Number", len(non_null))
+                continue
+
+            # 3. Spelling variants of the same category ("Male", "MALE", "m")
+            mapping = _category_mapping(series)
+            if mapping:
+                affected = int(series.isin(list(mapping)).sum())
+                self.data[col] = series.replace(mapping)
+                self.logger.log("Standardization", "Merged Category Variants", f"Column {col} had inconsistent spellings",
+                                {"column": col, "mapping": mapping})
+                self.logger.log_change("Standardization", col, f"Variants: {sorted(mapping)[:5]}",
+                                       f"Merged into {sorted(set(mapping.values()))}", affected)
+
+    def _separate_identifiers(self):
+        """Moves ID and free-text columns out of the features; they stay in the human-readable file."""
+        if self.data is None: return
+        id_cols = [col for col in self.data.columns if _is_identifier(col, self.data[col])]
+        if not id_cols:
+            return
+        self.identifiers = self.data[id_cols]
+        self.data = self.data.drop(columns=id_cols)
+        self.logger.log("Feature Selection", "Excluded Identifiers",
+                        "Columns with (almost) all-unique values carry no generalisable signal",
+                        {"columns": id_cols})
+
+    def _record_integer_columns(self):
+        """Remembers which numeric columns hold whole numbers before imputation/capping adds fractions."""
+        for col in self.data.select_dtypes(include=[np.number]).columns:
+            non_na = self.data[col].dropna()
+            if len(non_na) > 0 and np.allclose(non_na, np.round(non_na)):
+                self.integer_columns.add(col)
 
     def _detect_task_type(self):
         """
@@ -213,21 +352,23 @@ class AutoDataPreparer:
         # print("\nMissing Values:\n", self.data.isnull().sum())
         # print("\nDuplicates:", self.data.duplicated().sum())
 
-    def clean_data(self, drop_duplicates=True):
-        """Cleans data by handling duplicates and outliers dynamically."""
+    def remove_duplicates(self):
+        """Removes exact duplicate rows (a row is only a duplicate if its target matches too)."""
         if self.data is None: return
-        
-        # Remove duplicates (a row is only a duplicate if its target matches too)
-        if drop_duplicates:
-            initial_rows = len(self.data)
-            duplicated = self._with_target().duplicated()
-            self.data = self.data[~duplicated]
-            self._align_target()
-            dropped = initial_rows - len(self.data)
-            if dropped > 0:
-                self.logger.log("Deduplication", "Removed Duplicates", "Exact duplicate rows found", {"count": dropped})
-            else:
-                self.logger.log("Deduplication", "Skipped", "No duplicates found")
+
+        initial_rows = len(self.data)
+        duplicated = self._human_readable_frame().duplicated()
+        self.data = self.data[~duplicated]
+        self._align_target()
+        dropped = initial_rows - len(self.data)
+        if dropped > 0:
+            self.logger.log("Deduplication", "Removed Duplicates", "Exact duplicate rows found", {"count": dropped})
+        else:
+            self.logger.log("Deduplication", "Skipped", "No duplicates found")
+
+    def clean_data(self):
+        """Handles outliers dynamically."""
+        if self.data is None: return
 
         # Outlier Detection & Handling (Dynamic Approach)
         num_cols = self.data.select_dtypes(include=[np.number]).columns
@@ -375,9 +516,18 @@ class AutoDataPreparer:
         
         num_cols = self.data.select_dtypes(include=[np.number]).columns
         
+        # Binary 0/1 columns are filled with their most frequent value: a mean of 0.67 is not a valid flag.
+        binary_cols = [c for c in num_cols
+                       if self.data[c].isnull().any() and set(self.data[c].dropna().unique()) <= {0, 1}]
+        if binary_cols:
+            for col in binary_cols:
+                self.logger.log_change("Imputation", col, "NaN", "Most Frequent Value (binary)", int(self.data[col].isnull().sum()))
+            self.data[binary_cols] = SimpleImputer(strategy='most_frequent').fit_transform(self.data[binary_cols])
+            self.logger.log("Imputation", "Most Frequent", "Binary 0/1 columns (Default)", {"columns": binary_cols})
+
         if len(num_cols) > 0:
             cols_with_missing = [c for c in num_cols if self.data[c].isnull().sum() > 0]
-            
+
             if cols_with_missing:
                 worst_col = self.data[cols_with_missing].isnull().sum().idxmax()
                 meta_features = MetaFeatureExtractor.extract_features(self.data, worst_col)
@@ -428,15 +578,22 @@ class AutoDataPreparer:
                 # Safe Check: Sample the column to see if it looks like a date
                 non_na_sample = self.data[col].dropna().head(100)
                 if len(non_na_sample) == 0: continue
-                
+
+                # Only consider values shaped like dates (digit groups with a separator)
+                if non_na_sample.astype(str).str.contains(DATE_LIKE).mean() <= 0.8:
+                    continue
+
                 try:
-                    # strict=False allows parsing mixed formats, but we want to be sure
                     # We check if >80% of non-null values can be parsed
-                    parsed = pd.to_datetime(non_na_sample, errors='coerce')
+                    with warnings.catch_warnings():
+                        warnings.simplefilter("ignore", UserWarning)  # "could not infer format" noise
+                        parsed = pd.to_datetime(non_na_sample, errors='coerce')
                     success_rate = parsed.notna().mean()
-                    
+
                     if success_rate > 0.8:
-                        self.data[col] = pd.to_datetime(self.data[col], errors='coerce')
+                        with warnings.catch_warnings():
+                            warnings.simplefilter("ignore", UserWarning)
+                            self.data[col] = pd.to_datetime(self.data[col], errors='coerce')
                         
                         # Extract useful features
                         self.data[f'{col}_year'] = self.data[col].dt.year
@@ -451,32 +608,15 @@ class AutoDataPreparer:
         """Enforces integer types for specific columns and rounds values where appropriate."""
         if self.data is None: return
 
-        # Identify likely integer columns (IDs, Age, Year, Month, Day, Rating)
-        # Heuristic: if column name suggests integer or if all non-null values are integers
+        # Columns whose original values were all whole numbers (age, counts, year/month/day, flags)
+        # are rounded back after imputation or capping introduced fractions.
         for col in self.data.columns:
-            if pd.api.types.is_numeric_dtype(self.data[col]):
-                col_lower = col.lower()
-                is_int_candidate = False
-                
-                # Check 1: Name-based heuristic
-                if any(x in col_lower for x in ['id', 'age', 'year', 'month', 'day', 'count', 'num']):
-                    is_int_candidate = True
-                
-                # Check 2: Value-based heuristic (if almost all values are close to integers)
-                if not is_int_candidate:
-                     non_na = self.data[col].dropna()
-                     if len(non_na) > 0:
-                         is_close_to_int = np.allclose(non_na, np.round(non_na), atol=0.01)
-                         if is_close_to_int:
-                             is_int_candidate = True
-
-                if is_int_candidate:
-                    self.data[col] = self.data[col].round()
-                    try:
-                        self.data[col] = self.data[col].astype('Int64')
-                        # self.logger.log("Type Enforcement", "Converted to Integer", f"Column {col} looks like integer", {"column": col})
-                    except:
-                        pass 
+            if col in self.integer_columns and pd.api.types.is_numeric_dtype(self.data[col]):
+                self.data[col] = self.data[col].round()
+                try:
+                    self.data[col] = self.data[col].astype('Int64')
+                except (TypeError, ValueError):
+                    pass
 
     def encode_categorical(self):
         """Encodes categorical variables using Meta-Learning."""
@@ -564,10 +704,11 @@ class AutoDataPreparer:
                 
             self.data[cols_to_scale] = scaler.fit_transform(self.data[cols_to_scale])
 
-    def save_data(self, output_path):
-        """Saves the processed data (features plus target)."""
+    def save_data(self, output_path, human_readable=False):
+        """Saves the processed data (features plus target, and identifiers if human readable)."""
         if self.data is None: return
-        self._with_target().to_csv(output_path, index=False)
+        frame = self._human_readable_frame() if human_readable else self._with_target()
+        frame.to_csv(output_path, index=False)
         # print(f"\nProcessed data saved to {output_path}")
 
     def run_pipeline(self, output_path='processed_data.csv'):
@@ -582,9 +723,13 @@ class AutoDataPreparer:
         self.analyze_data()
         self._separate_target() # Keep the target out of all feature preprocessing
         self._detect_task_type() # Detect Classification vs Regression
-        self.clean_data() # Dynamic Outlier Handling
+        self.standardize_values() # Booleans, numbers stored as text, category spellings
         self.parse_dates() # Safer Date Parsing
-        
+        self.remove_duplicates() # After standardisation, so 'Male' and 'male' rows can match
+        self._separate_identifiers() # IDs / free text stay out of the ML features
+        self._record_integer_columns()
+        self.clean_data() # Dynamic Outlier Handling
+
         # Pipeline Level Log
         self.logger.log("Pipeline Info", "Optimization Strategy", "Steps are currently optimized independently (Imputation -> Encoding -> Scaling)")
         
@@ -599,7 +744,7 @@ class AutoDataPreparer:
             human_basename = f'human_readable_{basename}'
         
         human_readable_path = os.path.join(dirname, human_basename)
-        self.save_data(human_readable_path)
+        self.save_data(human_readable_path, human_readable=True)
         self.logger.log("Output", "Save Human Readable", "Saved intermediate cleaned data", {"path": human_readable_path})
 
         self.encode_categorical() # Dynamic Thresholds
