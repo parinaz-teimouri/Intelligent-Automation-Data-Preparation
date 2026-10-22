@@ -782,7 +782,7 @@ class AutoDataPreparer:
         final_metrics = DataEvaluator.calculate_quality_metrics(self._with_target())
         
         # Save Report
-        report_path = os.path.join(dirname, f'report_{basename.replace(".csv", ".json")}')
+        report_path = os.path.join(dirname, f'report_{os.path.splitext(basename)[0]}.json')
         
         end_time = datetime.now()
         duration = (end_time - self.start_time).total_seconds()

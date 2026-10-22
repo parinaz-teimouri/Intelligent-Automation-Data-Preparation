@@ -112,7 +112,7 @@ if report_path_to_load and os.path.exists(report_path_to_load):
 
     # --- HEADER METRICS ---
     st.markdown("---")
-    st.subheader(f"� Results for: {os.path.basename(report_path_to_load)}")
+    st.subheader(f"📊 Results for: {os.path.basename(report_path_to_load)}")
 
     col1, col2, col3, col4 = st.columns(4)
 
@@ -227,6 +227,6 @@ if report_path_to_load and os.path.exists(report_path_to_load):
             st.warning(f"Could not find processed data file at: {data_path}")
 
 elif mode == "Live Run" and 'current_report' not in st.session_state:
-    st.info("👈 Upload a file in the sidebar to start!")
+    st.info("⬆️ Upload a CSV file above to start!")
 
 

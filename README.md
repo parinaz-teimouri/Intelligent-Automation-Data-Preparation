@@ -18,11 +18,12 @@ This project intelligently automates data preparation decisions—imputation str
 ```
 ├── data_preparation.py       # Main AutoDataPreparer implementation
 ├── meta_learning.py          # MetaLearner & MetaFeatureExtractor classes
-├── train_meta_model.py       # Script to generate meta-training data
-├── test_pipeline.py          # Testing & evaluation script
+├── train_meta_model.py       # Generates meta-training data and trains the meta-models
+├── test_pipeline.py          # Command-line runner for one data file
 ├── dashboard.py              # Streamlit interactive dashboard
+├── tests/                    # Automated tests (pytest)
 ├── input/                    # Raw input datasets
-├── meta_models/              # Trained meta-learning models
+├── meta_models/              # Trained meta-models and evaluation feedback
 ├── paper/                    # Published paper (LaTeX)
 └── new-paper/                # Working paper draft (LaTeX)
 ```
@@ -32,14 +33,14 @@ This project intelligently automates data preparation decisions—imputation str
 1. **Clone the repository**:
    ```bash
    git clone <repo-url>
-   cd Data_Preparation
+   cd Intelligent-Automation-Data-Preparation
    ```
 
 2. **Create virtual environment**:
    ```bash
    python -m venv .venv
-   .venv\Scripts\activate  # Windows
-   # source .venv/bin/activate  # Linux/Mac
+   source .venv/bin/activate  # Linux/Mac
+   # .venv\Scripts\activate   # Windows
    ```
 
 3. **Install dependencies**:
@@ -51,8 +52,11 @@ This project intelligently automates data preparation decisions—imputation str
 
 ### Run the pipeline on a CSV file:
 ```bash
-python test_pipeline.py path/to/your/data.csv
+python test_pipeline.py path/to/your/data.csv --target target_column
 ```
+`--target` is optional: with it, candidate strategies are scored against the target
+(optimisation mode); without it, strategies are only predicted. Outputs (`processed_*.csv`,
+`human_readable_*.csv`, `report_*.json`) go to the current directory or `--output-dir`.
 
 ### Launch the interactive dashboard:
 ```bash
@@ -61,16 +65,25 @@ streamlit run dashboard.py
 
 ### Train meta-learning models:
 ```bash
-python train_meta_model.py
+python train_meta_model.py              # options: --datasets 40 --seed 0 --models-dir meta_models
+```
+Without trained models the pipeline falls back to fixed rules for its first guess and still
+evaluates the next-best candidate.
+
+### Run the tests:
+```bash
+pytest
 ```
 
 ## How It Works
 
-1. **Data Analysis**: Extracts meta-features (missing ratio, skewness, cardinality, etc.)
-2. **Strategy Prediction**: Meta-models predict top-K strategies for each preprocessing task
-3. **Performance Evaluation**: Evaluates candidates using downstream model cross-validation
-4. **Selection**: Chooses the strategy with highest performance
-5. **Reporting**: Logs all decisions with detailed change tracking
+1. **Target Separation**: The target column is set aside so no preprocessing step can alter it or leak it into evaluation; rows without a target are dropped
+2. **Cleaning**: Text values are standardised (yes/no → 0/1, `"$75"` / `"84%"` → numbers, spelling variants merged), dates are expanded into year/month/day, duplicates are removed, and ID / free-text columns are excluded from the ML features
+3. **Data Analysis**: Extracts meta-features (missing ratio, skewness, cardinality, etc.)
+4. **Strategy Prediction**: Meta-models propose the top-K candidate strategies for each preprocessing task
+5. **Performance Evaluation**: Each candidate is cross-validated with a downstream model (F1 for classification, R² for regression)
+6. **Selection**: Chooses the strategy with the highest score and stores the result as feedback for future meta-training
+7. **Reporting**: Logs all decisions, scores and failures with detailed change tracking
 
 ## Key Components
 
@@ -88,7 +101,7 @@ python train_meta_model.py
 
 ## Requirements
 
-- Python 3.8+
+- Python 3.11+
 - pandas, scikit-learn, streamlit, plotly
 - See `requirements.txt` for full dependencies
 

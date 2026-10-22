@@ -8,6 +8,7 @@ venv/
 temp_uploads/
 output/
 meta_models/*.pkl
+meta_models/*_feedback.csv
 processed_*.csv
 human_readable_*.csv
 report_*.json
