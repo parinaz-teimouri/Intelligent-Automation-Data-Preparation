@@ -1,0 +1,626 @@
+{
+    "metadata": {
+        "timestamp": "2026-10-23T09:20:41.582434",
+        "steps_taken": [
+            "Load Data",
+            "Standardization",
+            "Standardization",
+            "Standardization",
+            "Standardization",
+            "Standardization",
+            "Standardization",
+            "Task Detection",
+            "Feature Engineering",
+            "Deduplication",
+            "Feature Selection",
+            "Outlier Handling",
+            "Outlier Handling",
+            "Outlier Handling",
+            "Pipeline Info",
+            "Imputation",
+            "Evaluation",
+            "Evaluation",
+            "Imputation",
+            "Imputation",
+            "Output",
+            "Preprocessing",
+            "Encoding",
+            "Encoding",
+            "Encoding",
+            "Encoding",
+            "Encoding",
+            "Encoding",
+            "Scaling",
+            "Evaluation",
+            "Evaluation",
+            "Scaling",
+            "Output"
+        ],
+        "evaluation": {
+            "before": {
+                "rows": 1200,
+                "columns": 12,
+                "missing_values": 194,
+                "missing_percentage": 1.347222222222222,
+                "duplicate_rows": 6,
+                "column_types": {
+                    "object": 11,
+                    "float64": 1
+                },
+                "memory_usage_kb": 748.033203125,
+                "estimated_outliers": 22
+            },
+            "after": {
+                "rows": 1194,
+                "columns": 52,
+                "missing_values": 0,
+                "missing_percentage": 0.0,
+                "duplicate_rows": 0,
+                "column_types": {
+                    "int64": 45,
+                    "float64": 6,
+                    "Int64": 1
+                },
+                "memory_usage_kb": 527.845703125,
+                "estimated_outliers": 67
+            }
+        },
+        "execution": {
+            "start_time": "2026-10-23T09:20:41.582466",
+            "end_time": "2026-10-23T09:20:42.039359",
+            "duration_seconds": 0.456893,
+            "rows_per_second": 2613.3033336032727,
+            "step_seconds": {
+                "load": 0.001540166005725041,
+                "clean": 0.041832293005427346,
+                "duplicates": 0.0019925829983549193,
+                "impute": 0.31715329200960696,
+                "encode": 0.0033559589937794954,
+                "scale": 0.06336212500173133,
+                "report": 0.020714500002213754
+            }
+        }
+    },
+    "changes_summary": [
+        {
+            "category": "Standardization",
+            "column": "colour",
+            "before": "Variants: ['BLACK', 'BURGUNDY', 'Black ', 'Burgundy ', 'CAMEL']",
+            "after": "Merged into ['Black', 'Burgundy', 'Camel', 'Forest Green', 'Grey Melange', 'Navy', 'Off White', 'Sand']",
+            "affected_rows": 295
+        },
+        {
+            "category": "Standardization",
+            "column": "size",
+            "before": "Variants: ['Large', 'Medium', 'ONE SIZE', 'Small', 'l']",
+            "after": "Merged into ['L', 'M', 'One Size', 'S', 'XL', 'XS']",
+            "affected_rows": 247
+        },
+        {
+            "category": "Standardization",
+            "column": "material",
+            "before": "Variants: ['CASHMERE', 'COTTON', 'LEATHER', 'LINEN', 'MERINO WOOL']",
+            "after": "Merged into ['Cashmere', 'Cotton', 'Leather', 'Linen', 'Merino Wool', 'Polyester', 'Silk', 'Viscose', 'Wool']",
+            "affected_rows": 158
+        },
+        {
+            "category": "Standardization",
+            "column": "price",
+            "before": "Numeric text (currency/percent)",
+            "after": "Number",
+            "affected_rows": 1200
+        },
+        {
+            "category": "Standardization",
+            "column": "rating",
+            "before": "Numeric text (currency/percent)",
+            "after": "Number",
+            "affected_rows": 1056
+        },
+        {
+            "category": "Standardization",
+            "column": "on_sale",
+            "before": "Yes/No style text",
+            "after": "0/1",
+            "affected_rows": 1200
+        },
+        {
+            "category": "Outlier Capping",
+            "column": "stock",
+            "before": "Values outside [6.00, 22.00]",
+            "after": "Capped to boundaries (ML-ready output only)",
+            "affected_rows": 22
+        },
+        {
+            "category": "Outlier Capping",
+            "column": "rating",
+            "before": "Values outside [3.00, 5.40]",
+            "after": "Capped to boundaries (ML-ready output only)",
+            "affected_rows": 2
+        },
+        {
+            "category": "Imputation",
+            "column": "stock",
+            "before": "NaN",
+            "after": "Filled using knn",
+            "affected_rows": 50
+        },
+        {
+            "category": "Imputation",
+            "column": "rating",
+            "before": "NaN",
+            "after": "Filled using knn",
+            "affected_rows": 143
+        },
+        {
+            "category": "Encoding",
+            "column": "product",
+            "before": "Categorical Column",
+            "after": "Expanded into 19 columns: ['product_Cashmere Cardigan', 'product_Cashmere Coat', 'product_Knit Dress', 'product_Leather Belt', 'product_Linen Shirt']...",
+            "affected_rows": 1194
+        },
+        {
+            "category": "Encoding",
+            "column": "category",
+            "before": "Categorical Column",
+            "after": "Expanded into 5 columns: ['category_Dresses', 'category_Knitwear', 'category_Outerwear', 'category_Shirts', 'category_Trousers']...",
+            "affected_rows": 1194
+        },
+        {
+            "category": "Encoding",
+            "column": "colour",
+            "before": "Categorical Column",
+            "after": "Expanded into 7 columns: ['colour_Burgundy', 'colour_Camel', 'colour_Forest Green', 'colour_Grey Melange', 'colour_Navy']...",
+            "affected_rows": 1194
+        },
+        {
+            "category": "Encoding",
+            "column": "size",
+            "before": "Categorical Column",
+            "after": "Expanded into 5 columns: ['size_M', 'size_One Size', 'size_S', 'size_XL', 'size_XS']...",
+            "affected_rows": 1194
+        },
+        {
+            "category": "Encoding",
+            "column": "material",
+            "before": "Categorical Column",
+            "after": "Expanded into 8 columns: ['material_Cotton', 'material_Leather', 'material_Linen', 'material_Merino Wool', 'material_Polyester']...",
+            "affected_rows": 1194
+        },
+        {
+            "category": "Encoding",
+            "column": "season",
+            "before": "Categorical Column",
+            "after": "Expanded into 1 columns: ['season_SS25']...",
+            "affected_rows": 1194
+        },
+        {
+            "category": "Scaling",
+            "column": "price",
+            "before": "Range [39.00, 1299.00]",
+            "after": "Scaled using standard",
+            "affected_rows": 1194
+        },
+        {
+            "category": "Scaling",
+            "column": "stock",
+            "before": "Range [6.00, 22.00]",
+            "after": "Scaled using standard",
+            "affected_rows": 1194
+        },
+        {
+            "category": "Scaling",
+            "column": "rating",
+            "before": "Range [3.00, 5.00]",
+            "after": "Scaled using standard",
+            "affected_rows": 1194
+        },
+        {
+            "category": "Scaling",
+            "column": "launch_date_month",
+            "before": "Range [1.00, 9.00]",
+            "after": "Scaled using standard",
+            "affected_rows": 1194
+        },
+        {
+            "category": "Scaling",
+            "column": "launch_date_day",
+            "before": "Range [1.00, 31.00]",
+            "after": "Scaled using standard",
+            "affected_rows": 1194
+        }
+    ],
+    "decisions": [
+        {
+            "step": "Load Data",
+            "decision": "Success",
+            "reason": "Loaded file /Users/siddhantdalvi/DEV/pari-projects/Intelligent-Automation-Data-Preparation/samples/fashion_catalog.csv",
+            "details": {
+                "shape": [
+                    1200,
+                    12
+                ],
+                "columns": [
+                    "sku",
+                    "product",
+                    "category",
+                    "colour",
+                    "size",
+                    "material",
+                    "season",
+                    "price",
+                    "stock",
+                    "on_sale",
+                    "launch_date",
+                    "rating"
+                ],
+                "encoding": "utf-8-sig",
+                "delimiter": ","
+            }
+        },
+        {
+            "step": "Standardization",
+            "decision": "Merged Category Variants",
+            "reason": "Column colour had inconsistent spellings",
+            "details": {
+                "column": "colour",
+                "mapping": {
+                    "BLACK": "Black",
+                    "black": "Black",
+                    "CAMEL": "Camel",
+                    "sand": "Sand",
+                    "SAND": "Sand",
+                    "BURGUNDY": "Burgundy",
+                    "Grey Melange ": "Grey Melange",
+                    "GREY MELANGE": "Grey Melange",
+                    "grey melange": "Grey Melange",
+                    "forest green": "Forest Green",
+                    "burgundy": "Burgundy",
+                    "OFF WHITE": "Off White",
+                    "NAVY": "Navy",
+                    "Navy ": "Navy",
+                    "Burgundy ": "Burgundy",
+                    "Sand ": "Sand",
+                    "FOREST GREEN": "Forest Green",
+                    "Forest Green ": "Forest Green",
+                    "navy": "Navy",
+                    "Off White ": "Off White",
+                    "camel": "Camel",
+                    "off white": "Off White",
+                    "Black ": "Black",
+                    "Camel ": "Camel"
+                }
+            }
+        },
+        {
+            "step": "Standardization",
+            "decision": "Merged Category Variants",
+            "reason": "Column size had inconsistent spellings",
+            "details": {
+                "column": "size",
+                "mapping": {
+                    "large": "L",
+                    "xl": "XL",
+                    "xs": "XS",
+                    "small": "S",
+                    "Small": "S",
+                    "Medium": "M",
+                    "Large": "L",
+                    "l": "L",
+                    "medium": "M",
+                    "m": "M",
+                    "s": "S",
+                    "ONE SIZE": "One Size",
+                    "one size": "One Size"
+                }
+            }
+        },
+        {
+            "step": "Standardization",
+            "decision": "Merged Category Variants",
+            "reason": "Column material had inconsistent spellings",
+            "details": {
+                "column": "material",
+                "mapping": {
+                    "merino wool": "Merino Wool",
+                    "MERINO WOOL": "Merino Wool",
+                    "CASHMERE": "Cashmere",
+                    "cashmere": "Cashmere",
+                    "wool": "Wool",
+                    "WOOL": "Wool",
+                    "linen": "Linen",
+                    "cotton": "Cotton",
+                    "COTTON": "Cotton",
+                    "silk": "Silk",
+                    "POLYESTER": "Polyester",
+                    "polyester": "Polyester",
+                    "LINEN": "Linen",
+                    "SILK": "Silk",
+                    "VISCOSE": "Viscose",
+                    "viscose": "Viscose",
+                    "LEATHER": "Leather"
+                }
+            }
+        },
+        {
+            "step": "Standardization",
+            "decision": "Text to Number",
+            "reason": "Column price holds numbers stored as text",
+            "details": {
+                "column": "price",
+                "parse_rate": "100.0%",
+                "unparseable_set_to_missing": 0
+            }
+        },
+        {
+            "step": "Standardization",
+            "decision": "Text to Number",
+            "reason": "Column rating holds numbers stored as text",
+            "details": {
+                "column": "rating",
+                "parse_rate": "100.0%",
+                "unparseable_set_to_missing": 0
+            }
+        },
+        {
+            "step": "Standardization",
+            "decision": "Boolean Text to 0/1",
+            "reason": "Column on_sale holds yes/no style values",
+            "details": {
+                "column": "on_sale",
+                "values": [
+                    "0",
+                    "1",
+                    "Ja",
+                    "Nein",
+                    "No",
+                    "TRUE",
+                    "false",
+                    "ja",
+                    "nein",
+                    "yes"
+                ]
+            }
+        },
+        {
+            "step": "Task Detection",
+            "decision": "Classification",
+            "reason": "Detected based on target 'on_sale' properties",
+            "details": {
+                "target_dtype": "float64",
+                "unique_values": 2,
+                "integer_valued": true
+            }
+        },
+        {
+            "step": "Feature Engineering",
+            "decision": "Date Parsing",
+            "reason": "Identified date column: launch_date",
+            "details": {
+                "column": "launch_date",
+                "new_features": [
+                    "launch_date_year",
+                    "launch_date_month",
+                    "launch_date_day"
+                ]
+            }
+        },
+        {
+            "step": "Deduplication",
+            "decision": "Removed Duplicates",
+            "reason": "Exact duplicate rows found",
+            "details": {
+                "count": 6
+            }
+        },
+        {
+            "step": "Feature Selection",
+            "decision": "Excluded Identifiers",
+            "reason": "Columns with (almost) all-unique values carry no generalisable signal",
+            "details": {
+                "columns": [
+                    "sku"
+                ]
+            }
+        },
+        {
+            "step": "Outlier Handling",
+            "decision": "Kept As-Is",
+            "reason": "High outlier count in price, likely natural distribution",
+            "details": {
+                "column": "price",
+                "ratio": "5.6%",
+                "action": "None"
+            }
+        },
+        {
+            "step": "Outlier Handling",
+            "decision": "Capping Applied",
+            "reason": "Rare outliers detected in stock",
+            "details": {
+                "column": "stock",
+                "ratio": "1.8%",
+                "action": "Winsorization",
+                "applies_to": "ML-ready output only"
+            }
+        },
+        {
+            "step": "Outlier Handling",
+            "decision": "Capping Applied",
+            "reason": "Rare outliers detected in rating",
+            "details": {
+                "column": "rating",
+                "ratio": "0.2%",
+                "action": "Winsorization",
+                "applies_to": "ML-ready output only"
+            }
+        },
+        {
+            "step": "Pipeline Info",
+            "decision": "Optimization Strategy",
+            "reason": "Steps are currently optimized independently (Imputation -> Encoding -> Scaling)",
+            "details": {}
+        },
+        {
+            "step": "Imputation",
+            "decision": "Optimizing...",
+            "reason": "Evaluating Top-K: ['knn', 'mean']",
+            "details": {}
+        },
+        {
+            "step": "Evaluation",
+            "decision": "knn",
+            "reason": "F1 Score: 0.6023",
+            "details": {}
+        },
+        {
+            "step": "Evaluation",
+            "decision": "mean",
+            "reason": "F1 Score: 0.6005",
+            "details": {}
+        },
+        {
+            "step": "Imputation",
+            "decision": "Knn (Winner)",
+            "reason": "Selected after evaluation (Score: 0.6023)",
+            "details": {
+                "candidates": [
+                    "knn",
+                    "mean"
+                ],
+                "scores": {
+                    "knn": 0.6023263788348542,
+                    "mean": 0.6005340395759963
+                },
+                "metric": "F1",
+                "evaluation_model": "RandomForestClassifier",
+                "best_score": 0.6023263788348542
+            }
+        },
+        {
+            "step": "Imputation",
+            "decision": "Most Frequent",
+            "reason": "Categorical columns (Default)",
+            "details": {
+                "columns": [
+                    "product",
+                    "category",
+                    "colour",
+                    "size",
+                    "material",
+                    "season"
+                ]
+            }
+        },
+        {
+            "step": "Output",
+            "decision": "Save Human Readable",
+            "reason": "Saved intermediate cleaned data",
+            "details": {
+                "path": "/var/folders/f7/pzqv0dfs0sb35xwygmrzg6mm0000gn/T/tmp1pe9016n/human_readable_data.csv"
+            }
+        },
+        {
+            "step": "Preprocessing",
+            "decision": "Drop Dates",
+            "reason": "Dropped original date columns for ML compatibility",
+            "details": {
+                "columns": [
+                    "launch_date"
+                ]
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "One-Hot Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "product"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "One-Hot Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "category"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "One-Hot Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "colour"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "One-Hot Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "size"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "One-Hot Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "material"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "One-Hot Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "season"
+            }
+        },
+        {
+            "step": "Scaling",
+            "decision": "Optimizing...",
+            "reason": "Evaluating Top-K: ['robust', 'standard']",
+            "details": {}
+        },
+        {
+            "step": "Evaluation",
+            "decision": "robust",
+            "reason": "F1 Score: 0.5725",
+            "details": {}
+        },
+        {
+            "step": "Evaluation",
+            "decision": "standard",
+            "reason": "F1 Score: 0.5829",
+            "details": {}
+        },
+        {
+            "step": "Scaling",
+            "decision": "Standard (Winner)",
+            "reason": "Selected after evaluation (Score: 0.5829)",
+            "details": {
+                "candidates": [
+                    "robust",
+                    "standard"
+                ],
+                "scores": {
+                    "robust": 0.5725074036254388,
+                    "standard": 0.5828638845806058
+                },
+                "metric": "F1",
+                "evaluation_model": "KNeighborsClassifier",
+                "best_score": 0.5828638845806058
+            }
+        },
+        {
+            "step": "Output",
+            "decision": "Save ML Ready",
+            "reason": "Saved final processed data",
+            "details": {
+                "path": "/var/folders/f7/pzqv0dfs0sb35xwygmrzg6mm0000gn/T/tmp1pe9016n/processed_data.csv"
+            }
+        }
+    ]
+}

@@ -1,0 +1,418 @@
+{
+    "metadata": {
+        "timestamp": "2026-10-23T09:20:45.675558",
+        "steps_taken": [
+            "Load Data",
+            "Standardization",
+            "Standardization",
+            "Standardization",
+            "Standardization",
+            "Deduplication",
+            "Feature Selection",
+            "Outlier Handling",
+            "Pipeline Info",
+            "Imputation",
+            "Imputation",
+            "Imputation",
+            "Output",
+            "Encoding",
+            "Encoding",
+            "Encoding",
+            "Encoding",
+            "Scaling",
+            "Output"
+        ],
+        "evaluation": {
+            "before": {
+                "rows": 1000,
+                "columns": 12,
+                "missing_values": 541,
+                "missing_percentage": 4.508333333333333,
+                "duplicate_rows": 0,
+                "column_types": {
+                    "object": 9,
+                    "float64": 3
+                },
+                "memory_usage_kb": 505.8134765625,
+                "estimated_outliers": 10
+            },
+            "after": {
+                "rows": 1000,
+                "columns": 51,
+                "missing_values": 0,
+                "missing_percentage": 0.0,
+                "duplicate_rows": 0,
+                "column_types": {
+                    "int64": 45,
+                    "float64": 5,
+                    "Int64": 1
+                },
+                "memory_usage_kb": 399.54296875,
+                "estimated_outliers": 0
+            }
+        },
+        "execution": {
+            "start_time": "2026-10-23T09:20:45.675590",
+            "end_time": "2026-10-23T09:20:45.802040",
+            "duration_seconds": 0.12645,
+            "rows_per_second": 7908.264136022142,
+            "step_seconds": {
+                "load": 0.0017966669984161854,
+                "clean": 0.08373558100720402,
+                "duplicates": 0.0006082500040065497,
+                "impute": 0.01272400000016205,
+                "encode": 0.002191417006542906,
+                "scale": 0.0024211670097429305,
+                "report": 0.01731458300491795
+            }
+        }
+    },
+    "changes_summary": [
+        {
+            "category": "Standardization",
+            "column": "gender",
+            "before": "Variants: ['F', 'Female', 'M', 'MALE', 'f']",
+            "after": "Merged into ['FEMALE', 'Male']",
+            "affected_rows": 782
+        },
+        {
+            "category": "Standardization",
+            "column": "hourly_rate (USD)",
+            "before": "Numeric text (currency/percent)",
+            "after": "Number",
+            "affected_rows": 906
+        },
+        {
+            "category": "Standardization",
+            "column": "is_active",
+            "before": "Yes/No style text",
+            "after": "0/1",
+            "affected_rows": 911
+        },
+        {
+            "category": "Standardization",
+            "column": "client_satisfaction",
+            "before": "Numeric text (currency/percent)",
+            "after": "Number",
+            "affected_rows": 824
+        },
+        {
+            "category": "Outlier Capping",
+            "column": "years_of_experience",
+            "before": "Values outside [-18.00, 38.00]",
+            "after": "Capped to boundaries (ML-ready output only)",
+            "affected_rows": 10
+        },
+        {
+            "category": "Imputation",
+            "column": "is_active",
+            "before": "NaN",
+            "after": "Most Frequent Value (binary)",
+            "affected_rows": 89
+        },
+        {
+            "category": "Imputation",
+            "column": "age",
+            "before": "NaN",
+            "after": "Filled using knn",
+            "affected_rows": 30
+        },
+        {
+            "category": "Imputation",
+            "column": "years_of_experience",
+            "before": "NaN",
+            "after": "Filled using knn",
+            "affected_rows": 51
+        },
+        {
+            "category": "Imputation",
+            "column": "hourly_rate (USD)",
+            "before": "NaN",
+            "after": "Filled using knn",
+            "affected_rows": 94
+        },
+        {
+            "category": "Imputation",
+            "column": "rating",
+            "before": "NaN",
+            "after": "Filled using knn",
+            "affected_rows": 101
+        },
+        {
+            "category": "Imputation",
+            "column": "client_satisfaction",
+            "before": "NaN",
+            "after": "Filled using knn",
+            "affected_rows": 176
+        },
+        {
+            "category": "Encoding",
+            "column": "gender",
+            "before": "Categorical Column",
+            "after": "Expanded into 1 columns: ['gender_Male']...",
+            "affected_rows": 1000
+        },
+        {
+            "category": "Encoding",
+            "column": "country",
+            "before": "Categorical Column",
+            "after": "Expanded into 20 columns: ['country_Australia', 'country_Brazil', 'country_Canada', 'country_China', 'country_Egypt']...",
+            "affected_rows": 1000
+        },
+        {
+            "category": "Encoding",
+            "column": "language",
+            "before": "Categorical Column",
+            "after": "Expanded into 15 columns: ['language_Arabic', 'language_Dutch', 'language_English', 'language_French', 'language_German']...",
+            "affected_rows": 1000
+        },
+        {
+            "category": "Encoding",
+            "column": "primary_skill",
+            "before": "Categorical Column",
+            "after": "Expanded into 9 columns: ['primary_skill_Blockchain Development', 'primary_skill_Cybersecurity', 'primary_skill_Data Analysis', 'primary_skill_DevOps', 'primary_skill_Graphic Design']...",
+            "affected_rows": 1000
+        },
+        {
+            "category": "Scaling",
+            "column": "age",
+            "before": "Range [20.00, 60.00]",
+            "after": "Scaled using standard",
+            "affected_rows": 1000
+        },
+        {
+            "category": "Scaling",
+            "column": "years_of_experience",
+            "before": "Range [0.00, 38.00]",
+            "after": "Scaled using standard",
+            "affected_rows": 1000
+        },
+        {
+            "category": "Scaling",
+            "column": "hourly_rate (USD)",
+            "before": "Range [20.00, 100.00]",
+            "after": "Scaled using standard",
+            "affected_rows": 1000
+        },
+        {
+            "category": "Scaling",
+            "column": "rating",
+            "before": "Range [0.00, 5.00]",
+            "after": "Scaled using standard",
+            "affected_rows": 1000
+        },
+        {
+            "category": "Scaling",
+            "column": "client_satisfaction",
+            "before": "Range [60.00, 100.00]",
+            "after": "Scaled using standard",
+            "affected_rows": 1000
+        }
+    ],
+    "decisions": [
+        {
+            "step": "Load Data",
+            "decision": "Success",
+            "reason": "Loaded file /Users/siddhantdalvi/DEV/pari-projects/Intelligent-Automation-Data-Preparation/input/global_freelancers_raw.csv",
+            "details": {
+                "shape": [
+                    1000,
+                    12
+                ],
+                "columns": [
+                    "freelancer_ID",
+                    "name",
+                    "gender",
+                    "age",
+                    "country",
+                    "language",
+                    "primary_skill",
+                    "years_of_experience",
+                    "hourly_rate (USD)",
+                    "rating",
+                    "is_active",
+                    "client_satisfaction"
+                ],
+                "encoding": "utf-8-sig",
+                "delimiter": ","
+            }
+        },
+        {
+            "step": "Standardization",
+            "decision": "Merged Category Variants",
+            "reason": "Column gender had inconsistent spellings",
+            "details": {
+                "column": "gender",
+                "mapping": {
+                    "f": "FEMALE",
+                    "male": "Male",
+                    "F": "FEMALE",
+                    "female": "FEMALE",
+                    "m": "Male",
+                    "MALE": "Male",
+                    "Female": "FEMALE",
+                    "M": "Male"
+                }
+            }
+        },
+        {
+            "step": "Standardization",
+            "decision": "Text to Number",
+            "reason": "Column hourly_rate (USD) holds numbers stored as text",
+            "details": {
+                "column": "hourly_rate (USD)",
+                "parse_rate": "100.0%",
+                "unparseable_set_to_missing": 0
+            }
+        },
+        {
+            "step": "Standardization",
+            "decision": "Boolean Text to 0/1",
+            "reason": "Column is_active holds yes/no style values",
+            "details": {
+                "column": "is_active",
+                "values": [
+                    "0",
+                    "1",
+                    "False",
+                    "N",
+                    "True",
+                    "Y",
+                    "no",
+                    "yes"
+                ]
+            }
+        },
+        {
+            "step": "Standardization",
+            "decision": "Text to Number",
+            "reason": "Column client_satisfaction holds numbers stored as text",
+            "details": {
+                "column": "client_satisfaction",
+                "parse_rate": "100.0%",
+                "unparseable_set_to_missing": 0
+            }
+        },
+        {
+            "step": "Deduplication",
+            "decision": "Skipped",
+            "reason": "No duplicates found",
+            "details": {}
+        },
+        {
+            "step": "Feature Selection",
+            "decision": "Excluded Identifiers",
+            "reason": "Columns with (almost) all-unique values carry no generalisable signal",
+            "details": {
+                "columns": [
+                    "freelancer_ID",
+                    "name"
+                ]
+            }
+        },
+        {
+            "step": "Outlier Handling",
+            "decision": "Capping Applied",
+            "reason": "Rare outliers detected in years_of_experience",
+            "details": {
+                "column": "years_of_experience",
+                "ratio": "1.0%",
+                "action": "Winsorization",
+                "applies_to": "ML-ready output only"
+            }
+        },
+        {
+            "step": "Pipeline Info",
+            "decision": "Optimization Strategy",
+            "reason": "Steps are currently optimized independently (Imputation -> Encoding -> Scaling)",
+            "details": {}
+        },
+        {
+            "step": "Imputation",
+            "decision": "Most Frequent",
+            "reason": "Binary 0/1 columns (Default)",
+            "details": {
+                "columns": [
+                    "is_active"
+                ]
+            }
+        },
+        {
+            "step": "Imputation",
+            "decision": "Knn Strategy",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "predicted_strategy": "knn"
+            }
+        },
+        {
+            "step": "Imputation",
+            "decision": "Most Frequent",
+            "reason": "Categorical columns (Default)",
+            "details": {
+                "columns": [
+                    "gender",
+                    "country",
+                    "language",
+                    "primary_skill"
+                ]
+            }
+        },
+        {
+            "step": "Output",
+            "decision": "Save Human Readable",
+            "reason": "Saved intermediate cleaned data",
+            "details": {
+                "path": "/var/folders/f7/pzqv0dfs0sb35xwygmrzg6mm0000gn/T/tmpxk28e2av/human_readable_data.csv"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "One-Hot Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "gender"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "One-Hot Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "country"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "One-Hot Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "language"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "One-Hot Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "primary_skill"
+            }
+        },
+        {
+            "step": "Scaling",
+            "decision": "Standard Strategy",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "predicted_strategy": "standard"
+            }
+        },
+        {
+            "step": "Output",
+            "decision": "Save ML Ready",
+            "reason": "Saved final processed data",
+            "details": {
+                "path": "/var/folders/f7/pzqv0dfs0sb35xwygmrzg6mm0000gn/T/tmpxk28e2av/processed_data.csv"
+            }
+        }
+    ]
+}

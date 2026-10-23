@@ -1,0 +1,271 @@
+{
+    "metadata": {
+        "timestamp": "2026-10-23T09:20:47.044235",
+        "steps_taken": [
+            "Load Data",
+            "Target",
+            "Task Detection",
+            "Deduplication",
+            "Pipeline Info",
+            "Imputation",
+            "Output",
+            "Encoding",
+            "Encoding",
+            "Encoding",
+            "Scaling",
+            "Evaluation",
+            "Evaluation",
+            "Scaling",
+            "Output"
+        ],
+        "evaluation": {
+            "before": {
+                "rows": 344,
+                "columns": 8,
+                "missing_values": 19,
+                "missing_percentage": 0.690406976744186,
+                "duplicate_rows": 0,
+                "column_types": {
+                    "float64": 4,
+                    "object": 3,
+                    "int64": 1
+                },
+                "memory_usage_kb": 68.6513671875,
+                "estimated_outliers": 0
+            },
+            "after": {
+                "rows": 333,
+                "columns": 10,
+                "missing_values": 0,
+                "missing_percentage": 0.0,
+                "duplicate_rows": 0,
+                "column_types": {
+                    "float64": 5,
+                    "int64": 5
+                },
+                "memory_usage_kb": 36.71875,
+                "estimated_outliers": 0
+            }
+        },
+        "execution": {
+            "start_time": "2026-10-23T09:20:47.044263",
+            "end_time": "2026-10-23T09:20:47.085082",
+            "duration_seconds": 0.040819,
+            "rows_per_second": 8157.965653249712,
+            "step_seconds": {
+                "load": 0.0005264580104267225,
+                "clean": 0.006300832988927141,
+                "duplicates": 0.0005496669909916818,
+                "impute": 0.0012258329952601343,
+                "encode": 0.0010461250058142468,
+                "scale": 0.023587582996697165,
+                "report": 0.004543542003375478
+            }
+        }
+    },
+    "changes_summary": [
+        {
+            "category": "Target",
+            "column": "sex",
+            "before": "NaN",
+            "after": "Row dropped",
+            "affected_rows": 11
+        },
+        {
+            "category": "Encoding",
+            "column": "species",
+            "before": "Categorical Column",
+            "after": "Expanded into 2 columns: ['species_Chinstrap', 'species_Gentoo']...",
+            "affected_rows": 333
+        },
+        {
+            "category": "Encoding",
+            "column": "island",
+            "before": "Categorical Column",
+            "after": "Expanded into 2 columns: ['island_Dream', 'island_Torgersen']...",
+            "affected_rows": 333
+        },
+        {
+            "category": "Scaling",
+            "column": "bill_length_mm",
+            "before": "Range [32.10, 59.60]",
+            "after": "Scaled using standard",
+            "affected_rows": 333
+        },
+        {
+            "category": "Scaling",
+            "column": "bill_depth_mm",
+            "before": "Range [13.10, 21.50]",
+            "after": "Scaled using standard",
+            "affected_rows": 333
+        },
+        {
+            "category": "Scaling",
+            "column": "flipper_length_mm",
+            "before": "Range [172.00, 231.00]",
+            "after": "Scaled using standard",
+            "affected_rows": 333
+        },
+        {
+            "category": "Scaling",
+            "column": "body_mass_g",
+            "before": "Range [2700.00, 6300.00]",
+            "after": "Scaled using standard",
+            "affected_rows": 333
+        },
+        {
+            "category": "Scaling",
+            "column": "year",
+            "before": "Range [2007.00, 2009.00]",
+            "after": "Scaled using standard",
+            "affected_rows": 333
+        }
+    ],
+    "decisions": [
+        {
+            "step": "Load Data",
+            "decision": "Success",
+            "reason": "Loaded file /Users/siddhantdalvi/DEV/pari-projects/Intelligent-Automation-Data-Preparation/samples/penguins.csv",
+            "details": {
+                "shape": [
+                    344,
+                    8
+                ],
+                "columns": [
+                    "species",
+                    "island",
+                    "bill_length_mm",
+                    "bill_depth_mm",
+                    "flipper_length_mm",
+                    "body_mass_g",
+                    "sex",
+                    "year"
+                ],
+                "encoding": "utf-8-sig",
+                "delimiter": ","
+            }
+        },
+        {
+            "step": "Target",
+            "decision": "Dropped Rows",
+            "reason": "Rows without a target value cannot be used for supervised evaluation",
+            "details": {
+                "column": "sex",
+                "count": 11
+            }
+        },
+        {
+            "step": "Task Detection",
+            "decision": "Classification",
+            "reason": "Detected based on target 'sex' properties",
+            "details": {
+                "target_dtype": "object",
+                "unique_values": 2,
+                "integer_valued": null
+            }
+        },
+        {
+            "step": "Deduplication",
+            "decision": "Skipped",
+            "reason": "No duplicates found",
+            "details": {}
+        },
+        {
+            "step": "Pipeline Info",
+            "decision": "Optimization Strategy",
+            "reason": "Steps are currently optimized independently (Imputation -> Encoding -> Scaling)",
+            "details": {}
+        },
+        {
+            "step": "Imputation",
+            "decision": "Most Frequent",
+            "reason": "Categorical columns (Default)",
+            "details": {
+                "columns": [
+                    "species",
+                    "island"
+                ]
+            }
+        },
+        {
+            "step": "Output",
+            "decision": "Save Human Readable",
+            "reason": "Saved intermediate cleaned data",
+            "details": {
+                "path": "/var/folders/f7/pzqv0dfs0sb35xwygmrzg6mm0000gn/T/tmp16mczie0/human_readable_data.csv"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "One-Hot Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "species"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "One-Hot Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "island"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "Target Encoding",
+            "reason": "Label Encoded Target Variable",
+            "details": {
+                "column": "sex",
+                "mapping": {
+                    "female": 0,
+                    "male": 1
+                }
+            }
+        },
+        {
+            "step": "Scaling",
+            "decision": "Optimizing...",
+            "reason": "Evaluating Top-K: ['standard', 'robust']",
+            "details": {}
+        },
+        {
+            "step": "Evaluation",
+            "decision": "standard",
+            "reason": "F1 Score: 0.8828",
+            "details": {}
+        },
+        {
+            "step": "Evaluation",
+            "decision": "robust",
+            "reason": "F1 Score: 0.8768",
+            "details": {}
+        },
+        {
+            "step": "Scaling",
+            "decision": "Standard (Winner)",
+            "reason": "Selected after evaluation (Score: 0.8828)",
+            "details": {
+                "candidates": [
+                    "standard",
+                    "robust"
+                ],
+                "scores": {
+                    "standard": 0.8828341074148467,
+                    "robust": 0.8768173454844276
+                },
+                "metric": "F1",
+                "evaluation_model": "KNeighborsClassifier",
+                "best_score": 0.8828341074148467
+            }
+        },
+        {
+            "step": "Output",
+            "decision": "Save ML Ready",
+            "reason": "Saved final processed data",
+            "details": {
+                "path": "/var/folders/f7/pzqv0dfs0sb35xwygmrzg6mm0000gn/T/tmp16mczie0/processed_data.csv"
+            }
+        }
+    ]
+}

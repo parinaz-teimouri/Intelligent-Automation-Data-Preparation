@@ -1,0 +1,1195 @@
+sku,product,category,colour,size,material,season,price,stock,launch_date,rating,launch_date_year,launch_date_month,launch_date_day,on_sale
+KV-10001,Merino Crew Knit,Knitwear,Black,XS,Merino Wool,SS25,89.9,15,2025-01-27,4.3,2025,1,27,1.0
+KV-10002,Merino Crew Knit,Knitwear,Black,S,Merino Wool,SS25,89.9,18,2025-03-24,4.24,2025,3,24,1.0
+KV-10003,Merino Crew Knit,Knitwear,Black,M,Merino Wool,SS25,89.9,11,2025-02-04,4.3,2025,2,4,1.0
+KV-10004,Merino Crew Knit,Knitwear,Black,L,Merino Wool,SS25,89.9,17,2025-03-10,4.5,2025,3,10,0.0
+KV-10005,Merino Crew Knit,Knitwear,Off White,XS,Merino Wool,SS25,89.9,13,2025-02-28,5.0,2025,2,28,0.0
+KV-10006,Merino Crew Knit,Knitwear,Off White,S,Merino Wool,SS25,89.9,15,2025-03-26,4.3,2025,3,26,1.0
+KV-10007,Merino Crew Knit,Knitwear,Off White,M,Merino Wool,SS25,89.9,13,2025-03-05,4.539999999999999,2025,3,5,0.0
+KV-10008,Merino Crew Knit,Knitwear,Off White,L,Merino Wool,SS25,89.9,14,2025-03-24,4.7,2025,3,24,0.0
+KV-10009,Merino Crew Knit,Knitwear,Off White,XL,Merino Wool,SS25,89.9,8,2025-03-10,5.0,2025,3,10,1.0
+KV-10010,Merino Crew Knit,Knitwear,Navy,XS,Merino Wool,SS25,89.9,20,2025-02-17,3.5,2025,2,17,1.0
+KV-10011,Merino Crew Knit,Knitwear,Navy,S,Merino Wool,SS25,89.9,12,2025-01-27,4.3,2025,1,27,0.0
+KV-10012,Merino Crew Knit,Knitwear,Navy,M,Merino Wool,SS25,89.9,12,2025-03-22,4.4,2025,3,22,0.0
+KV-10013,Merino Crew Knit,Knitwear,Navy,XL,Merino Wool,SS25,89.9,15,2025-02-08,5.0,2025,2,8,1.0
+KV-10014,Merino Crew Knit,Knitwear,Camel,XS,Merino Wool,SS25,89.9,15,2025-03-10,4.4,2025,3,10,0.0
+KV-10015,Merino Crew Knit,Knitwear,Camel,M,Merino Wool,SS25,89.9,14,2025-03-06,4.9,2025,3,6,1.0
+KV-10016,Merino Crew Knit,Knitwear,Camel,L,Merino Wool,SS25,89.9,13,2025-03-01,4.279999999999999,2025,3,1,1.0
+KV-10017,Merino Crew Knit,Knitwear,Camel,XL,Merino Wool,SS25,89.9,20,2025-03-04,5.0,2025,3,4,1.0
+KV-10018,Merino Crew Knit,Knitwear,Sand,XS,Merino Wool,SS25,89.9,15,2025-01-26,4.4799999999999995,2025,1,26,1.0
+KV-10019,Merino Crew Knit,Knitwear,Sand,S,Merino Wool,SS25,89.9,11,2025-02-28,4.4,2025,2,28,0.0
+KV-10020,Merino Crew Knit,Knitwear,Sand,M,Merino Wool,SS25,89.9,14,2025-02-21,3.8,2025,2,21,1.0
+KV-10021,Merino Crew Knit,Knitwear,Sand,L,Merino Wool,SS25,89.9,28,2025-02-09,3.8,2025,2,9,0.0
+KV-10022,Merino Crew Knit,Knitwear,Sand,XL,Merino Wool,SS25,89.9,17,2025-02-28,4.1,2025,2,28,1.0
+KV-10023,Merino Crew Knit,Knitwear,Burgundy,XS,Merino Wool,SS25,89.9,17,2025-02-15,4.0,2025,2,15,1.0
+KV-10024,Merino Crew Knit,Knitwear,Burgundy,S,Merino Wool,SS25,89.9,14,2025-02-17,3.7,2025,2,17,0.0
+KV-10025,Merino Crew Knit,Knitwear,Burgundy,M,Merino Wool,SS25,89.9,17,2025-03-11,4.6,2025,3,11,1.0
+KV-10026,Merino Crew Knit,Knitwear,Burgundy,L,Merino Wool,SS25,89.9,9,2025-03-12,4.0,2025,3,12,0.0
+KV-10027,Merino Crew Knit,Knitwear,Burgundy,XL,Merino Wool,SS25,89.9,15,2025-03-06,4.62,2025,3,6,0.0
+KV-10028,Merino Crew Knit,Knitwear,Grey Melange,XS,Merino Wool,SS25,89.9,9,2025-02-25,3.8,2025,2,25,0.0
+KV-10029,Merino Crew Knit,Knitwear,Grey Melange,S,Merino Wool,SS25,89.9,17,2025-03-13,4.5,2025,3,13,0.0
+KV-10030,Merino Crew Knit,Knitwear,Grey Melange,M,Merino Wool,SS25,89.9,11,2025-03-23,4.4,2025,3,23,0.0
+KV-10031,Merino Crew Knit,Knitwear,Grey Melange,L,Merino Wool,SS25,89.9,14,2025-02-02,4.1,2025,2,2,0.0
+KV-10032,Merino Crew Knit,Knitwear,Grey Melange,XL,Merino Wool,SS25,89.9,12,2025-03-23,4.3,2025,3,23,0.0
+KV-10033,Cashmere Cardigan,Knitwear,Black,XS,Cashmere,SS25,229.0,8,2025-02-10,4.1,2025,2,10,0.0
+KV-10034,Cashmere Cardigan,Knitwear,Black,S,Cashmere,SS25,229.0,11,2025-03-14,5.0,2025,3,14,0.0
+KV-10035,Cashmere Cardigan,Knitwear,Black,M,Cashmere,SS25,229.0,11,2025-03-24,4.4,2025,3,24,0.0
+KV-10036,Cashmere Cardigan,Knitwear,Black,L,Cashmere,SS25,229.0,20,2025-03-24,4.4,2025,3,24,0.0
+KV-10037,Cashmere Cardigan,Knitwear,Black,XL,Cashmere,SS25,229.0,13,2025-01-27,4.5,2025,1,27,1.0
+KV-10038,Cashmere Cardigan,Knitwear,Forest Green,XS,Cashmere,SS25,229.0,10,2025-02-10,4.6,2025,2,10,0.0
+KV-10039,Cashmere Cardigan,Knitwear,Forest Green,S,Cashmere,SS25,229.0,18,2025-02-28,4.2,2025,2,28,1.0
+KV-10040,Cashmere Cardigan,Knitwear,Forest Green,M,Cashmere,SS25,229.0,21,2025-02-08,5.0,2025,2,8,1.0
+KV-10041,Cashmere Cardigan,Knitwear,Forest Green,L,Cashmere,SS25,229.0,13,2025-03-21,4.140000000000001,2025,3,21,0.0
+KV-10042,Cashmere Cardigan,Knitwear,Forest Green,XL,Cashmere,SS25,229.0,17,2025-03-05,3.5,2025,3,5,1.0
+KV-10043,Cashmere Cardigan,Knitwear,Burgundy,XS,Cashmere,SS25,229.0,15,2025-02-24,3.8,2025,2,24,1.0
+KV-10044,Cashmere Cardigan,Knitwear,Burgundy,S,Cashmere,SS25,229.0,13,2025-02-24,4.2,2025,2,24,1.0
+KV-10045,Cashmere Cardigan,Knitwear,Burgundy,M,Cashmere,SS25,229.0,12,2025-02-09,3.6,2025,2,9,1.0
+KV-10046,Cashmere Cardigan,Knitwear,Burgundy,L,Cashmere,SS25,229.0,14,2025-02-17,4.1,2025,2,17,1.0
+KV-10047,Cashmere Cardigan,Knitwear,Camel,XS,Cashmere,SS25,229.0,15,2025-02-22,3.9,2025,2,22,0.0
+KV-10048,Cashmere Cardigan,Knitwear,Camel,S,Cashmere,SS25,229.0,7,2025-02-01,5.0,2025,2,1,0.0
+KV-10049,Cashmere Cardigan,Knitwear,Camel,M,Cashmere,SS25,229.0,7,2025-02-14,3.9,2025,2,14,1.0
+KV-10050,Cashmere Cardigan,Knitwear,Camel,L,Cashmere,SS25,229.0,15,2025-02-28,4.28,2025,2,28,1.0
+KV-10051,Cashmere Cardigan,Knitwear,Camel,XL,Cashmere,SS25,229.0,13,2025-03-17,4.0,2025,3,17,0.0
+KV-10052,Cashmere Cardigan,Knitwear,Grey Melange,XS,Cashmere,SS25,229.0,11,2025-02-24,4.0,2025,2,24,0.0
+KV-10053,Cashmere Cardigan,Knitwear,Grey Melange,S,Cashmere,SS25,229.0,8,2025-02-04,3.5,2025,2,4,1.0
+KV-10054,Cashmere Cardigan,Knitwear,Grey Melange,M,Cashmere,SS25,229.0,16,2025-03-18,4.6,2025,3,18,0.0
+KV-10055,Cashmere Cardigan,Knitwear,Grey Melange,L,Cashmere,SS25,229.0,14,2025-02-22,4.4,2025,2,22,1.0
+KV-10056,Cashmere Cardigan,Knitwear,Grey Melange,XL,Cashmere,SS25,229.0,17,2025-03-23,3.8,2025,3,23,1.0
+KV-10057,Cashmere Cardigan,Knitwear,Off White,XS,Cashmere,SS25,229.0,11,2025-03-03,4.220000000000001,2025,3,3,0.0
+KV-10058,Cashmere Cardigan,Knitwear,Off White,S,Cashmere,SS25,229.0,18,2025-03-20,4.1,2025,3,20,0.0
+KV-10059,Cashmere Cardigan,Knitwear,Off White,M,Cashmere,SS25,229.0,19,2025-02-07,4.2,2025,2,7,0.0
+KV-10060,Cashmere Cardigan,Knitwear,Off White,L,Cashmere,SS25,229.0,18,2025-01-27,4.9,2025,1,27,1.0
+KV-10061,Cashmere Cardigan,Knitwear,Off White,XL,Cashmere,SS25,229.0,11,2025-02-13,4.5,2025,2,13,0.0
+KV-10062,Cashmere Cardigan,Knitwear,Navy,XS,Cashmere,SS25,229.0,13,2025-02-15,4.6,2025,2,15,0.0
+KV-10063,Cashmere Cardigan,Knitwear,Navy,S,Cashmere,SS25,229.0,18,2025-03-08,4.1,2025,3,8,1.0
+KV-10064,Cashmere Cardigan,Knitwear,Navy,M,Cashmere,SS25,229.0,8,2025-02-02,4.0,2025,2,2,1.0
+KV-10065,Cashmere Cardigan,Knitwear,Navy,L,Cashmere,SS25,229.0,16,2025-03-10,4.1,2025,3,10,0.0
+KV-10066,Cashmere Cardigan,Knitwear,Navy,XL,Cashmere,SS25,229.0,15,2025-03-12,4.0,2025,3,12,0.0
+KV-10067,Cable Knit Jumper,Knitwear,Camel,XS,Wool,SS25,119.0,9,2025-03-23,4.4,2025,3,23,1.0
+KV-10068,Cable Knit Jumper,Knitwear,Camel,S,Wool,SS25,119.0,12,2025-03-05,4.4,2025,3,5,0.0
+KV-10069,Cable Knit Jumper,Knitwear,Camel,M,Wool,SS25,119.0,10,2025-02-14,3.7,2025,2,14,0.0
+KV-10070,Cable Knit Jumper,Knitwear,Camel,L,Wool,SS25,119.0,21,2025-03-18,3.9,2025,3,18,0.0
+KV-10071,Cable Knit Jumper,Knitwear,Camel,XL,Wool,SS25,119.0,12,2025-02-28,3.4,2025,2,28,0.0
+KV-10072,Cable Knit Jumper,Knitwear,Forest Green,XS,Wool,SS25,119.0,9,2025-02-15,3.5,2025,2,15,1.0
+KV-10073,Cable Knit Jumper,Knitwear,Forest Green,S,Wool,SS25,119.0,16,2025-03-07,4.2,2025,3,7,0.0
+KV-10074,Cable Knit Jumper,Knitwear,Forest Green,M,Wool,SS25,119.0,14,2025-02-13,4.12,2025,2,13,1.0
+KV-10075,Cable Knit Jumper,Knitwear,Forest Green,L,Wool,SS25,119.0,15,2025-03-18,4.2,2025,3,18,1.0
+KV-10076,Cable Knit Jumper,Knitwear,Forest Green,XL,Wool,SS25,119.0,15,2025-01-27,4.3,2025,1,27,1.0
+KV-10077,Cable Knit Jumper,Knitwear,Sand,XS,Wool,SS25,119.0,12,2025-03-08,3.9,2025,3,8,0.0
+KV-10078,Cable Knit Jumper,Knitwear,Sand,M,Wool,SS25,119.0,10,2025-03-05,4.7,2025,3,5,1.0
+KV-10079,Cable Knit Jumper,Knitwear,Sand,L,Wool,SS25,119.0,21,2025-03-09,3.6,2025,3,9,1.0
+KV-10080,Cable Knit Jumper,Knitwear,Sand,XL,Wool,SS25,119.0,12,2025-03-18,4.2,2025,3,18,1.0
+KV-10081,Cable Knit Jumper,Knitwear,Burgundy,XS,Wool,SS25,119.0,21,2025-03-08,3.9799999999999995,2025,3,8,0.0
+KV-10082,Cable Knit Jumper,Knitwear,Burgundy,S,Wool,SS25,119.0,17,2025-02-09,4.3,2025,2,9,1.0
+KV-10083,Cable Knit Jumper,Knitwear,Burgundy,M,Wool,SS25,119.0,14,2025-02-28,3.5,2025,2,28,0.0
+KV-10084,Cable Knit Jumper,Knitwear,Burgundy,XL,Wool,SS25,119.0,12,2025-03-08,3.9,2025,3,8,0.0
+KV-10085,Cable Knit Jumper,Knitwear,Black,XS,Wool,SS25,119.0,16,2025-02-11,4.5,2025,2,11,0.0
+KV-10086,Cable Knit Jumper,Knitwear,Black,S,Wool,SS25,119.0,14,2025-03-19,4.1,2025,3,19,0.0
+KV-10087,Cable Knit Jumper,Knitwear,Black,M,Wool,SS25,119.0,18,2025-03-09,4.3,2025,3,9,1.0
+KV-10088,Cable Knit Jumper,Knitwear,Black,L,Wool,SS25,119.0,8,2025-03-12,4.3,2025,3,12,1.0
+KV-10089,Cable Knit Jumper,Knitwear,Black,XL,Wool,SS25,119.0,17,2025-03-06,3.5,2025,3,6,1.0
+KV-10090,Cable Knit Jumper,Knitwear,Grey Melange,XS,Wool,SS25,119.0,14,2025-03-04,4.8,2025,3,4,0.0
+KV-10091,Cable Knit Jumper,Knitwear,Grey Melange,S,Wool,SS25,119.0,6,2025-02-26,4.2,2025,2,26,1.0
+KV-10092,Cable Knit Jumper,Knitwear,Grey Melange,L,Wool,SS25,119.0,16,2025-03-24,4.4,2025,3,24,1.0
+KV-10093,Cable Knit Jumper,Knitwear,Navy,XS,Wool,SS25,119.0,13,2025-02-13,3.8,2025,2,13,0.0
+KV-10094,Cable Knit Jumper,Knitwear,Navy,S,Wool,SS25,119.0,14,2025-02-15,4.3,2025,2,15,0.0
+KV-10095,Cable Knit Jumper,Knitwear,Navy,M,Wool,SS25,119.0,13,2025-02-25,3.4,2025,2,25,1.0
+KV-10096,Cable Knit Jumper,Knitwear,Navy,L,Wool,SS25,119.0,14,2025-02-24,2.3,2025,2,24,1.0
+KV-10097,Cable Knit Jumper,Knitwear,Navy,XL,Wool,SS25,119.0,22,2025-03-20,4.7,2025,3,20,0.0
+KV-10098,Ribbed Turtleneck,Knitwear,Camel,XS,Merino Wool,SS25,99.0,16,2025-01-28,5.0,2025,1,28,1.0
+KV-10099,Ribbed Turtleneck,Knitwear,Camel,S,Merino Wool,SS25,99.0,16,2025-01-30,4.66,2025,1,30,1.0
+KV-10100,Ribbed Turtleneck,Knitwear,Camel,M,Merino Wool,SS25,99.0,14,2025-02-16,4.4,2025,2,16,0.0
+KV-10101,Ribbed Turtleneck,Knitwear,Camel,L,Merino Wool,SS25,99.0,15,2025-03-20,4.4,2025,3,20,0.0
+KV-10102,Ribbed Turtleneck,Knitwear,Camel,XL,Merino Wool,SS25,99.0,15,2025-02-16,4.3,2025,2,16,1.0
+KV-10103,Ribbed Turtleneck,Knitwear,Burgundy,XS,Merino Wool,SS25,99.0,19,2025-03-16,3.7,2025,3,16,0.0
+KV-10104,Ribbed Turtleneck,Knitwear,Burgundy,S,Merino Wool,SS25,99.0,9,2025-03-26,4.119999999999999,2025,3,26,0.0
+KV-10105,Ribbed Turtleneck,Knitwear,Burgundy,M,Merino Wool,SS25,99.0,12,2025-02-21,3.8,2025,2,21,1.0
+KV-10106,Ribbed Turtleneck,Knitwear,Burgundy,L,Merino Wool,SS25,99.0,16,2025-02-04,4.5,2025,2,4,0.0
+KV-10107,Ribbed Turtleneck,Knitwear,Burgundy,XL,Merino Wool,SS25,99.0,19,2025-02-24,4.4,2025,2,24,1.0
+KV-10108,Ribbed Turtleneck,Knitwear,Sand,XS,Merino Wool,SS25,99.0,18,2025-02-14,4.9,2025,2,14,1.0
+KV-10109,Ribbed Turtleneck,Knitwear,Sand,S,Merino Wool,SS25,99.0,9,2025-02-06,4.3,2025,2,6,0.0
+KV-10110,Ribbed Turtleneck,Knitwear,Sand,M,Merino Wool,SS25,99.0,11,2025-01-31,4.5,2025,1,31,1.0
+KV-10111,Ribbed Turtleneck,Knitwear,Sand,L,Merino Wool,SS25,99.0,12,2025-03-12,4.0,2025,3,12,0.0
+KV-10112,Ribbed Turtleneck,Knitwear,Sand,XL,Merino Wool,SS25,99.0,13,2025-02-22,4.4,2025,2,22,0.0
+KV-10113,Ribbed Turtleneck,Knitwear,Navy,XS,Merino Wool,SS25,99.0,16,2025-03-01,5.0,2025,3,1,0.0
+KV-10114,Ribbed Turtleneck,Knitwear,Navy,S,Merino Wool,SS25,99.0,12,2025-01-30,4.5,2025,1,30,1.0
+KV-10115,Ribbed Turtleneck,Knitwear,Navy,M,Merino Wool,SS25,99.0,11,2025-02-22,3.7,2025,2,22,1.0
+KV-10116,Ribbed Turtleneck,Knitwear,Navy,L,Merino Wool,SS25,99.0,20,2025-02-27,4.6,2025,2,27,1.0
+KV-10117,Ribbed Turtleneck,Knitwear,Off White,XS,Merino Wool,SS25,99.0,18,2025-03-20,4.6,2025,3,20,0.0
+KV-10118,Ribbed Turtleneck,Knitwear,Off White,S,Merino Wool,SS25,99.0,18,2025-02-02,4.4,2025,2,2,1.0
+KV-10119,Ribbed Turtleneck,Knitwear,Off White,M,Merino Wool,SS25,99.0,14,2025-01-28,4.46,2025,1,28,1.0
+KV-10120,Ribbed Turtleneck,Knitwear,Off White,XL,Merino Wool,SS25,99.0,13,2025-02-22,4.6,2025,2,22,0.0
+KV-10121,Ribbed Turtleneck,Knitwear,Grey Melange,XS,Merino Wool,SS25,99.0,19,2025-03-20,4.8,2025,3,20,0.0
+KV-10122,Ribbed Turtleneck,Knitwear,Grey Melange,S,Merino Wool,SS25,99.0,15,2025-02-12,3.5,2025,2,12,0.0
+KV-10123,Ribbed Turtleneck,Knitwear,Grey Melange,M,Merino Wool,SS25,99.0,15,2025-03-17,4.6,2025,3,17,1.0
+KV-10124,Ribbed Turtleneck,Knitwear,Grey Melange,L,Merino Wool,SS25,99.0,11,2025-03-05,3.6,2025,3,5,0.0
+KV-10125,Ribbed Turtleneck,Knitwear,Grey Melange,XL,Merino Wool,SS25,99.0,11,2025-01-26,4.2,2025,1,26,0.0
+KV-10126,Ribbed Turtleneck,Knitwear,Forest Green,XS,Merino Wool,SS25,99.0,16,2025-03-01,4.6,2025,3,1,1.0
+KV-10127,Ribbed Turtleneck,Knitwear,Forest Green,S,Merino Wool,SS25,99.0,10,2025-03-18,4.4,2025,3,18,0.0
+KV-10128,Ribbed Turtleneck,Knitwear,Forest Green,M,Merino Wool,SS25,99.0,7,2025-03-15,4.0,2025,3,15,0.0
+KV-10129,Ribbed Turtleneck,Knitwear,Forest Green,L,Merino Wool,SS25,99.0,12,2025-03-18,3.9,2025,3,18,0.0
+KV-10130,Ribbed Turtleneck,Knitwear,Forest Green,XL,Merino Wool,SS25,99.0,4,2025-03-16,4.4,2025,3,16,0.0
+KV-10131,Linen Shirt,Shirts,Camel,XS,Linen,SS25,59.0,14,2025-03-23,4.0,2025,3,23,0.0
+KV-10132,Linen Shirt,Shirts,Camel,S,Linen,SS25,59.0,23,2025-03-25,4.6,2025,3,25,0.0
+KV-10133,Linen Shirt,Shirts,Camel,M,Linen,SS25,59.0,8,2025-02-14,4.4,2025,2,14,1.0
+KV-10134,Linen Shirt,Shirts,Camel,L,Linen,SS25,59.0,13,2025-02-11,3.8,2025,2,11,0.0
+KV-10135,Linen Shirt,Shirts,Camel,XL,Linen,SS25,59.0,14,2025-03-21,3.9,2025,3,21,1.0
+KV-10136,Linen Shirt,Shirts,Navy,XS,Linen,SS25,59.0,13,2025-03-08,4.5,2025,3,8,1.0
+KV-10137,Linen Shirt,Shirts,Navy,S,Linen,SS25,59.0,10,2025-01-31,3.9,2025,1,31,1.0
+KV-10138,Linen Shirt,Shirts,Navy,M,Linen,SS25,59.0,15,2025-03-06,4.6,2025,3,6,0.0
+KV-10139,Linen Shirt,Shirts,Navy,L,Linen,SS25,59.0,9,2025-02-19,4.3,2025,2,19,0.0
+KV-10140,Linen Shirt,Shirts,Navy,XL,Linen,SS25,59.0,14,2025-02-08,4.0,2025,2,8,1.0
+KV-10141,Linen Shirt,Shirts,Black,XS,Linen,SS25,59.0,9,2025-02-28,3.9,2025,2,28,1.0
+KV-10142,Linen Shirt,Shirts,Black,S,Linen,SS25,59.0,12,2025-02-14,4.9,2025,2,14,0.0
+KV-10143,Linen Shirt,Shirts,Black,M,Linen,SS25,59.0,8,2025-03-13,4.1,2025,3,13,1.0
+KV-10144,Linen Shirt,Shirts,Black,L,Linen,SS25,59.0,15,2025-03-04,4.0,2025,3,4,0.0
+KV-10145,Linen Shirt,Shirts,Black,XL,Linen,SS25,59.0,7,2025-03-11,3.8,2025,3,11,1.0
+KV-10146,Linen Shirt,Shirts,Burgundy,S,Linen,SS25,59.0,17,2025-02-04,4.8,2025,2,4,0.0
+KV-10147,Linen Shirt,Shirts,Burgundy,M,Linen,SS25,59.0,14,2025-01-31,3.8,2025,1,31,0.0
+KV-10148,Linen Shirt,Shirts,Burgundy,L,Linen,SS25,59.0,14,2025-02-21,4.4,2025,2,21,0.0
+KV-10149,Linen Shirt,Shirts,Burgundy,XL,Linen,SS25,59.0,12,2025-02-09,3.8,2025,2,9,1.0
+KV-10150,Linen Shirt,Shirts,Forest Green,XS,Linen,SS25,59.0,17,2025-03-18,3.7,2025,3,18,1.0
+KV-10151,Linen Shirt,Shirts,Forest Green,S,Linen,SS25,59.0,14,2025-03-25,4.7,2025,3,25,1.0
+KV-10152,Linen Shirt,Shirts,Forest Green,M,Linen,SS25,59.0,16,2025-02-19,4.6,2025,2,19,1.0
+KV-10153,Linen Shirt,Shirts,Forest Green,L,Linen,SS25,59.0,13,2025-02-16,4.0,2025,2,16,0.0
+KV-10154,Linen Shirt,Shirts,Forest Green,XL,Linen,SS25,59.0,18,2025-03-15,4.2,2025,3,15,0.0
+KV-10155,Linen Shirt,Shirts,Grey Melange,XS,Linen,SS25,59.0,17,2025-03-22,4.1,2025,3,22,1.0
+KV-10156,Linen Shirt,Shirts,Grey Melange,S,Linen,SS25,59.0,16,2025-01-30,3.4,2025,1,30,0.0
+KV-10157,Linen Shirt,Shirts,Grey Melange,M,Linen,SS25,59.0,11,2025-03-11,4.4,2025,3,11,0.0
+KV-10158,Linen Shirt,Shirts,Grey Melange,L,Linen,SS25,59.0,14,2025-02-25,4.3,2025,2,25,0.0
+KV-10159,Linen Shirt,Shirts,Grey Melange,XL,Linen,SS25,59.0,16,2025-03-24,4.3,2025,3,24,0.0
+KV-10160,Linen Shirt,Shirts,Sand,XS,Linen,SS25,59.0,15,2025-02-02,4.2,2025,2,2,1.0
+KV-10161,Linen Shirt,Shirts,Sand,M,Linen,SS25,59.0,27,2025-02-15,4.2,2025,2,15,1.0
+KV-10162,Linen Shirt,Shirts,Sand,L,Linen,SS25,59.0,12,2025-03-14,4.9,2025,3,14,0.0
+KV-10163,Linen Shirt,Shirts,Sand,XL,Linen,SS25,59.0,16,2025-03-21,4.4,2025,3,21,1.0
+KV-10164,Oxford Shirt,Shirts,Navy,XS,Cotton,SS25,69.0,8,2025-03-14,4.4,2025,3,14,0.0
+KV-10165,Oxford Shirt,Shirts,Navy,S,Cotton,SS25,69.0,8,2025-02-14,4.6,2025,2,14,0.0
+KV-10166,Oxford Shirt,Shirts,Navy,M,Cotton,SS25,69.0,12,2025-03-19,4.9,2025,3,19,0.0
+KV-10167,Oxford Shirt,Shirts,Navy,L,Cotton,SS25,69.0,8,2025-02-28,4.1,2025,2,28,0.0
+KV-10168,Oxford Shirt,Shirts,Navy,XL,Cotton,SS25,69.0,10,2025-03-20,4.0200000000000005,2025,3,20,0.0
+KV-10169,Oxford Shirt,Shirts,Sand,XS,Cotton,SS25,69.0,26,2025-01-28,4.3,2025,1,28,0.0
+KV-10170,Oxford Shirt,Shirts,Sand,S,Cotton,SS25,69.0,19,2025-02-07,3.9,2025,2,7,1.0
+KV-10171,Oxford Shirt,Shirts,Sand,M,Cotton,SS25,69.0,21,2025-02-08,4.2,2025,2,8,1.0
+KV-10172,Oxford Shirt,Shirts,Sand,L,Cotton,SS25,69.0,10,2025-02-16,3.8,2025,2,16,1.0
+KV-10173,Oxford Shirt,Shirts,Sand,XL,Cotton,SS25,69.0,15,2025-02-17,4.2,2025,2,17,0.0
+KV-10174,Oxford Shirt,Shirts,Off White,XS,Cotton,SS25,69.0,12,2025-03-19,3.8,2025,3,19,0.0
+KV-10175,Oxford Shirt,Shirts,Off White,S,Cotton,SS25,69.0,13,2025-02-12,4.1,2025,2,12,0.0
+KV-10176,Oxford Shirt,Shirts,Off White,M,Cotton,SS25,69.0,19,2025-03-17,4.3,2025,3,17,1.0
+KV-10177,Oxford Shirt,Shirts,Off White,L,Cotton,SS25,69.0,13,2025-02-02,4.1,2025,2,2,1.0
+KV-10178,Oxford Shirt,Shirts,Off White,XL,Cotton,SS25,69.0,10,2025-02-05,4.22,2025,2,5,0.0
+KV-10179,Oxford Shirt,Shirts,Burgundy,XS,Cotton,SS25,69.0,11,2025-03-12,3.6,2025,3,12,0.0
+KV-10180,Oxford Shirt,Shirts,Burgundy,S,Cotton,SS25,69.0,10,2025-02-07,4.0,2025,2,7,0.0
+KV-10181,Oxford Shirt,Shirts,Burgundy,M,Cotton,SS25,69.0,12,2025-01-30,4.1,2025,1,30,0.0
+KV-10182,Oxford Shirt,Shirts,Burgundy,L,Cotton,SS25,69.0,23,2025-02-21,4.3,2025,2,21,0.0
+KV-10183,Oxford Shirt,Shirts,Burgundy,XL,Cotton,SS25,69.0,12,2025-03-12,4.1,2025,3,12,1.0
+KV-10184,Oxford Shirt,Shirts,Grey Melange,XS,Cotton,SS25,69.0,13,2025-03-15,3.5,2025,3,15,0.0
+KV-10185,Oxford Shirt,Shirts,Grey Melange,S,Cotton,SS25,69.0,14,2025-02-26,4.6,2025,2,26,1.0
+KV-10186,Oxford Shirt,Shirts,Grey Melange,M,Cotton,SS25,69.0,12,2025-02-20,3.7,2025,2,20,1.0
+KV-10187,Oxford Shirt,Shirts,Grey Melange,L,Cotton,SS25,69.0,15,2025-01-31,4.1,2025,1,31,1.0
+KV-10188,Oxford Shirt,Shirts,Grey Melange,XL,Cotton,SS25,69.0,12,2025-02-22,3.8,2025,2,22,0.0
+KV-10189,Oxford Shirt,Shirts,Forest Green,XS,Cotton,SS25,69.0,15,2025-03-08,5.0,2025,3,8,0.0
+KV-10190,Oxford Shirt,Shirts,Forest Green,S,Cotton,SS25,69.0,15,2025-03-15,4.3,2025,3,15,0.0
+KV-10191,Oxford Shirt,Shirts,Forest Green,M,Cotton,SS25,69.0,13,2025-03-16,3.6,2025,3,16,0.0
+KV-10192,Oxford Shirt,Shirts,Forest Green,L,Cotton,SS25,69.0,15,2025-02-09,3.5,2025,2,9,0.0
+KV-10193,Oxford Shirt,Shirts,Forest Green,XL,Cotton,SS25,69.0,17,2025-02-17,3.5,2025,2,17,1.0
+KV-10194,Oxford Shirt,Shirts,Camel,XS,Cotton,SS25,69.0,8,2025-02-28,4.3,2025,2,28,0.0
+KV-10195,Oxford Shirt,Shirts,Camel,S,Cotton,SS25,69.0,12,2025-03-19,3.9,2025,3,19,0.0
+KV-10196,Oxford Shirt,Shirts,Camel,M,Cotton,SS25,69.0,10,2025-02-05,4.22,2025,2,5,1.0
+KV-10197,Oxford Shirt,Shirts,Camel,L,Cotton,SS25,69.0,14,2025-02-16,4.6,2025,2,16,1.0
+KV-10198,Silk Blouse,Shirts,Camel,XS,Silk,SS25,139.0,14,2025-01-26,3.9,2025,1,26,1.0
+KV-10199,Silk Blouse,Shirts,Camel,L,Silk,SS25,139.0,14,2025-03-24,4.2,2025,3,24,1.0
+KV-10200,Silk Blouse,Shirts,Camel,XL,Silk,SS25,139.0,13,2025-03-23,4.08,2025,3,23,1.0
+KV-10201,Silk Blouse,Shirts,Burgundy,XS,Silk,SS25,139.0,15,2025-02-02,3.8,2025,2,2,1.0
+KV-10202,Silk Blouse,Shirts,Burgundy,S,Silk,SS25,139.0,18,2025-02-11,4.0200000000000005,2025,2,11,0.0
+KV-10203,Silk Blouse,Shirts,Burgundy,M,Silk,SS25,139.0,11,2025-03-14,4.7,2025,3,14,0.0
+KV-10204,Silk Blouse,Shirts,Burgundy,L,Silk,SS25,139.0,15,2025-02-02,4.6,2025,2,2,0.0
+KV-10205,Silk Blouse,Shirts,Burgundy,XL,Silk,SS25,139.0,16,2025-01-28,3.9,2025,1,28,1.0
+KV-10206,Silk Blouse,Shirts,Sand,XS,Silk,SS25,139.0,15,2025-02-11,3.6,2025,2,11,0.0
+KV-10207,Silk Blouse,Shirts,Sand,S,Silk,SS25,139.0,19,2025-02-18,4.5,2025,2,18,1.0
+KV-10208,Silk Blouse,Shirts,Sand,L,Silk,SS25,139.0,15,2025-02-19,4.2,2025,2,19,1.0
+KV-10209,Silk Blouse,Shirts,Sand,XL,Silk,SS25,139.0,20,2025-01-26,3.9,2025,1,26,0.0
+KV-10210,Silk Blouse,Shirts,Navy,XS,Silk,SS25,139.0,15,2025-03-20,3.1,2025,3,20,1.0
+KV-10211,Silk Blouse,Shirts,Navy,S,Silk,SS25,139.0,14,2025-01-27,4.02,2025,1,27,1.0
+KV-10212,Silk Blouse,Shirts,Navy,L,Silk,SS25,139.0,9,2025-02-12,4.2,2025,2,12,0.0
+KV-10213,Silk Blouse,Shirts,Navy,XL,Silk,SS25,139.0,12,2025-02-23,4.08,2025,2,23,0.0
+KV-10214,Silk Blouse,Shirts,Off White,XS,Silk,SS25,139.0,6,2025-02-02,4.3,2025,2,2,0.0
+KV-10215,Silk Blouse,Shirts,Off White,S,Silk,SS25,139.0,14,2025-02-16,3.9,2025,2,16,0.0
+KV-10216,Silk Blouse,Shirts,Off White,M,Silk,SS25,139.0,19,2025-03-06,4.2,2025,3,6,0.0
+KV-10217,Silk Blouse,Shirts,Off White,L,Silk,SS25,139.0,14,2025-02-02,4.5,2025,2,2,1.0
+KV-10218,Silk Blouse,Shirts,Off White,XL,Silk,SS25,139.0,14,2025-02-01,4.0,2025,2,1,1.0
+KV-10219,Silk Blouse,Shirts,Black,XS,Silk,SS25,139.0,12,2025-02-23,4.4,2025,2,23,1.0
+KV-10220,Silk Blouse,Shirts,Black,S,Silk,SS25,139.0,9,2025-01-31,5.0,2025,1,31,1.0
+KV-10221,Silk Blouse,Shirts,Black,M,Silk,SS25,139.0,13,2025-03-14,4.3,2025,3,14,0.0
+KV-10222,Silk Blouse,Shirts,Black,L,Silk,SS25,139.0,12,2025-02-20,4.8,2025,2,20,1.0
+KV-10223,Silk Blouse,Shirts,Black,XL,Silk,SS25,139.0,12,2025-03-11,4.7,2025,3,11,0.0
+KV-10224,Silk Blouse,Shirts,Grey Melange,XS,Silk,SS25,139.0,14,2025-02-28,4.24,2025,2,28,0.0
+KV-10225,Silk Blouse,Shirts,Grey Melange,S,Silk,SS25,139.0,19,2025-03-14,3.8,2025,3,14,1.0
+KV-10226,Silk Blouse,Shirts,Grey Melange,M,Silk,SS25,139.0,13,2025-02-11,4.5,2025,2,11,0.0
+KV-10227,Silk Blouse,Shirts,Grey Melange,L,Silk,SS25,139.0,14,2025-03-19,3.9,2025,3,19,0.0
+KV-10228,Silk Blouse,Shirts,Grey Melange,XL,Silk,SS25,139.0,15,2025-03-16,4.0,2025,3,16,0.0
+KV-10229,Poplin Shirt,Shirts,Sand,XS,Cotton,SS25,65.0,9,2025-02-10,4.6,2025,2,10,1.0
+KV-10230,Poplin Shirt,Shirts,Sand,S,Cotton,SS25,65.0,13,2025-02-21,3.8,2025,2,21,1.0
+KV-10231,Poplin Shirt,Shirts,Sand,M,Cotton,SS25,65.0,18,2025-03-11,4.0,2025,3,11,1.0
+KV-10232,Poplin Shirt,Shirts,Sand,L,Cotton,SS25,65.0,8,2025-02-14,4.6,2025,2,14,1.0
+KV-10233,Poplin Shirt,Shirts,Sand,XL,Cotton,SS25,65.0,11,2025-02-16,4.1,2025,2,16,0.0
+KV-10234,Poplin Shirt,Shirts,Burgundy,XS,Cotton,SS25,65.0,21,2025-03-17,4.1,2025,3,17,1.0
+KV-10235,Poplin Shirt,Shirts,Burgundy,S,Cotton,SS25,65.0,14,2025-03-01,4.2,2025,3,1,0.0
+KV-10236,Poplin Shirt,Shirts,Burgundy,M,Cotton,SS25,65.0,13,2025-02-24,4.9,2025,2,24,1.0
+KV-10237,Poplin Shirt,Shirts,Burgundy,L,Cotton,SS25,65.0,23,2025-03-20,3.9,2025,3,20,1.0
+KV-10238,Poplin Shirt,Shirts,Black,XS,Cotton,SS25,65.0,20,2025-02-16,4.7,2025,2,16,1.0
+KV-10239,Poplin Shirt,Shirts,Black,S,Cotton,SS25,65.0,18,2025-03-19,4.1,2025,3,19,1.0
+KV-10240,Poplin Shirt,Shirts,Black,M,Cotton,SS25,65.0,15,2025-01-29,4.3,2025,1,29,1.0
+KV-10241,Poplin Shirt,Shirts,Black,L,Cotton,SS25,65.0,20,2025-02-08,4.32,2025,2,8,1.0
+KV-10242,Poplin Shirt,Shirts,Black,XL,Cotton,SS25,65.0,15,2025-02-03,4.24,2025,2,3,0.0
+KV-10243,Poplin Shirt,Shirts,Navy,XS,Cotton,SS25,65.0,7,2025-01-28,4.5,2025,1,28,0.0
+KV-10244,Poplin Shirt,Shirts,Navy,S,Cotton,SS25,65.0,12,2025-01-31,3.5,2025,1,31,0.0
+KV-10245,Poplin Shirt,Shirts,Navy,M,Cotton,SS25,65.0,12,2025-03-24,4.0,2025,3,24,0.0
+KV-10246,Poplin Shirt,Shirts,Navy,L,Cotton,SS25,65.0,10,2025-03-09,4.2,2025,3,9,0.0
+KV-10247,Poplin Shirt,Shirts,Off White,XS,Cotton,SS25,65.0,11,2025-03-05,3.8,2025,3,5,0.0
+KV-10248,Poplin Shirt,Shirts,Off White,S,Cotton,SS25,65.0,14,2025-02-07,4.3,2025,2,7,0.0
+KV-10249,Poplin Shirt,Shirts,Off White,M,Cotton,SS25,65.0,18,2025-01-30,4.6,2025,1,30,1.0
+KV-10250,Poplin Shirt,Shirts,Off White,L,Cotton,SS25,65.0,12,2025-02-24,4.7,2025,2,24,1.0
+KV-10251,Poplin Shirt,Shirts,Off White,XL,Cotton,SS25,65.0,17,2025-03-01,4.8,2025,3,1,0.0
+KV-10252,Poplin Shirt,Shirts,Grey Melange,XS,Cotton,SS25,65.0,14,2025-03-22,4.3,2025,3,22,0.0
+KV-10253,Poplin Shirt,Shirts,Grey Melange,S,Cotton,SS25,65.0,16,2025-03-12,4.4,2025,3,12,0.0
+KV-10254,Poplin Shirt,Shirts,Grey Melange,M,Cotton,SS25,65.0,16,2025-02-23,4.7,2025,2,23,1.0
+KV-10255,Poplin Shirt,Shirts,Grey Melange,L,Cotton,SS25,65.0,16,2025-03-16,3.6,2025,3,16,1.0
+KV-10256,Poplin Shirt,Shirts,Grey Melange,XL,Cotton,SS25,65.0,17,2025-02-09,4.5,2025,2,9,0.0
+KV-10257,Poplin Shirt,Shirts,Forest Green,XS,Cotton,SS25,65.0,16,2025-02-18,3.1,2025,2,18,1.0
+KV-10258,Poplin Shirt,Shirts,Forest Green,S,Cotton,SS25,65.0,12,2025-02-27,4.3,2025,2,27,1.0
+KV-10259,Poplin Shirt,Shirts,Forest Green,M,Cotton,SS25,65.0,14,2025-02-19,4.5,2025,2,19,1.0
+KV-10260,Poplin Shirt,Shirts,Forest Green,L,Cotton,SS25,65.0,15,2025-01-27,4.56,2025,1,27,1.0
+KV-10261,Poplin Shirt,Shirts,Forest Green,XL,Cotton,SS25,65.0,10,2025-02-24,4.0,2025,2,24,0.0
+KV-10262,Wool Coat,Outerwear,Black,XS,Wool,SS25,249.0,12,2025-03-22,3.2,2025,3,22,0.0
+KV-10263,Wool Coat,Outerwear,Black,S,Wool,SS25,249.0,6,2025-03-01,4.3,2025,3,1,0.0
+KV-10264,Wool Coat,Outerwear,Black,M,Wool,SS25,249.0,17,2025-02-15,4.2,2025,2,15,0.0
+KV-10265,Wool Coat,Outerwear,Black,L,Wool,SS25,249.0,15,2025-02-20,3.8,2025,2,20,0.0
+KV-10266,Wool Coat,Outerwear,Black,XL,Wool,SS25,249.0,10,2025-02-15,3.9,2025,2,15,1.0
+KV-10267,Wool Coat,Outerwear,Camel,XS,Wool,SS25,249.0,16,2025-03-18,5.0,2025,3,18,0.0
+KV-10268,Wool Coat,Outerwear,Camel,S,Wool,SS25,249.0,19,2025-03-11,4.2,2025,3,11,1.0
+KV-10269,Wool Coat,Outerwear,Camel,M,Wool,SS25,249.0,20,2025-02-11,4.8,2025,2,11,1.0
+KV-10270,Wool Coat,Outerwear,Camel,L,Wool,SS25,249.0,14,2025-02-25,4.7,2025,2,25,0.0
+KV-10271,Wool Coat,Outerwear,Camel,XL,Wool,SS25,249.0,10,2025-03-10,4.0,2025,3,10,0.0
+KV-10272,Wool Coat,Outerwear,Off White,XS,Wool,SS25,249.0,22,2025-01-29,4.6,2025,1,29,1.0
+KV-10273,Wool Coat,Outerwear,Off White,S,Wool,SS25,249.0,16,2025-02-16,4.2,2025,2,16,0.0
+KV-10274,Wool Coat,Outerwear,Off White,L,Wool,SS25,249.0,15,2025-02-25,4.199999999999999,2025,2,25,1.0
+KV-10275,Wool Coat,Outerwear,Off White,XL,Wool,SS25,249.0,15,2025-02-17,4.9,2025,2,17,0.0
+KV-10276,Wool Coat,Outerwear,Navy,XS,Wool,SS25,249.0,13,2025-03-14,3.8,2025,3,14,0.0
+KV-10277,Wool Coat,Outerwear,Navy,S,Wool,SS25,249.0,10,2025-02-07,4.7,2025,2,7,0.0
+KV-10278,Wool Coat,Outerwear,Navy,M,Wool,SS25,249.0,15,2025-03-08,4.6,2025,3,8,0.0
+KV-10279,Wool Coat,Outerwear,Navy,XL,Wool,SS25,249.0,19,2025-02-20,4.2,2025,2,20,0.0
+KV-10280,Wool Coat,Outerwear,Burgundy,XS,Wool,SS25,249.0,18,2025-03-26,4.8,2025,3,26,1.0
+KV-10281,Wool Coat,Outerwear,Burgundy,S,Wool,SS25,249.0,14,2025-03-21,4.2,2025,3,21,1.0
+KV-10282,Wool Coat,Outerwear,Burgundy,M,Wool,SS25,249.0,12,2025-03-12,4.2,2025,3,12,0.0
+KV-10283,Wool Coat,Outerwear,Burgundy,L,Wool,SS25,249.0,13,2025-02-22,4.18,2025,2,22,1.0
+KV-10284,Wool Coat,Outerwear,Burgundy,XL,Wool,SS25,249.0,13,2025-03-13,4.3,2025,3,13,0.0
+KV-10285,Wool Coat,Outerwear,Sand,XS,Wool,SS25,249.0,13,2025-03-08,3.7,2025,3,8,1.0
+KV-10286,Wool Coat,Outerwear,Sand,S,Wool,SS25,249.0,17,2025-03-02,3.9799999999999995,2025,3,2,0.0
+KV-10287,Wool Coat,Outerwear,Sand,M,Wool,SS25,249.0,13,2025-02-16,3.9,2025,2,16,0.0
+KV-10288,Wool Coat,Outerwear,Sand,L,Wool,SS25,249.0,13,2025-03-16,4.0,2025,3,16,0.0
+KV-10289,Wool Coat,Outerwear,Sand,XL,Wool,SS25,249.0,14,2025-02-28,4.1,2025,2,28,0.0
+KV-10290,Wool Coat,Outerwear,Forest Green,XS,Wool,SS25,249.0,11,2025-02-04,4.1,2025,2,4,1.0
+KV-10291,Wool Coat,Outerwear,Forest Green,M,Wool,SS25,249.0,13,2025-03-07,3.0,2025,3,7,1.0
+KV-10292,Wool Coat,Outerwear,Forest Green,XL,Wool,SS25,249.0,15,2025-03-09,4.5,2025,3,9,0.0
+KV-10293,Cashmere Coat,Outerwear,Black,XS,Cashmere,SS25,1299.0,16,2025-02-22,5.0,2025,2,22,0.0
+KV-10294,Cashmere Coat,Outerwear,Black,S,Cashmere,SS25,1299.0,12,2025-02-26,3.8,2025,2,26,0.0
+KV-10295,Cashmere Coat,Outerwear,Black,M,Cashmere,SS25,1299.0,17,2025-03-03,4.3,2025,3,3,0.0
+KV-10296,Cashmere Coat,Outerwear,Black,L,Cashmere,SS25,1299.0,12,2025-03-26,5.0,2025,3,26,0.0
+KV-10297,Cashmere Coat,Outerwear,Black,XL,Cashmere,SS25,1299.0,12,2025-03-10,3.8,2025,3,10,0.0
+KV-10298,Cashmere Coat,Outerwear,Grey Melange,XS,Cashmere,SS25,1299.0,6,2025-02-23,4.3,2025,2,23,0.0
+KV-10299,Cashmere Coat,Outerwear,Grey Melange,S,Cashmere,SS25,1299.0,12,2025-01-29,5.0,2025,1,29,0.0
+KV-10300,Cashmere Coat,Outerwear,Grey Melange,M,Cashmere,SS25,1299.0,12,2025-03-20,4.0,2025,3,20,1.0
+KV-10301,Cashmere Coat,Outerwear,Grey Melange,L,Cashmere,SS25,1299.0,10,2025-03-13,4.4799999999999995,2025,3,13,0.0
+KV-10302,Cashmere Coat,Outerwear,Grey Melange,XL,Cashmere,SS25,1299.0,14,2025-02-04,4.3,2025,2,4,1.0
+KV-10303,Cashmere Coat,Outerwear,Forest Green,XS,Cashmere,SS25,1299.0,16,2025-02-15,4.7,2025,2,15,0.0
+KV-10304,Cashmere Coat,Outerwear,Forest Green,S,Cashmere,SS25,1299.0,9,2025-02-08,4.5,2025,2,8,1.0
+KV-10305,Cashmere Coat,Outerwear,Forest Green,M,Cashmere,SS25,1299.0,12,2025-02-25,4.34,2025,2,25,0.0
+KV-10306,Cashmere Coat,Outerwear,Forest Green,L,Cashmere,SS25,1299.0,13,2025-02-27,4.2,2025,2,27,0.0
+KV-10307,Cashmere Coat,Outerwear,Forest Green,XL,Cashmere,SS25,1299.0,15,2025-03-09,4.279999999999999,2025,3,9,1.0
+KV-10308,Cashmere Coat,Outerwear,Sand,XS,Cashmere,SS25,1299.0,9,2025-02-07,3.7,2025,2,7,1.0
+KV-10309,Cashmere Coat,Outerwear,Sand,S,Cashmere,SS25,1299.0,15,2025-03-24,4.7,2025,3,24,0.0
+KV-10310,Cashmere Coat,Outerwear,Sand,M,Cashmere,SS25,1299.0,10,2025-02-05,4.4,2025,2,5,0.0
+KV-10311,Cashmere Coat,Outerwear,Sand,L,Cashmere,SS25,1299.0,15,2025-02-27,4.7,2025,2,27,1.0
+KV-10312,Cashmere Coat,Outerwear,Sand,XL,Cashmere,SS25,1299.0,21,2025-03-08,4.0600000000000005,2025,3,8,0.0
+KV-10313,Cashmere Coat,Outerwear,Burgundy,XS,Cashmere,SS25,1299.0,16,2025-02-27,4.6,2025,2,27,0.0
+KV-10314,Cashmere Coat,Outerwear,Burgundy,S,Cashmere,SS25,1299.0,9,2025-03-26,4.1,2025,3,26,1.0
+KV-10315,Cashmere Coat,Outerwear,Burgundy,M,Cashmere,SS25,1299.0,18,2025-03-24,4.7,2025,3,24,0.0
+KV-10316,Cashmere Coat,Outerwear,Burgundy,XL,Cashmere,SS25,1299.0,13,2025-02-12,4.62,2025,2,12,0.0
+KV-10317,Cashmere Coat,Outerwear,Off White,XS,Cashmere,SS25,1299.0,12,2025-02-22,4.0,2025,2,22,0.0
+KV-10318,Cashmere Coat,Outerwear,Off White,S,Cashmere,SS25,1299.0,6,2025-02-11,4.1,2025,2,11,1.0
+KV-10319,Cashmere Coat,Outerwear,Off White,M,Cashmere,SS25,1299.0,14,2025-03-17,4.3,2025,3,17,1.0
+KV-10320,Cashmere Coat,Outerwear,Off White,L,Cashmere,SS25,1299.0,16,2025-03-05,4.2,2025,3,5,1.0
+KV-10321,Cashmere Coat,Outerwear,Off White,XL,Cashmere,SS25,1299.0,18,2025-01-29,4.3,2025,1,29,1.0
+KV-10322,Cashmere Coat,Outerwear,Camel,XS,Cashmere,SS25,1299.0,12,2025-03-08,4.6,2025,3,8,0.0
+KV-10323,Cashmere Coat,Outerwear,Camel,S,Cashmere,SS25,1299.0,12,2025-03-13,5.0,2025,3,13,1.0
+KV-10324,Cashmere Coat,Outerwear,Camel,M,Cashmere,SS25,1299.0,16,2025-03-06,3.8,2025,3,6,1.0
+KV-10325,Cashmere Coat,Outerwear,Camel,L,Cashmere,SS25,1299.0,13,2025-03-22,5.0,2025,3,22,0.0
+KV-10326,Cashmere Coat,Outerwear,Camel,XL,Cashmere,SS25,1299.0,11,2025-02-14,5.0,2025,2,14,0.0
+KV-10327,Quilted Jacket,Outerwear,Camel,XS,Polyester,SS25,179.0,11,2025-01-31,4.8,2025,1,31,0.0
+KV-10328,Quilted Jacket,Outerwear,Camel,S,Polyester,SS25,179.0,20,2025-01-28,4.7,2025,1,28,1.0
+KV-10329,Quilted Jacket,Outerwear,Camel,M,Polyester,SS25,179.0,9,2025-03-11,3.8,2025,3,11,0.0
+KV-10330,Quilted Jacket,Outerwear,Camel,L,Polyester,SS25,179.0,11,2025-03-04,4.0,2025,3,4,1.0
+KV-10331,Quilted Jacket,Outerwear,Camel,XL,Polyester,SS25,179.0,16,2025-03-08,4.3,2025,3,8,1.0
+KV-10332,Quilted Jacket,Outerwear,Black,XS,Polyester,SS25,179.0,22,2025-02-27,3.6,2025,2,27,1.0
+KV-10333,Quilted Jacket,Outerwear,Black,S,Polyester,SS25,179.0,16,2025-02-23,3.6,2025,2,23,1.0
+KV-10334,Quilted Jacket,Outerwear,Black,M,Polyester,SS25,179.0,17,2025-02-18,5.0,2025,2,18,0.0
+KV-10335,Quilted Jacket,Outerwear,Black,L,Polyester,SS25,179.0,11,2025-02-06,3.7,2025,2,6,0.0
+KV-10336,Quilted Jacket,Outerwear,Black,XL,Polyester,SS25,179.0,13,2025-01-30,4.54,2025,1,30,1.0
+KV-10337,Quilted Jacket,Outerwear,Burgundy,XS,Polyester,SS25,179.0,18,2025-02-26,5.0,2025,2,26,1.0
+KV-10338,Quilted Jacket,Outerwear,Burgundy,S,Polyester,SS25,179.0,12,2025-02-11,4.5,2025,2,11,0.0
+KV-10339,Quilted Jacket,Outerwear,Burgundy,M,Polyester,SS25,179.0,8,2025-02-02,3.3,2025,2,2,0.0
+KV-10340,Quilted Jacket,Outerwear,Burgundy,XL,Polyester,SS25,179.0,18,2025-03-10,4.5,2025,3,10,0.0
+KV-10341,Quilted Jacket,Outerwear,Navy,XS,Polyester,SS25,179.0,9,2025-03-06,4.1,2025,3,6,0.0
+KV-10342,Quilted Jacket,Outerwear,Navy,S,Polyester,SS25,179.0,17,2025-01-26,4.4799999999999995,2025,1,26,0.0
+KV-10343,Quilted Jacket,Outerwear,Navy,M,Polyester,SS25,179.0,15,2025-02-02,3.9,2025,2,2,0.0
+KV-10344,Quilted Jacket,Outerwear,Navy,L,Polyester,SS25,179.0,14,2025-03-14,4.0,2025,3,14,0.0
+KV-10345,Quilted Jacket,Outerwear,Navy,XL,Polyester,SS25,179.0,15,2025-02-20,4.5,2025,2,20,1.0
+KV-10346,Quilted Jacket,Outerwear,Sand,XS,Polyester,SS25,179.0,13,2025-01-27,4.7,2025,1,27,1.0
+KV-10347,Quilted Jacket,Outerwear,Sand,S,Polyester,SS25,179.0,20,2025-03-19,4.4,2025,3,19,1.0
+KV-10348,Quilted Jacket,Outerwear,Sand,M,Polyester,SS25,179.0,13,2025-02-11,4.8,2025,2,11,1.0
+KV-10349,Quilted Jacket,Outerwear,Sand,L,Polyester,SS25,179.0,10,2025-02-10,4.32,2025,2,10,0.0
+KV-10350,Quilted Jacket,Outerwear,Sand,XL,Polyester,SS25,179.0,14,2025-03-10,4.8,2025,3,10,0.0
+KV-10351,Quilted Jacket,Outerwear,Forest Green,XS,Polyester,SS25,179.0,13,2025-02-24,3.2,2025,2,24,1.0
+KV-10352,Quilted Jacket,Outerwear,Forest Green,S,Polyester,SS25,179.0,20,2025-02-04,3.6,2025,2,4,1.0
+KV-10353,Quilted Jacket,Outerwear,Forest Green,L,Polyester,SS25,179.0,16,2025-02-01,4.1,2025,2,1,1.0
+KV-10354,Quilted Jacket,Outerwear,Forest Green,XL,Polyester,SS25,179.0,14,2025-03-02,5.0,2025,3,2,1.0
+KV-10355,Quilted Jacket,Outerwear,Off White,XS,Polyester,SS25,179.0,16,2025-03-18,3.1,2025,3,18,0.0
+KV-10356,Quilted Jacket,Outerwear,Off White,S,Polyester,SS25,179.0,16,2025-03-05,4.1,2025,3,5,0.0
+KV-10357,Quilted Jacket,Outerwear,Off White,M,Polyester,SS25,179.0,15,2025-02-22,4.4,2025,2,22,1.0
+KV-10358,Quilted Jacket,Outerwear,Off White,L,Polyester,SS25,179.0,16,2025-02-18,4.8,2025,2,18,1.0
+KV-10359,Quilted Jacket,Outerwear,Off White,XL,Polyester,SS25,179.0,20,2025-02-13,4.4,2025,2,13,0.0
+KV-10360,Trench Coat,Outerwear,Sand,XS,Cotton,SS25,299.0,10,2025-03-19,4.3,2025,3,19,1.0
+KV-10361,Trench Coat,Outerwear,Sand,S,Cotton,SS25,299.0,13,2025-02-01,4.2,2025,2,1,0.0
+KV-10362,Trench Coat,Outerwear,Sand,M,Cotton,SS25,299.0,15,2025-03-03,3.6,2025,3,3,1.0
+KV-10363,Trench Coat,Outerwear,Sand,L,Cotton,SS25,299.0,17,2025-02-17,4.7,2025,2,17,1.0
+KV-10364,Trench Coat,Outerwear,Sand,XL,Cotton,SS25,299.0,16,2025-02-27,4.12,2025,2,27,0.0
+KV-10365,Trench Coat,Outerwear,Grey Melange,XS,Cotton,SS25,299.0,13,2025-03-13,4.4,2025,3,13,1.0
+KV-10366,Trench Coat,Outerwear,Grey Melange,M,Cotton,SS25,299.0,11,2025-02-05,4.7,2025,2,5,1.0
+KV-10367,Trench Coat,Outerwear,Grey Melange,L,Cotton,SS25,299.0,12,2025-02-20,4.6,2025,2,20,0.0
+KV-10368,Trench Coat,Outerwear,Grey Melange,XL,Cotton,SS25,299.0,8,2025-03-08,3.5,2025,3,8,1.0
+KV-10369,Trench Coat,Outerwear,Camel,XS,Cotton,SS25,299.0,13,2025-02-16,4.9,2025,2,16,0.0
+KV-10370,Trench Coat,Outerwear,Camel,S,Cotton,SS25,299.0,18,2025-03-09,5.0,2025,3,9,0.0
+KV-10371,Trench Coat,Outerwear,Camel,M,Cotton,SS25,299.0,19,2025-02-12,4.2,2025,2,12,1.0
+KV-10372,Trench Coat,Outerwear,Camel,L,Cotton,SS25,299.0,13,2025-02-25,4.4,2025,2,25,1.0
+KV-10373,Trench Coat,Outerwear,Camel,XL,Cotton,SS25,299.0,14,2025-03-15,5.0,2025,3,15,1.0
+KV-10374,Trench Coat,Outerwear,Burgundy,XS,Cotton,SS25,299.0,18,2025-03-05,3.4,2025,3,5,1.0
+KV-10375,Trench Coat,Outerwear,Burgundy,S,Cotton,SS25,299.0,11,2025-03-13,4.6,2025,3,13,0.0
+KV-10376,Trench Coat,Outerwear,Burgundy,M,Cotton,SS25,299.0,17,2025-02-09,4.1,2025,2,9,0.0
+KV-10377,Trench Coat,Outerwear,Burgundy,L,Cotton,SS25,299.0,16,2025-02-02,4.3,2025,2,2,1.0
+KV-10378,Trench Coat,Outerwear,Burgundy,XL,Cotton,SS25,299.0,12,2025-02-19,4.9,2025,2,19,1.0
+KV-10379,Trench Coat,Outerwear,Forest Green,S,Cotton,SS25,299.0,7,2025-02-14,3.8,2025,2,14,0.0
+KV-10380,Trench Coat,Outerwear,Forest Green,M,Cotton,SS25,299.0,15,2025-03-02,4.0,2025,3,2,0.0
+KV-10381,Trench Coat,Outerwear,Forest Green,L,Cotton,SS25,299.0,16,2025-02-22,4.2,2025,2,22,1.0
+KV-10382,Trench Coat,Outerwear,Forest Green,XL,Cotton,SS25,299.0,13,2025-02-16,4.58,2025,2,16,1.0
+KV-10383,Trench Coat,Outerwear,Off White,XS,Cotton,SS25,299.0,13,2025-03-20,3.9,2025,3,20,0.0
+KV-10384,Trench Coat,Outerwear,Off White,S,Cotton,SS25,299.0,13,2025-02-17,3.7,2025,2,17,0.0
+KV-10385,Trench Coat,Outerwear,Off White,L,Cotton,SS25,299.0,23,2025-02-06,4.0,2025,2,6,1.0
+KV-10386,Trench Coat,Outerwear,Off White,XL,Cotton,SS25,299.0,22,2025-01-31,3.9,2025,1,31,1.0
+KV-10387,Trench Coat,Outerwear,Navy,XS,Cotton,SS25,299.0,14,2025-03-14,4.52,2025,3,14,1.0
+KV-10388,Trench Coat,Outerwear,Navy,S,Cotton,SS25,299.0,12,2025-03-26,4.340000000000001,2025,3,26,0.0
+KV-10389,Trench Coat,Outerwear,Navy,L,Cotton,SS25,299.0,20,2025-02-28,3.6,2025,2,28,0.0
+KV-10390,Trench Coat,Outerwear,Navy,XL,Cotton,SS25,299.0,16,2025-03-26,4.1,2025,3,26,0.0
+KV-10391,Pleated Trousers,Trousers,Burgundy,XS,Wool,SS25,99.0,23,2025-03-16,3.3,2025,3,16,1.0
+KV-10392,Pleated Trousers,Trousers,Burgundy,S,Wool,SS25,99.0,10,2025-02-10,4.8,2025,2,10,0.0
+KV-10393,Pleated Trousers,Trousers,Burgundy,M,Wool,SS25,99.0,13,2025-02-24,4.6,2025,2,24,1.0
+KV-10394,Pleated Trousers,Trousers,Burgundy,L,Wool,SS25,99.0,14,2025-02-04,4.2,2025,2,4,0.0
+KV-10395,Pleated Trousers,Trousers,Burgundy,XL,Wool,SS25,99.0,17,2025-03-01,3.6,2025,3,1,0.0
+KV-10396,Pleated Trousers,Trousers,Camel,XS,Wool,SS25,99.0,18,2025-01-30,4.5,2025,1,30,1.0
+KV-10397,Pleated Trousers,Trousers,Camel,S,Wool,SS25,99.0,16,2025-02-03,3.8,2025,2,3,0.0
+KV-10398,Pleated Trousers,Trousers,Camel,M,Wool,SS25,99.0,12,2025-02-09,3.4,2025,2,9,1.0
+KV-10399,Pleated Trousers,Trousers,Camel,L,Wool,SS25,99.0,8,2025-02-10,4.22,2025,2,10,0.0
+KV-10400,Pleated Trousers,Trousers,Camel,XL,Wool,SS25,99.0,12,2025-03-03,3.2,2025,3,3,1.0
+KV-10401,Pleated Trousers,Trousers,Black,XS,Wool,SS25,99.0,13,2025-03-17,4.5,2025,3,17,1.0
+KV-10402,Pleated Trousers,Trousers,Black,S,Wool,SS25,99.0,19,2025-03-07,4.3,2025,3,7,0.0
+KV-10403,Pleated Trousers,Trousers,Black,M,Wool,SS25,99.0,20,2025-02-03,4.1,2025,2,3,1.0
+KV-10404,Pleated Trousers,Trousers,Black,L,Wool,SS25,99.0,14,2025-03-12,4.0,2025,3,12,0.0
+KV-10405,Pleated Trousers,Trousers,Black,XL,Wool,SS25,99.0,15,2025-03-06,4.14,2025,3,6,1.0
+KV-10406,Pleated Trousers,Trousers,Navy,XS,Wool,SS25,99.0,12,2025-03-04,3.84,2025,3,4,0.0
+KV-10407,Pleated Trousers,Trousers,Navy,S,Wool,SS25,99.0,11,2025-02-27,4.3,2025,2,27,0.0
+KV-10408,Pleated Trousers,Trousers,Navy,M,Wool,SS25,99.0,21,2025-01-31,3.4,2025,1,31,1.0
+KV-10409,Pleated Trousers,Trousers,Navy,L,Wool,SS25,99.0,10,2025-03-08,4.6,2025,3,8,0.0
+KV-10410,Pleated Trousers,Trousers,Navy,XL,Wool,SS25,99.0,14,2025-03-17,3.4,2025,3,17,0.0
+KV-10411,Pleated Trousers,Trousers,Grey Melange,XS,Wool,SS25,99.0,13,2025-03-04,3.9,2025,3,4,0.0
+KV-10412,Pleated Trousers,Trousers,Grey Melange,S,Wool,SS25,99.0,11,2025-01-31,3.3,2025,1,31,0.0
+KV-10413,Pleated Trousers,Trousers,Grey Melange,M,Wool,SS25,99.0,7,2025-03-16,4.6,2025,3,16,0.0
+KV-10414,Pleated Trousers,Trousers,Grey Melange,L,Wool,SS25,99.0,15,2025-02-21,4.3,2025,2,21,1.0
+KV-10415,Pleated Trousers,Trousers,Grey Melange,XL,Wool,SS25,99.0,14,2025-01-31,4.8,2025,1,31,1.0
+KV-10416,Pleated Trousers,Trousers,Forest Green,S,Wool,SS25,99.0,14,2025-02-13,4.6,2025,2,13,1.0
+KV-10417,Pleated Trousers,Trousers,Forest Green,M,Wool,SS25,99.0,19,2025-03-17,4.26,2025,3,17,1.0
+KV-10418,Pleated Trousers,Trousers,Forest Green,L,Wool,SS25,99.0,17,2025-03-13,4.6,2025,3,13,0.0
+KV-10419,Pleated Trousers,Trousers,Forest Green,XL,Wool,SS25,99.0,11,2025-02-27,4.3,2025,2,27,0.0
+KV-10420,Pleated Trousers,Trousers,Off White,XS,Wool,SS25,99.0,21,2025-03-03,4.2,2025,3,3,1.0
+KV-10421,Pleated Trousers,Trousers,Off White,M,Wool,SS25,99.0,10,2025-02-27,3.9,2025,2,27,1.0
+KV-10422,Pleated Trousers,Trousers,Off White,L,Wool,SS25,99.0,13,2025-03-04,4.3,2025,3,4,1.0
+KV-10423,Wide-Leg Chinos,Trousers,Grey Melange,XS,Cotton,SS25,79.0,18,2025-02-11,5.0,2025,2,11,1.0
+KV-10424,Wide-Leg Chinos,Trousers,Grey Melange,S,Cotton,SS25,79.0,22,2025-03-03,4.2,2025,3,3,1.0
+KV-10425,Wide-Leg Chinos,Trousers,Grey Melange,M,Cotton,SS25,79.0,15,2025-02-14,3.8,2025,2,14,0.0
+KV-10426,Wide-Leg Chinos,Trousers,Grey Melange,L,Cotton,SS25,79.0,20,2025-01-29,4.220000000000001,2025,1,29,1.0
+KV-10427,Wide-Leg Chinos,Trousers,Off White,XS,Cotton,SS25,79.0,11,2025-03-26,4.6,2025,3,26,1.0
+KV-10428,Wide-Leg Chinos,Trousers,Off White,S,Cotton,SS25,79.0,6,2025-02-22,3.6,2025,2,22,0.0
+KV-10429,Wide-Leg Chinos,Trousers,Off White,M,Cotton,SS25,79.0,14,2025-02-21,3.6,2025,2,21,0.0
+KV-10430,Wide-Leg Chinos,Trousers,Off White,L,Cotton,SS25,79.0,10,2025-02-23,4.8,2025,2,23,1.0
+KV-10431,Wide-Leg Chinos,Trousers,Forest Green,XS,Cotton,SS25,79.0,15,2025-03-19,3.9799999999999995,2025,3,19,0.0
+KV-10432,Wide-Leg Chinos,Trousers,Forest Green,M,Cotton,SS25,79.0,13,2025-02-05,3.7,2025,2,5,0.0
+KV-10433,Wide-Leg Chinos,Trousers,Forest Green,L,Cotton,SS25,79.0,18,2025-03-16,3.5,2025,3,16,1.0
+KV-10434,Wide-Leg Chinos,Trousers,Forest Green,XL,Cotton,SS25,79.0,20,2025-03-15,4.6,2025,3,15,1.0
+KV-10435,Wide-Leg Chinos,Trousers,Sand,XS,Cotton,SS25,79.0,14,2025-03-05,3.9,2025,3,5,1.0
+KV-10436,Wide-Leg Chinos,Trousers,Sand,S,Cotton,SS25,79.0,10,2025-03-01,4.0,2025,3,1,0.0
+KV-10437,Wide-Leg Chinos,Trousers,Sand,M,Cotton,SS25,79.0,15,2025-03-03,4.0,2025,3,3,0.0
+KV-10438,Wide-Leg Chinos,Trousers,Sand,L,Cotton,SS25,79.0,13,2025-03-07,4.7,2025,3,7,1.0
+KV-10439,Wide-Leg Chinos,Trousers,Sand,XL,Cotton,SS25,79.0,16,2025-03-10,3.5,2025,3,10,1.0
+KV-10440,Wide-Leg Chinos,Trousers,Navy,XS,Cotton,SS25,79.0,14,2025-01-31,4.38,2025,1,31,1.0
+KV-10441,Wide-Leg Chinos,Trousers,Navy,S,Cotton,SS25,79.0,16,2025-02-13,3.6,2025,2,13,0.0
+KV-10442,Wide-Leg Chinos,Trousers,Navy,M,Cotton,SS25,79.0,15,2025-02-04,4.4,2025,2,4,0.0
+KV-10443,Wide-Leg Chinos,Trousers,Navy,L,Cotton,SS25,79.0,20,2025-03-08,3.9,2025,3,8,1.0
+KV-10444,Wide-Leg Chinos,Trousers,Navy,XL,Cotton,SS25,79.0,13,2025-02-11,4.6,2025,2,11,1.0
+KV-10445,Wide-Leg Chinos,Trousers,Camel,XS,Cotton,SS25,79.0,13,2025-02-05,4.1,2025,2,5,1.0
+KV-10446,Wide-Leg Chinos,Trousers,Camel,S,Cotton,SS25,79.0,17,2025-03-16,4.3,2025,3,16,0.0
+KV-10447,Wide-Leg Chinos,Trousers,Camel,L,Cotton,SS25,79.0,13,2025-02-26,4.7,2025,2,26,0.0
+KV-10448,Wide-Leg Chinos,Trousers,Camel,XL,Cotton,SS25,79.0,16,2025-03-16,3.8200000000000003,2025,3,16,0.0
+KV-10449,Wide-Leg Chinos,Trousers,Burgundy,XS,Cotton,SS25,79.0,12,2025-03-02,4.2,2025,3,2,0.0
+KV-10450,Wide-Leg Chinos,Trousers,Burgundy,S,Cotton,SS25,79.0,16,2025-03-13,3.9,2025,3,13,0.0
+KV-10451,Wide-Leg Chinos,Trousers,Burgundy,M,Cotton,SS25,79.0,13,2025-03-24,3.9,2025,3,24,0.0
+KV-10452,Wide-Leg Chinos,Trousers,Burgundy,L,Cotton,SS25,79.0,15,2025-02-24,4.4,2025,2,24,1.0
+KV-10453,Wide-Leg Chinos,Trousers,Burgundy,XL,Cotton,SS25,79.0,12,2025-03-20,4.1,2025,3,20,0.0
+KV-10454,Linen Trousers,Trousers,Grey Melange,XS,Linen,SS25,85.0,19,2025-03-16,3.6,2025,3,16,0.0
+KV-10455,Linen Trousers,Trousers,Grey Melange,M,Linen,SS25,85.0,15,2025-03-09,4.4,2025,3,9,0.0
+KV-10456,Linen Trousers,Trousers,Grey Melange,L,Linen,SS25,85.0,10,2025-03-20,4.4,2025,3,20,0.0
+KV-10457,Linen Trousers,Trousers,Grey Melange,XL,Linen,SS25,85.0,16,2025-02-02,4.6,2025,2,2,0.0
+KV-10458,Linen Trousers,Trousers,Navy,XS,Linen,SS25,85.0,14,2025-02-01,3.6,2025,2,1,1.0
+KV-10459,Linen Trousers,Trousers,Navy,S,Linen,SS25,85.0,19,2025-01-30,3.7,2025,1,30,1.0
+KV-10460,Linen Trousers,Trousers,Navy,M,Linen,SS25,85.0,11,2025-03-22,4.0,2025,3,22,1.0
+KV-10461,Linen Trousers,Trousers,Navy,L,Linen,SS25,85.0,17,2025-02-05,3.5,2025,2,5,1.0
+KV-10462,Linen Trousers,Trousers,Navy,XL,Linen,SS25,85.0,17,2025-02-01,4.5,2025,2,1,1.0
+KV-10463,Linen Trousers,Trousers,Off White,S,Linen,SS25,85.0,15,2025-02-14,4.5,2025,2,14,1.0
+KV-10464,Linen Trousers,Trousers,Off White,M,Linen,SS25,85.0,11,2025-02-23,4.8,2025,2,23,0.0
+KV-10465,Linen Trousers,Trousers,Off White,L,Linen,SS25,85.0,16,2025-02-21,4.2,2025,2,21,1.0
+KV-10466,Linen Trousers,Trousers,Off White,XL,Linen,SS25,85.0,11,2025-02-08,4.5,2025,2,8,1.0
+KV-10467,Linen Trousers,Trousers,Forest Green,XS,Linen,SS25,85.0,12,2025-02-21,3.9,2025,2,21,0.0
+KV-10468,Linen Trousers,Trousers,Forest Green,S,Linen,SS25,85.0,9,2025-03-13,4.2,2025,3,13,1.0
+KV-10469,Linen Trousers,Trousers,Forest Green,L,Linen,SS25,85.0,9,2025-02-20,4.4,2025,2,20,0.0
+KV-10470,Linen Trousers,Trousers,Forest Green,XL,Linen,SS25,85.0,20,2025-03-03,4.2,2025,3,3,0.0
+KV-10471,Linen Trousers,Trousers,Camel,XS,Linen,SS25,85.0,17,2025-03-16,3.7,2025,3,16,1.0
+KV-10472,Linen Trousers,Trousers,Camel,S,Linen,SS25,85.0,12,2025-02-20,4.5,2025,2,20,1.0
+KV-10473,Linen Trousers,Trousers,Camel,M,Linen,SS25,85.0,17,2025-03-23,4.0,2025,3,23,0.0
+KV-10474,Linen Trousers,Trousers,Black,XS,Linen,SS25,85.0,15,2025-03-26,3.4,2025,3,26,0.0
+KV-10475,Linen Trousers,Trousers,Black,M,Linen,SS25,85.0,11,2025-03-23,4.32,2025,3,23,0.0
+KV-10476,Linen Trousers,Trousers,Black,L,Linen,SS25,85.0,20,2025-03-02,4.8,2025,3,2,1.0
+KV-10477,Linen Trousers,Trousers,Black,XL,Linen,SS25,85.0,10,2025-01-29,4.3,2025,1,29,1.0
+KV-10478,Linen Trousers,Trousers,Sand,XS,Linen,SS25,85.0,12,2025-03-14,4.5,2025,3,14,0.0
+KV-10479,Linen Trousers,Trousers,Sand,S,Linen,SS25,85.0,13,2025-02-02,4.5,2025,2,2,0.0
+KV-10480,Linen Trousers,Trousers,Sand,M,Linen,SS25,85.0,29,2025-03-19,3.9200000000000004,2025,3,19,1.0
+KV-10481,Linen Trousers,Trousers,Sand,L,Linen,SS25,85.0,14,2025-01-28,4.14,2025,1,28,1.0
+KV-10482,Linen Trousers,Trousers,Sand,XL,Linen,SS25,85.0,20,2025-02-23,4.8,2025,2,23,1.0
+KV-10483,Midi Dress,Dresses,Sand,XS,Viscose,SS25,129.0,9,2025-02-28,4.8,2025,2,28,0.0
+KV-10484,Midi Dress,Dresses,Sand,S,Viscose,SS25,129.0,20,2025-02-02,4.6,2025,2,2,1.0
+KV-10485,Midi Dress,Dresses,Sand,M,Viscose,SS25,129.0,17,2025-02-14,4.0,2025,2,14,1.0
+KV-10486,Midi Dress,Dresses,Sand,L,Viscose,SS25,129.0,13,2025-01-29,3.8,2025,1,29,1.0
+KV-10487,Midi Dress,Dresses,Navy,XS,Viscose,SS25,129.0,14,2025-02-10,3.6,2025,2,10,0.0
+KV-10488,Midi Dress,Dresses,Navy,S,Viscose,SS25,129.0,19,2025-03-10,3.9,2025,3,10,1.0
+KV-10489,Midi Dress,Dresses,Navy,M,Viscose,SS25,129.0,9,2025-02-19,4.4,2025,2,19,1.0
+KV-10490,Midi Dress,Dresses,Navy,XL,Viscose,SS25,129.0,12,2025-02-13,4.9,2025,2,13,1.0
+KV-10491,Midi Dress,Dresses,Grey Melange,S,Viscose,SS25,129.0,14,2025-03-01,3.1,2025,3,1,1.0
+KV-10492,Midi Dress,Dresses,Grey Melange,M,Viscose,SS25,129.0,12,2025-03-08,3.8,2025,3,8,0.0
+KV-10493,Midi Dress,Dresses,Grey Melange,XL,Viscose,SS25,129.0,22,2025-03-26,4.2,2025,3,26,1.0
+KV-10494,Midi Dress,Dresses,Forest Green,XS,Viscose,SS25,129.0,16,2025-01-29,3.8,2025,1,29,0.0
+KV-10495,Midi Dress,Dresses,Forest Green,S,Viscose,SS25,129.0,15,2025-02-27,4.2,2025,2,27,1.0
+KV-10496,Midi Dress,Dresses,Forest Green,M,Viscose,SS25,129.0,11,2025-03-10,4.3,2025,3,10,0.0
+KV-10497,Midi Dress,Dresses,Forest Green,L,Viscose,SS25,129.0,13,2025-02-14,4.140000000000001,2025,2,14,1.0
+KV-10498,Midi Dress,Dresses,Forest Green,XL,Viscose,SS25,129.0,10,2025-02-19,4.2,2025,2,19,0.0
+KV-10499,Midi Dress,Dresses,Burgundy,XS,Viscose,SS25,129.0,14,2025-03-07,4.0,2025,3,7,1.0
+KV-10500,Midi Dress,Dresses,Burgundy,S,Viscose,SS25,129.0,17,2025-03-13,4.2,2025,3,13,0.0
+KV-10501,Midi Dress,Dresses,Burgundy,M,Viscose,SS25,129.0,14,2025-02-22,4.1,2025,2,22,0.0
+KV-10502,Midi Dress,Dresses,Burgundy,L,Viscose,SS25,129.0,11,2025-03-09,4.2,2025,3,9,0.0
+KV-10503,Midi Dress,Dresses,Burgundy,XL,Viscose,SS25,129.0,12,2025-01-26,4.38,2025,1,26,0.0
+KV-10504,Midi Dress,Dresses,Camel,XS,Viscose,SS25,129.0,16,2025-02-05,4.1,2025,2,5,1.0
+KV-10505,Midi Dress,Dresses,Camel,S,Viscose,SS25,129.0,11,2025-03-19,3.4,2025,3,19,1.0
+KV-10506,Midi Dress,Dresses,Camel,M,Viscose,SS25,129.0,18,2025-03-15,4.4,2025,3,15,1.0
+KV-10507,Midi Dress,Dresses,Camel,L,Viscose,SS25,129.0,21,2025-02-17,3.8,2025,2,17,1.0
+KV-10508,Midi Dress,Dresses,Camel,XL,Viscose,SS25,129.0,14,2025-02-12,3.7,2025,2,12,1.0
+KV-10509,Midi Dress,Dresses,Black,XS,Viscose,SS25,129.0,9,2025-03-24,5.0,2025,3,24,0.0
+KV-10510,Midi Dress,Dresses,Black,S,Viscose,SS25,129.0,15,2025-02-02,4.4,2025,2,2,1.0
+KV-10511,Midi Dress,Dresses,Black,M,Viscose,SS25,129.0,8,2025-02-10,4.5,2025,2,10,0.0
+KV-10512,Midi Dress,Dresses,Black,L,Viscose,SS25,129.0,9,2025-02-03,3.8200000000000003,2025,2,3,1.0
+KV-10513,Slip Dress,Dresses,Black,M,Silk,SS25,109.0,16,2025-03-12,4.2,2025,3,12,1.0
+KV-10514,Slip Dress,Dresses,Black,L,Silk,SS25,109.0,15,2025-02-26,3.2,2025,2,26,0.0
+KV-10515,Slip Dress,Dresses,Black,XL,Silk,SS25,109.0,13,2025-02-05,4.7,2025,2,5,1.0
+KV-10516,Slip Dress,Dresses,Camel,XS,Silk,SS25,109.0,19,2025-01-29,4.3,2025,1,29,0.0
+KV-10517,Slip Dress,Dresses,Camel,S,Silk,SS25,109.0,11,2025-03-17,4.4,2025,3,17,0.0
+KV-10518,Slip Dress,Dresses,Camel,M,Silk,SS25,109.0,21,2025-03-10,4.2,2025,3,10,1.0
+KV-10519,Slip Dress,Dresses,Camel,XL,Silk,SS25,109.0,15,2025-02-23,3.8,2025,2,23,1.0
+KV-10520,Slip Dress,Dresses,Navy,S,Silk,SS25,109.0,21,2025-03-11,3.5,2025,3,11,1.0
+KV-10521,Slip Dress,Dresses,Navy,M,Silk,SS25,109.0,21,2025-03-24,4.1,2025,3,24,1.0
+KV-10522,Slip Dress,Dresses,Navy,L,Silk,SS25,109.0,12,2025-03-18,4.0,2025,3,18,1.0
+KV-10523,Slip Dress,Dresses,Navy,XL,Silk,SS25,109.0,15,2025-02-07,4.2,2025,2,7,1.0
+KV-10524,Slip Dress,Dresses,Off White,XS,Silk,SS25,109.0,16,2025-01-30,4.8,2025,1,30,1.0
+KV-10525,Slip Dress,Dresses,Off White,S,Silk,SS25,109.0,8,2025-03-25,4.3,2025,3,25,1.0
+KV-10526,Slip Dress,Dresses,Off White,M,Silk,SS25,109.0,15,2025-01-26,4.5,2025,1,26,0.0
+KV-10527,Slip Dress,Dresses,Off White,L,Silk,SS25,109.0,14,2025-03-03,3.8,2025,3,3,1.0
+KV-10528,Slip Dress,Dresses,Off White,XL,Silk,SS25,109.0,13,2025-03-16,3.8,2025,3,16,1.0
+KV-10529,Slip Dress,Dresses,Forest Green,XS,Silk,SS25,109.0,12,2025-02-22,4.4,2025,2,22,1.0
+KV-10530,Slip Dress,Dresses,Forest Green,S,Silk,SS25,109.0,14,2025-02-09,3.9,2025,2,9,0.0
+KV-10531,Slip Dress,Dresses,Forest Green,M,Silk,SS25,109.0,16,2025-03-03,3.7,2025,3,3,0.0
+KV-10532,Slip Dress,Dresses,Forest Green,L,Silk,SS25,109.0,23,2025-03-24,4.2,2025,3,24,1.0
+KV-10533,Slip Dress,Dresses,Forest Green,XL,Silk,SS25,109.0,22,2025-02-01,3.8,2025,2,1,0.0
+KV-10534,Slip Dress,Dresses,Grey Melange,XS,Silk,SS25,109.0,17,2025-03-20,4.2,2025,3,20,0.0
+KV-10535,Slip Dress,Dresses,Grey Melange,S,Silk,SS25,109.0,18,2025-02-24,4.7,2025,2,24,0.0
+KV-10536,Slip Dress,Dresses,Grey Melange,M,Silk,SS25,109.0,14,2025-03-21,4.5,2025,3,21,1.0
+KV-10537,Slip Dress,Dresses,Grey Melange,L,Silk,SS25,109.0,13,2025-01-28,4.5,2025,1,28,1.0
+KV-10538,Slip Dress,Dresses,Grey Melange,XL,Silk,SS25,109.0,18,2025-03-07,5.0,2025,3,7,1.0
+KV-10539,Slip Dress,Dresses,Burgundy,XS,Silk,SS25,109.0,17,2025-03-21,4.8,2025,3,21,0.0
+KV-10540,Slip Dress,Dresses,Burgundy,S,Silk,SS25,109.0,15,2025-02-22,4.8,2025,2,22,1.0
+KV-10541,Slip Dress,Dresses,Burgundy,M,Silk,SS25,109.0,14,2025-03-20,5.0,2025,3,20,0.0
+KV-10542,Slip Dress,Dresses,Burgundy,L,Silk,SS25,109.0,17,2025-03-26,4.3,2025,3,26,0.0
+KV-10543,Slip Dress,Dresses,Burgundy,XL,Silk,SS25,109.0,17,2025-02-17,4.2,2025,2,17,0.0
+KV-10544,Knit Dress,Dresses,Camel,XS,Merino Wool,SS25,149.0,14,2025-02-19,4.3,2025,2,19,1.0
+KV-10545,Knit Dress,Dresses,Camel,S,Merino Wool,SS25,149.0,15,2025-03-09,3.4,2025,3,9,1.0
+KV-10546,Knit Dress,Dresses,Camel,M,Merino Wool,SS25,149.0,18,2025-03-01,4.2,2025,3,1,1.0
+KV-10547,Knit Dress,Dresses,Camel,L,Merino Wool,SS25,149.0,19,2025-02-25,4.220000000000001,2025,2,25,0.0
+KV-10548,Knit Dress,Dresses,Camel,XL,Merino Wool,SS25,149.0,8,2025-03-01,3.9199999999999995,2025,3,1,0.0
+KV-10549,Knit Dress,Dresses,Grey Melange,XS,Merino Wool,SS25,149.0,14,2025-03-16,5.0,2025,3,16,1.0
+KV-10550,Knit Dress,Dresses,Grey Melange,S,Merino Wool,SS25,149.0,17,2025-02-07,3.6,2025,2,7,1.0
+KV-10551,Knit Dress,Dresses,Grey Melange,M,Merino Wool,SS25,149.0,8,2025-02-28,3.7,2025,2,28,0.0
+KV-10552,Knit Dress,Dresses,Grey Melange,L,Merino Wool,SS25,149.0,17,2025-02-19,4.5200000000000005,2025,2,19,1.0
+KV-10553,Knit Dress,Dresses,Grey Melange,XL,Merino Wool,SS25,149.0,11,2025-02-17,4.0,2025,2,17,0.0
+KV-10554,Knit Dress,Dresses,Navy,XS,Merino Wool,SS25,149.0,13,2025-01-26,4.0,2025,1,26,0.0
+KV-10555,Knit Dress,Dresses,Navy,L,Merino Wool,SS25,149.0,19,2025-02-03,3.8,2025,2,3,1.0
+KV-10556,Knit Dress,Dresses,Navy,XL,Merino Wool,SS25,149.0,16,2025-02-20,4.3,2025,2,20,1.0
+KV-10557,Knit Dress,Dresses,Sand,XS,Merino Wool,SS25,149.0,21,2025-02-27,3.5,2025,2,27,1.0
+KV-10558,Knit Dress,Dresses,Sand,L,Merino Wool,SS25,149.0,7,2025-02-21,3.9,2025,2,21,1.0
+KV-10559,Knit Dress,Dresses,Sand,XL,Merino Wool,SS25,149.0,18,2025-02-19,4.3,2025,2,19,1.0
+KV-10560,Knit Dress,Dresses,Forest Green,XS,Merino Wool,SS25,149.0,15,2025-03-13,3.8,2025,3,13,0.0
+KV-10561,Knit Dress,Dresses,Forest Green,S,Merino Wool,SS25,149.0,14,2025-03-09,4.5,2025,3,9,0.0
+KV-10562,Knit Dress,Dresses,Forest Green,M,Merino Wool,SS25,149.0,12,2025-02-04,3.84,2025,2,4,0.0
+KV-10563,Knit Dress,Dresses,Forest Green,L,Merino Wool,SS25,149.0,12,2025-03-02,3.9,2025,3,2,1.0
+KV-10564,Knit Dress,Dresses,Forest Green,XL,Merino Wool,SS25,149.0,12,2025-01-26,4.0,2025,1,26,0.0
+KV-10565,Knit Dress,Dresses,Black,XS,Merino Wool,SS25,149.0,13,2025-02-26,4.0200000000000005,2025,2,26,1.0
+KV-10566,Knit Dress,Dresses,Black,S,Merino Wool,SS25,149.0,13,2025-02-13,4.340000000000001,2025,2,13,0.0
+KV-10567,Knit Dress,Dresses,Black,M,Merino Wool,SS25,149.0,12,2025-03-12,3.5,2025,3,12,0.0
+KV-10568,Knit Dress,Dresses,Black,XL,Merino Wool,SS25,149.0,16,2025-02-12,4.4,2025,2,12,0.0
+KV-10569,Knit Dress,Dresses,Burgundy,XS,Merino Wool,SS25,149.0,10,2025-02-19,3.5,2025,2,19,1.0
+KV-10570,Knit Dress,Dresses,Burgundy,S,Merino Wool,SS25,149.0,18,2025-02-04,3.7600000000000002,2025,2,4,0.0
+KV-10571,Knit Dress,Dresses,Burgundy,M,Merino Wool,SS25,149.0,15,2025-03-20,4.7,2025,3,20,1.0
+KV-10572,Knit Dress,Dresses,Burgundy,L,Merino Wool,SS25,149.0,16,2025-03-07,3.8,2025,3,7,1.0
+KV-10573,Knit Dress,Dresses,Burgundy,XL,Merino Wool,SS25,149.0,15,2025-02-11,5.0,2025,2,11,0.0
+KV-10574,Silk Scarf,Accessories,Camel,One Size,Silk,SS25,49.0,16,2025-01-29,3.5,2025,1,29,1.0
+KV-10575,Silk Scarf,Accessories,Burgundy,One Size,Silk,SS25,49.0,18,2025-02-20,3.7,2025,2,20,1.0
+KV-10576,Silk Scarf,Accessories,Navy,One Size,Silk,SS25,49.0,18,2025-02-09,4.5,2025,2,9,1.0
+KV-10577,Silk Scarf,Accessories,Grey Melange,One Size,Silk,SS25,49.0,14,2025-02-14,3.8,2025,2,14,1.0
+KV-10578,Silk Scarf,Accessories,Black,One Size,Silk,SS25,49.0,17,2025-02-05,4.3,2025,2,5,1.0
+KV-10579,Silk Scarf,Accessories,Off White,One Size,Silk,SS25,49.0,17,2025-02-26,3.7,2025,2,26,0.0
+KV-10580,Leather Belt,Accessories,Navy,One Size,Leather,SS25,39.0,13,2025-03-23,4.0,2025,3,23,1.0
+KV-10581,Leather Belt,Accessories,Burgundy,One Size,Leather,SS25,39.0,16,2025-02-25,4.0,2025,2,25,0.0
+KV-10582,Leather Belt,Accessories,Camel,One Size,Leather,SS25,39.0,8,2025-03-04,3.9,2025,3,4,0.0
+KV-10583,Leather Belt,Accessories,Off White,One Size,Leather,SS25,39.0,19,2025-03-09,3.9,2025,3,9,1.0
+KV-10584,Leather Belt,Accessories,Sand,One Size,Leather,SS25,39.0,13,2025-03-12,4.2,2025,3,12,0.0
+KV-10585,Merino Crew Knit,Knitwear,Forest Green,XS,Merino Wool,AW25,89.9,18,2025-07-31,3.5,2025,7,31,1.0
+KV-10586,Merino Crew Knit,Knitwear,Forest Green,S,Merino Wool,AW25,89.9,12,2025-07-28,4.9,2025,7,28,1.0
+KV-10587,Merino Crew Knit,Knitwear,Forest Green,M,Merino Wool,AW25,89.9,13,2025-09-12,4.6,2025,9,12,0.0
+KV-10588,Merino Crew Knit,Knitwear,Forest Green,L,Merino Wool,AW25,89.9,12,2025-08-13,4.6,2025,8,13,0.0
+KV-10589,Merino Crew Knit,Knitwear,Forest Green,XL,Merino Wool,AW25,89.9,12,2025-08-29,4.0,2025,8,29,0.0
+KV-10590,Merino Crew Knit,Knitwear,Sand,XS,Merino Wool,AW25,89.9,15,2025-08-02,4.1,2025,8,2,0.0
+KV-10591,Merino Crew Knit,Knitwear,Sand,S,Merino Wool,AW25,89.9,15,2025-08-09,3.3,2025,8,9,0.0
+KV-10592,Merino Crew Knit,Knitwear,Sand,M,Merino Wool,AW25,89.9,12,2025-08-10,4.0,2025,8,10,1.0
+KV-10593,Merino Crew Knit,Knitwear,Sand,L,Merino Wool,AW25,89.9,18,2025-08-19,5.0,2025,8,19,1.0
+KV-10594,Merino Crew Knit,Knitwear,Sand,XL,Merino Wool,AW25,89.9,11,2025-08-23,4.220000000000001,2025,8,23,0.0
+KV-10595,Merino Crew Knit,Knitwear,Burgundy,XS,Merino Wool,AW25,89.9,11,2025-09-18,4.2,2025,9,18,0.0
+KV-10596,Merino Crew Knit,Knitwear,Burgundy,S,Merino Wool,AW25,89.9,11,2025-09-16,4.4,2025,9,16,0.0
+KV-10597,Merino Crew Knit,Knitwear,Burgundy,M,Merino Wool,AW25,89.9,12,2025-09-10,3.4,2025,9,10,0.0
+KV-10598,Merino Crew Knit,Knitwear,Burgundy,L,Merino Wool,AW25,89.9,16,2025-08-30,4.6,2025,8,30,0.0
+KV-10599,Merino Crew Knit,Knitwear,Burgundy,XL,Merino Wool,AW25,89.9,17,2025-07-29,4.1,2025,7,29,0.0
+KV-10600,Merino Crew Knit,Knitwear,Grey Melange,XS,Merino Wool,AW25,89.9,13,2025-09-19,4.1,2025,9,19,0.0
+KV-10601,Merino Crew Knit,Knitwear,Grey Melange,S,Merino Wool,AW25,89.9,12,2025-07-31,4.9,2025,7,31,0.0
+KV-10602,Merino Crew Knit,Knitwear,Grey Melange,M,Merino Wool,AW25,89.9,16,2025-09-10,3.2,2025,9,10,0.0
+KV-10603,Merino Crew Knit,Knitwear,Grey Melange,L,Merino Wool,AW25,89.9,10,2025-09-07,4.7,2025,9,7,0.0
+KV-10604,Merino Crew Knit,Knitwear,Grey Melange,XL,Merino Wool,AW25,89.9,12,2025-09-04,4.5,2025,9,4,0.0
+KV-10605,Merino Crew Knit,Knitwear,Black,XS,Merino Wool,AW25,89.9,14,2025-08-11,3.7,2025,8,11,0.0
+KV-10606,Merino Crew Knit,Knitwear,Black,S,Merino Wool,AW25,89.9,13,2025-08-03,4.4,2025,8,3,0.0
+KV-10607,Merino Crew Knit,Knitwear,Black,M,Merino Wool,AW25,89.9,20,2025-08-15,4.04,2025,8,15,0.0
+KV-10608,Merino Crew Knit,Knitwear,Black,L,Merino Wool,AW25,89.9,11,2025-08-13,5.0,2025,8,13,0.0
+KV-10609,Merino Crew Knit,Knitwear,Black,XL,Merino Wool,AW25,89.9,15,2025-09-07,4.8,2025,9,7,1.0
+KV-10610,Merino Crew Knit,Knitwear,Navy,XS,Merino Wool,AW25,89.9,11,2025-09-05,4.1,2025,9,5,0.0
+KV-10611,Merino Crew Knit,Knitwear,Navy,S,Merino Wool,AW25,89.9,15,2025-09-09,4.7,2025,9,9,1.0
+KV-10612,Merino Crew Knit,Knitwear,Navy,M,Merino Wool,AW25,89.9,14,2025-09-21,3.9,2025,9,21,0.0
+KV-10613,Merino Crew Knit,Knitwear,Navy,L,Merino Wool,AW25,89.9,15,2025-08-03,4.7,2025,8,3,0.0
+KV-10614,Merino Crew Knit,Knitwear,Navy,XL,Merino Wool,AW25,89.9,8,2025-09-20,4.8,2025,9,20,0.0
+KV-10615,Merino Crew Knit,Knitwear,Off White,XS,Merino Wool,AW25,89.9,15,2025-09-21,3.9,2025,9,21,1.0
+KV-10616,Merino Crew Knit,Knitwear,Off White,S,Merino Wool,AW25,89.9,13,2025-08-24,4.4,2025,8,24,0.0
+KV-10617,Merino Crew Knit,Knitwear,Off White,L,Merino Wool,AW25,89.9,12,2025-09-02,4.3,2025,9,2,1.0
+KV-10618,Merino Crew Knit,Knitwear,Off White,XL,Merino Wool,AW25,89.9,12,2025-09-01,4.2,2025,9,1,0.0
+KV-10619,Cashmere Cardigan,Knitwear,Black,XS,Cashmere,AW25,229.0,15,2025-08-14,4.1,2025,8,14,0.0
+KV-10620,Cashmere Cardigan,Knitwear,Black,S,Cashmere,AW25,229.0,19,2025-08-21,3.7,2025,8,21,0.0
+KV-10621,Cashmere Cardigan,Knitwear,Black,M,Cashmere,AW25,229.0,14,2025-08-31,4.8,2025,8,31,0.0
+KV-10622,Cashmere Cardigan,Knitwear,Black,L,Cashmere,AW25,229.0,15,2025-08-14,4.08,2025,8,14,1.0
+KV-10623,Cashmere Cardigan,Knitwear,Black,XL,Cashmere,AW25,229.0,9,2025-08-27,3.2,2025,8,27,0.0
+KV-10624,Cashmere Cardigan,Knitwear,Camel,XS,Cashmere,AW25,229.0,11,2025-07-29,4.7,2025,7,29,1.0
+KV-10625,Cashmere Cardigan,Knitwear,Camel,S,Cashmere,AW25,229.0,14,2025-08-08,4.0,2025,8,8,1.0
+KV-10626,Cashmere Cardigan,Knitwear,Camel,M,Cashmere,AW25,229.0,14,2025-08-07,5.0,2025,8,7,0.0
+KV-10627,Cashmere Cardigan,Knitwear,Camel,L,Cashmere,AW25,229.0,15,2025-08-17,3.8,2025,8,17,0.0
+KV-10628,Cashmere Cardigan,Knitwear,Camel,XL,Cashmere,AW25,229.0,19,2025-09-15,4.7,2025,9,15,0.0
+KV-10629,Cashmere Cardigan,Knitwear,Forest Green,XS,Cashmere,AW25,229.0,12,2025-08-06,5.0,2025,8,6,0.0
+KV-10630,Cashmere Cardigan,Knitwear,Forest Green,S,Cashmere,AW25,229.0,17,2025-09-13,4.0,2025,9,13,0.0
+KV-10631,Cashmere Cardigan,Knitwear,Forest Green,M,Cashmere,AW25,229.0,13,2025-09-12,4.7,2025,9,12,0.0
+KV-10632,Cashmere Cardigan,Knitwear,Forest Green,L,Cashmere,AW25,229.0,16,2025-07-30,4.56,2025,7,30,0.0
+KV-10633,Cashmere Cardigan,Knitwear,Forest Green,XL,Cashmere,AW25,229.0,18,2025-08-15,3.5,2025,8,15,0.0
+KV-10634,Cashmere Cardigan,Knitwear,Navy,XS,Cashmere,AW25,229.0,16,2025-09-19,3.9,2025,9,19,0.0
+KV-10635,Cashmere Cardigan,Knitwear,Navy,S,Cashmere,AW25,229.0,10,2025-08-14,4.5,2025,8,14,0.0
+KV-10636,Cashmere Cardigan,Knitwear,Navy,L,Cashmere,AW25,229.0,15,2025-09-06,4.0,2025,9,6,0.0
+KV-10637,Cashmere Cardigan,Knitwear,Navy,XL,Cashmere,AW25,229.0,12,2025-09-02,4.2,2025,9,2,0.0
+KV-10638,Cashmere Cardigan,Knitwear,Grey Melange,XS,Cashmere,AW25,229.0,11,2025-08-13,3.9,2025,8,13,0.0
+KV-10639,Cashmere Cardigan,Knitwear,Grey Melange,S,Cashmere,AW25,229.0,17,2025-07-26,4.16,2025,7,26,0.0
+KV-10640,Cashmere Cardigan,Knitwear,Grey Melange,M,Cashmere,AW25,229.0,9,2025-08-18,4.8,2025,8,18,0.0
+KV-10641,Cashmere Cardigan,Knitwear,Grey Melange,L,Cashmere,AW25,229.0,12,2025-08-11,3.9,2025,8,11,1.0
+KV-10642,Cashmere Cardigan,Knitwear,Grey Melange,XL,Cashmere,AW25,229.0,10,2025-07-29,4.4,2025,7,29,0.0
+KV-10643,Cashmere Cardigan,Knitwear,Off White,XS,Cashmere,AW25,229.0,14,2025-09-02,4.6,2025,9,2,0.0
+KV-10644,Cashmere Cardigan,Knitwear,Off White,S,Cashmere,AW25,229.0,18,2025-08-08,4.4,2025,8,8,0.0
+KV-10645,Cashmere Cardigan,Knitwear,Off White,M,Cashmere,AW25,229.0,16,2025-09-04,4.8,2025,9,4,0.0
+KV-10646,Cashmere Cardigan,Knitwear,Off White,L,Cashmere,AW25,229.0,16,2025-09-20,4.6,2025,9,20,0.0
+KV-10647,Cashmere Cardigan,Knitwear,Off White,XL,Cashmere,AW25,229.0,9,2025-09-08,3.5,2025,9,8,0.0
+KV-10648,Cashmere Cardigan,Knitwear,Burgundy,XS,Cashmere,AW25,229.0,14,2025-08-14,3.6,2025,8,14,0.0
+KV-10649,Cashmere Cardigan,Knitwear,Burgundy,S,Cashmere,AW25,229.0,15,2025-08-11,4.0,2025,8,11,1.0
+KV-10650,Cashmere Cardigan,Knitwear,Burgundy,M,Cashmere,AW25,229.0,17,2025-07-26,4.7,2025,7,26,0.0
+KV-10651,Cashmere Cardigan,Knitwear,Burgundy,L,Cashmere,AW25,229.0,13,2025-07-26,4.279999999999999,2025,7,26,1.0
+KV-10652,Cashmere Cardigan,Knitwear,Burgundy,XL,Cashmere,AW25,229.0,18,2025-09-13,3.6,2025,9,13,0.0
+KV-10653,Cable Knit Jumper,Knitwear,Black,XS,Wool,AW25,119.0,23,2025-08-14,4.3,2025,8,14,0.0
+KV-10654,Cable Knit Jumper,Knitwear,Black,S,Wool,AW25,119.0,8,2025-08-17,4.38,2025,8,17,0.0
+KV-10655,Cable Knit Jumper,Knitwear,Black,M,Wool,AW25,119.0,17,2025-09-23,4.6,2025,9,23,0.0
+KV-10656,Cable Knit Jumper,Knitwear,Black,L,Wool,AW25,119.0,15,2025-08-13,3.7,2025,8,13,0.0
+KV-10657,Cable Knit Jumper,Knitwear,Black,XL,Wool,AW25,119.0,12,2025-09-11,4.2,2025,9,11,0.0
+KV-10658,Cable Knit Jumper,Knitwear,Sand,XS,Wool,AW25,119.0,13,2025-08-13,4.5,2025,8,13,0.0
+KV-10659,Cable Knit Jumper,Knitwear,Sand,S,Wool,AW25,119.0,14,2025-07-29,3.7,2025,7,29,0.0
+KV-10660,Cable Knit Jumper,Knitwear,Sand,M,Wool,AW25,119.0,13,2025-08-09,4.4,2025,8,9,1.0
+KV-10661,Cable Knit Jumper,Knitwear,Sand,L,Wool,AW25,119.0,13,2025-08-28,4.6,2025,8,28,0.0
+KV-10662,Cable Knit Jumper,Knitwear,Sand,XL,Wool,AW25,119.0,5,2025-08-09,4.6,2025,8,9,0.0
+KV-10663,Cable Knit Jumper,Knitwear,Off White,XS,Wool,AW25,119.0,11,2025-09-10,4.1,2025,9,10,0.0
+KV-10664,Cable Knit Jumper,Knitwear,Off White,S,Wool,AW25,119.0,15,2025-08-23,4.0,2025,8,23,0.0
+KV-10665,Cable Knit Jumper,Knitwear,Off White,M,Wool,AW25,119.0,14,2025-08-18,4.3,2025,8,18,0.0
+KV-10666,Cable Knit Jumper,Knitwear,Off White,L,Wool,AW25,119.0,18,2025-09-15,4.9,2025,9,15,0.0
+KV-10667,Cable Knit Jumper,Knitwear,Off White,XL,Wool,AW25,119.0,13,2025-08-01,4.9,2025,8,1,0.0
+KV-10668,Cable Knit Jumper,Knitwear,Grey Melange,S,Wool,AW25,119.0,10,2025-08-12,4.4,2025,8,12,0.0
+KV-10669,Cable Knit Jumper,Knitwear,Grey Melange,L,Wool,AW25,119.0,11,2025-09-01,4.3,2025,9,1,0.0
+KV-10670,Cable Knit Jumper,Knitwear,Grey Melange,XL,Wool,AW25,119.0,12,2025-09-01,2.9,2025,9,1,0.0
+KV-10671,Cable Knit Jumper,Knitwear,Burgundy,XS,Wool,AW25,119.0,10,2025-07-26,3.7,2025,7,26,0.0
+KV-10672,Cable Knit Jumper,Knitwear,Burgundy,S,Wool,AW25,119.0,9,2025-09-12,4.7,2025,9,12,0.0
+KV-10673,Cable Knit Jumper,Knitwear,Burgundy,M,Wool,AW25,119.0,14,2025-08-21,3.2,2025,8,21,0.0
+KV-10674,Cable Knit Jumper,Knitwear,Burgundy,L,Wool,AW25,119.0,8,2025-09-02,4.36,2025,9,2,0.0
+KV-10675,Cable Knit Jumper,Knitwear,Burgundy,XL,Wool,AW25,119.0,14,2025-07-30,4.0,2025,7,30,0.0
+KV-10676,Cable Knit Jumper,Knitwear,Navy,S,Wool,AW25,119.0,18,2025-08-30,3.8,2025,8,30,0.0
+KV-10677,Cable Knit Jumper,Knitwear,Navy,M,Wool,AW25,119.0,12,2025-08-08,4.3,2025,8,8,0.0
+KV-10678,Cable Knit Jumper,Knitwear,Navy,L,Wool,AW25,119.0,18,2025-09-16,4.16,2025,9,16,0.0
+KV-10679,Cable Knit Jumper,Knitwear,Navy,XL,Wool,AW25,119.0,18,2025-08-12,3.6,2025,8,12,0.0
+KV-10680,Cable Knit Jumper,Knitwear,Forest Green,XS,Wool,AW25,119.0,17,2025-08-24,3.5,2025,8,24,0.0
+KV-10681,Cable Knit Jumper,Knitwear,Forest Green,S,Wool,AW25,119.0,14,2025-09-09,4.3,2025,9,9,0.0
+KV-10682,Cable Knit Jumper,Knitwear,Forest Green,M,Wool,AW25,119.0,8,2025-08-16,5.0,2025,8,16,0.0
+KV-10683,Cable Knit Jumper,Knitwear,Forest Green,L,Wool,AW25,119.0,9,2025-09-08,4.9,2025,9,8,0.0
+KV-10684,Cable Knit Jumper,Knitwear,Forest Green,XL,Wool,AW25,119.0,15,2025-09-03,4.6,2025,9,3,0.0
+KV-10685,Ribbed Turtleneck,Knitwear,Off White,S,Merino Wool,AW25,99.0,15,2025-08-14,4.8,2025,8,14,0.0
+KV-10686,Ribbed Turtleneck,Knitwear,Off White,M,Merino Wool,AW25,99.0,9,2025-09-01,3.4,2025,9,1,1.0
+KV-10687,Ribbed Turtleneck,Knitwear,Off White,L,Merino Wool,AW25,99.0,18,2025-08-28,4.2,2025,8,28,1.0
+KV-10688,Ribbed Turtleneck,Knitwear,Off White,XL,Merino Wool,AW25,99.0,13,2025-09-23,4.2,2025,9,23,0.0
+KV-10689,Ribbed Turtleneck,Knitwear,Grey Melange,XS,Merino Wool,AW25,99.0,11,2025-09-06,4.8,2025,9,6,0.0
+KV-10690,Ribbed Turtleneck,Knitwear,Grey Melange,S,Merino Wool,AW25,99.0,20,2025-08-19,4.3,2025,8,19,1.0
+KV-10691,Ribbed Turtleneck,Knitwear,Grey Melange,M,Merino Wool,AW25,99.0,11,2025-09-19,4.0,2025,9,19,0.0
+KV-10692,Ribbed Turtleneck,Knitwear,Grey Melange,L,Merino Wool,AW25,99.0,15,2025-08-05,4.7,2025,8,5,1.0
+KV-10693,Ribbed Turtleneck,Knitwear,Grey Melange,XL,Merino Wool,AW25,99.0,14,2025-09-04,3.9,2025,9,4,1.0
+KV-10694,Ribbed Turtleneck,Knitwear,Camel,XS,Merino Wool,AW25,99.0,17,2025-08-01,4.0,2025,8,1,0.0
+KV-10695,Ribbed Turtleneck,Knitwear,Camel,S,Merino Wool,AW25,99.0,17,2025-08-10,3.9,2025,8,10,0.0
+KV-10696,Ribbed Turtleneck,Knitwear,Camel,M,Merino Wool,AW25,99.0,19,2025-09-06,3.7,2025,9,6,0.0
+KV-10697,Ribbed Turtleneck,Knitwear,Camel,L,Merino Wool,AW25,99.0,12,2025-08-09,4.8,2025,8,9,0.0
+KV-10698,Ribbed Turtleneck,Knitwear,Camel,XL,Merino Wool,AW25,99.0,14,2025-09-22,3.6,2025,9,22,0.0
+KV-10699,Ribbed Turtleneck,Knitwear,Navy,XS,Merino Wool,AW25,99.0,17,2025-08-04,4.6,2025,8,4,0.0
+KV-10700,Ribbed Turtleneck,Knitwear,Navy,S,Merino Wool,AW25,99.0,18,2025-07-30,3.6,2025,7,30,1.0
+KV-10701,Ribbed Turtleneck,Knitwear,Navy,M,Merino Wool,AW25,99.0,15,2025-09-17,5.0,2025,9,17,0.0
+KV-10702,Ribbed Turtleneck,Knitwear,Navy,L,Merino Wool,AW25,99.0,9,2025-09-22,4.24,2025,9,22,0.0
+KV-10703,Ribbed Turtleneck,Knitwear,Navy,XL,Merino Wool,AW25,99.0,11,2025-09-14,4.1,2025,9,14,0.0
+KV-10704,Ribbed Turtleneck,Knitwear,Sand,XS,Merino Wool,AW25,99.0,14,2025-09-22,4.1,2025,9,22,0.0
+KV-10705,Ribbed Turtleneck,Knitwear,Sand,S,Merino Wool,AW25,99.0,15,2025-09-16,3.9,2025,9,16,0.0
+KV-10706,Ribbed Turtleneck,Knitwear,Sand,L,Merino Wool,AW25,99.0,13,2025-07-27,4.3,2025,7,27,1.0
+KV-10707,Ribbed Turtleneck,Knitwear,Sand,XL,Merino Wool,AW25,99.0,14,2025-07-30,4.08,2025,7,30,0.0
+KV-10708,Ribbed Turtleneck,Knitwear,Burgundy,XS,Merino Wool,AW25,99.0,17,2025-08-20,4.3,2025,8,20,0.0
+KV-10709,Ribbed Turtleneck,Knitwear,Burgundy,S,Merino Wool,AW25,99.0,14,2025-09-01,3.8600000000000003,2025,9,1,0.0
+KV-10710,Ribbed Turtleneck,Knitwear,Burgundy,M,Merino Wool,AW25,99.0,6,2025-08-21,3.7,2025,8,21,0.0
+KV-10711,Ribbed Turtleneck,Knitwear,Burgundy,L,Merino Wool,AW25,99.0,10,2025-08-26,4.4,2025,8,26,0.0
+KV-10712,Ribbed Turtleneck,Knitwear,Burgundy,XL,Merino Wool,AW25,99.0,18,2025-08-09,3.8,2025,8,9,0.0
+KV-10713,Ribbed Turtleneck,Knitwear,Forest Green,XS,Merino Wool,AW25,99.0,12,2025-08-15,4.8,2025,8,15,0.0
+KV-10714,Ribbed Turtleneck,Knitwear,Forest Green,S,Merino Wool,AW25,99.0,18,2025-08-19,3.7,2025,8,19,1.0
+KV-10715,Ribbed Turtleneck,Knitwear,Forest Green,M,Merino Wool,AW25,99.0,12,2025-08-20,3.8,2025,8,20,0.0
+KV-10716,Ribbed Turtleneck,Knitwear,Forest Green,L,Merino Wool,AW25,99.0,14,2025-08-23,3.5,2025,8,23,0.0
+KV-10717,Ribbed Turtleneck,Knitwear,Forest Green,XL,Merino Wool,AW25,99.0,16,2025-09-23,4.5,2025,9,23,0.0
+KV-10718,Linen Shirt,Shirts,Navy,XS,Linen,AW25,59.0,12,2025-09-18,4.26,2025,9,18,1.0
+KV-10719,Linen Shirt,Shirts,Navy,S,Linen,AW25,59.0,13,2025-08-21,4.22,2025,8,21,0.0
+KV-10720,Linen Shirt,Shirts,Navy,L,Linen,AW25,59.0,13,2025-09-03,3.6,2025,9,3,0.0
+KV-10721,Linen Shirt,Shirts,Navy,XL,Linen,AW25,59.0,18,2025-09-12,3.5,2025,9,12,1.0
+KV-10722,Linen Shirt,Shirts,Black,XS,Linen,AW25,59.0,13,2025-08-15,4.4,2025,8,15,1.0
+KV-10723,Linen Shirt,Shirts,Black,S,Linen,AW25,59.0,11,2025-08-23,3.9,2025,8,23,1.0
+KV-10724,Linen Shirt,Shirts,Black,M,Linen,AW25,59.0,15,2025-08-31,4.6,2025,8,31,0.0
+KV-10725,Linen Shirt,Shirts,Black,L,Linen,AW25,59.0,8,2025-08-07,4.3,2025,8,7,0.0
+KV-10726,Linen Shirt,Shirts,Black,XL,Linen,AW25,59.0,13,2025-08-11,4.8,2025,8,11,0.0
+KV-10727,Linen Shirt,Shirts,Sand,XS,Linen,AW25,59.0,13,2025-09-16,3.9,2025,9,16,1.0
+KV-10728,Linen Shirt,Shirts,Sand,S,Linen,AW25,59.0,10,2025-08-25,4.6,2025,8,25,1.0
+KV-10729,Linen Shirt,Shirts,Sand,M,Linen,AW25,59.0,13,2025-09-16,4.4,2025,9,16,0.0
+KV-10730,Linen Shirt,Shirts,Sand,L,Linen,AW25,59.0,13,2025-09-02,3.8,2025,9,2,0.0
+KV-10731,Linen Shirt,Shirts,Sand,XL,Linen,AW25,59.0,14,2025-08-13,4.4,2025,8,13,0.0
+KV-10732,Linen Shirt,Shirts,Off White,XS,Linen,AW25,59.0,11,2025-08-04,3.4,2025,8,4,0.0
+KV-10733,Linen Shirt,Shirts,Off White,S,Linen,AW25,59.0,14,2025-08-03,5.0,2025,8,3,0.0
+KV-10734,Linen Shirt,Shirts,Off White,M,Linen,AW25,59.0,12,2025-09-13,4.0,2025,9,13,0.0
+KV-10735,Linen Shirt,Shirts,Off White,L,Linen,AW25,59.0,6,2025-09-15,4.3,2025,9,15,1.0
+KV-10736,Linen Shirt,Shirts,Off White,XL,Linen,AW25,59.0,14,2025-09-03,4.08,2025,9,3,0.0
+KV-10737,Linen Shirt,Shirts,Grey Melange,XS,Linen,AW25,59.0,18,2025-09-22,4.1,2025,9,22,1.0
+KV-10738,Linen Shirt,Shirts,Grey Melange,S,Linen,AW25,59.0,11,2025-09-23,4.2,2025,9,23,0.0
+KV-10739,Linen Shirt,Shirts,Grey Melange,M,Linen,AW25,59.0,14,2025-09-17,4.0,2025,9,17,0.0
+KV-10740,Linen Shirt,Shirts,Grey Melange,L,Linen,AW25,59.0,14,2025-09-19,4.2,2025,9,19,0.0
+KV-10741,Linen Shirt,Shirts,Grey Melange,XL,Linen,AW25,59.0,10,2025-09-19,4.8,2025,9,19,0.0
+KV-10742,Linen Shirt,Shirts,Camel,XS,Linen,AW25,59.0,13,2025-09-22,4.1,2025,9,22,0.0
+KV-10743,Linen Shirt,Shirts,Camel,S,Linen,AW25,59.0,13,2025-08-15,3.9,2025,8,15,1.0
+KV-10744,Linen Shirt,Shirts,Camel,M,Linen,AW25,59.0,17,2025-09-11,4.2,2025,9,11,0.0
+KV-10745,Linen Shirt,Shirts,Camel,L,Linen,AW25,59.0,16,2025-09-08,4.5,2025,9,8,1.0
+KV-10746,Linen Shirt,Shirts,Camel,XL,Linen,AW25,59.0,13,2025-08-27,3.9,2025,8,27,0.0
+KV-10747,Linen Shirt,Shirts,Forest Green,XS,Linen,AW25,59.0,9,2025-09-01,4.3,2025,9,1,0.0
+KV-10748,Linen Shirt,Shirts,Forest Green,S,Linen,AW25,59.0,19,2025-08-05,4.42,2025,8,5,1.0
+KV-10749,Linen Shirt,Shirts,Forest Green,M,Linen,AW25,59.0,13,2025-08-12,4.4,2025,8,12,0.0
+KV-10750,Linen Shirt,Shirts,Forest Green,L,Linen,AW25,59.0,13,2025-09-02,4.6,2025,9,2,1.0
+KV-10751,Linen Shirt,Shirts,Forest Green,XL,Linen,AW25,59.0,24,2025-08-15,3.6,2025,8,15,0.0
+KV-10752,Oxford Shirt,Shirts,Black,XS,Cotton,AW25,69.0,10,2025-09-04,5.0,2025,9,4,0.0
+KV-10753,Oxford Shirt,Shirts,Black,S,Cotton,AW25,69.0,9,2025-07-31,4.4,2025,7,31,0.0
+KV-10754,Oxford Shirt,Shirts,Black,M,Cotton,AW25,69.0,15,2025-08-14,4.2,2025,8,14,0.0
+KV-10755,Oxford Shirt,Shirts,Black,L,Cotton,AW25,69.0,15,2025-09-21,4.6,2025,9,21,0.0
+KV-10756,Oxford Shirt,Shirts,Navy,XS,Cotton,AW25,69.0,12,2025-07-29,5.0,2025,7,29,0.0
+KV-10757,Oxford Shirt,Shirts,Navy,S,Cotton,AW25,69.0,11,2025-07-26,4.2,2025,7,26,0.0
+KV-10758,Oxford Shirt,Shirts,Navy,M,Cotton,AW25,69.0,13,2025-08-13,3.9,2025,8,13,0.0
+KV-10759,Oxford Shirt,Shirts,Navy,L,Cotton,AW25,69.0,12,2025-08-04,4.3,2025,8,4,1.0
+KV-10760,Oxford Shirt,Shirts,Navy,XL,Cotton,AW25,69.0,13,2025-09-20,4.1,2025,9,20,0.0
+KV-10761,Oxford Shirt,Shirts,Sand,XS,Cotton,AW25,69.0,13,2025-08-18,4.3,2025,8,18,0.0
+KV-10762,Oxford Shirt,Shirts,Sand,S,Cotton,AW25,69.0,17,2025-08-12,3.3,2025,8,12,0.0
+KV-10763,Oxford Shirt,Shirts,Sand,M,Cotton,AW25,69.0,15,2025-08-02,4.2,2025,8,2,0.0
+KV-10764,Oxford Shirt,Shirts,Sand,L,Cotton,AW25,69.0,19,2025-09-03,3.7,2025,9,3,0.0
+KV-10765,Oxford Shirt,Shirts,Sand,XL,Cotton,AW25,69.0,17,2025-08-26,4.9,2025,8,26,1.0
+KV-10766,Oxford Shirt,Shirts,Grey Melange,XS,Cotton,AW25,69.0,8,2025-09-01,4.26,2025,9,1,1.0
+KV-10767,Oxford Shirt,Shirts,Grey Melange,S,Cotton,AW25,69.0,15,2025-07-31,4.7,2025,7,31,1.0
+KV-10768,Oxford Shirt,Shirts,Grey Melange,M,Cotton,AW25,69.0,17,2025-08-09,4.2,2025,8,9,1.0
+KV-10769,Oxford Shirt,Shirts,Grey Melange,L,Cotton,AW25,69.0,22,2025-09-01,4.380000000000001,2025,9,1,1.0
+KV-10770,Oxford Shirt,Shirts,Grey Melange,XL,Cotton,AW25,69.0,15,2025-08-28,4.5,2025,8,28,0.0
+KV-10771,Oxford Shirt,Shirts,Burgundy,XS,Cotton,AW25,69.0,19,2025-07-28,3.9,2025,7,28,0.0
+KV-10772,Oxford Shirt,Shirts,Burgundy,S,Cotton,AW25,69.0,20,2025-08-28,4.48,2025,8,28,0.0
+KV-10773,Oxford Shirt,Shirts,Burgundy,M,Cotton,AW25,69.0,10,2025-09-21,4.0,2025,9,21,0.0
+KV-10774,Oxford Shirt,Shirts,Burgundy,L,Cotton,AW25,69.0,8,2025-08-21,4.0,2025,8,21,0.0
+KV-10775,Oxford Shirt,Shirts,Burgundy,XL,Cotton,AW25,69.0,13,2025-09-22,3.9,2025,9,22,0.0
+KV-10776,Oxford Shirt,Shirts,Forest Green,XS,Cotton,AW25,69.0,12,2025-09-05,3.9,2025,9,5,0.0
+KV-10777,Oxford Shirt,Shirts,Forest Green,S,Cotton,AW25,69.0,15,2025-08-11,3.8,2025,8,11,0.0
+KV-10778,Oxford Shirt,Shirts,Forest Green,M,Cotton,AW25,69.0,18,2025-09-12,4.4,2025,9,12,1.0
+KV-10779,Oxford Shirt,Shirts,Forest Green,L,Cotton,AW25,69.0,14,2025-08-17,3.9,2025,8,17,0.0
+KV-10780,Oxford Shirt,Shirts,Forest Green,XL,Cotton,AW25,69.0,10,2025-09-18,3.7,2025,9,18,0.0
+KV-10781,Oxford Shirt,Shirts,Off White,XS,Cotton,AW25,69.0,16,2025-09-06,5.0,2025,9,6,0.0
+KV-10782,Oxford Shirt,Shirts,Off White,S,Cotton,AW25,69.0,20,2025-09-19,4.6,2025,9,19,0.0
+KV-10783,Oxford Shirt,Shirts,Off White,M,Cotton,AW25,69.0,16,2025-08-11,3.8,2025,8,11,0.0
+KV-10784,Oxford Shirt,Shirts,Off White,L,Cotton,AW25,69.0,6,2025-09-10,4.6,2025,9,10,0.0
+KV-10785,Oxford Shirt,Shirts,Off White,XL,Cotton,AW25,69.0,13,2025-07-28,4.1,2025,7,28,0.0
+KV-10786,Silk Blouse,Shirts,Forest Green,XS,Silk,AW25,139.0,16,2025-08-25,4.1,2025,8,25,0.0
+KV-10787,Silk Blouse,Shirts,Forest Green,S,Silk,AW25,139.0,13,2025-07-28,4.220000000000001,2025,7,28,1.0
+KV-10788,Silk Blouse,Shirts,Forest Green,M,Silk,AW25,139.0,13,2025-08-05,5.0,2025,8,5,0.0
+KV-10789,Silk Blouse,Shirts,Forest Green,L,Silk,AW25,139.0,18,2025-08-15,4.9,2025,8,15,0.0
+KV-10790,Silk Blouse,Shirts,Forest Green,XL,Silk,AW25,139.0,15,2025-09-04,4.3,2025,9,4,1.0
+KV-10791,Silk Blouse,Shirts,Burgundy,XS,Silk,AW25,139.0,15,2025-07-29,3.7,2025,7,29,0.0
+KV-10792,Silk Blouse,Shirts,Burgundy,S,Silk,AW25,139.0,12,2025-09-20,5.0,2025,9,20,0.0
+KV-10793,Silk Blouse,Shirts,Burgundy,L,Silk,AW25,139.0,21,2025-09-09,4.7,2025,9,9,0.0
+KV-10794,Silk Blouse,Shirts,Burgundy,XL,Silk,AW25,139.0,11,2025-08-11,4.459999999999999,2025,8,11,0.0
+KV-10795,Silk Blouse,Shirts,Off White,XS,Silk,AW25,139.0,15,2025-09-04,3.5,2025,9,4,0.0
+KV-10796,Silk Blouse,Shirts,Off White,S,Silk,AW25,139.0,17,2025-09-18,3.6,2025,9,18,0.0
+KV-10797,Silk Blouse,Shirts,Off White,M,Silk,AW25,139.0,11,2025-09-09,4.3,2025,9,9,0.0
+KV-10798,Silk Blouse,Shirts,Off White,L,Silk,AW25,139.0,16,2025-09-19,3.9,2025,9,19,0.0
+KV-10799,Silk Blouse,Shirts,Off White,XL,Silk,AW25,139.0,16,2025-09-09,4.3,2025,9,9,0.0
+KV-10800,Silk Blouse,Shirts,Grey Melange,XS,Silk,AW25,139.0,16,2025-08-15,4.4,2025,8,15,0.0
+KV-10801,Silk Blouse,Shirts,Grey Melange,S,Silk,AW25,139.0,19,2025-07-28,4.199999999999999,2025,7,28,0.0
+KV-10802,Silk Blouse,Shirts,Grey Melange,M,Silk,AW25,139.0,11,2025-09-19,4.4,2025,9,19,0.0
+KV-10803,Silk Blouse,Shirts,Grey Melange,L,Silk,AW25,139.0,14,2025-09-13,4.4,2025,9,13,0.0
+KV-10804,Silk Blouse,Shirts,Grey Melange,XL,Silk,AW25,139.0,10,2025-08-26,3.4,2025,8,26,0.0
+KV-10805,Silk Blouse,Shirts,Navy,XS,Silk,AW25,139.0,16,2025-08-23,4.3,2025,8,23,1.0
+KV-10806,Silk Blouse,Shirts,Navy,S,Silk,AW25,139.0,23,2025-09-19,5.0,2025,9,19,0.0
+KV-10807,Silk Blouse,Shirts,Navy,M,Silk,AW25,139.0,13,2025-08-18,3.0,2025,8,18,0.0
+KV-10808,Silk Blouse,Shirts,Navy,L,Silk,AW25,139.0,11,2025-08-21,3.8600000000000003,2025,8,21,1.0
+KV-10809,Silk Blouse,Shirts,Navy,XL,Silk,AW25,139.0,13,2025-08-04,4.4,2025,8,4,0.0
+KV-10810,Silk Blouse,Shirts,Sand,XS,Silk,AW25,139.0,17,2025-09-07,4.3,2025,9,7,0.0
+KV-10811,Silk Blouse,Shirts,Sand,S,Silk,AW25,139.0,15,2025-08-07,4.6,2025,8,7,1.0
+KV-10812,Silk Blouse,Shirts,Sand,M,Silk,AW25,139.0,11,2025-08-18,4.0600000000000005,2025,8,18,0.0
+KV-10813,Silk Blouse,Shirts,Sand,L,Silk,AW25,139.0,15,2025-09-03,5.0,2025,9,3,0.0
+KV-10814,Silk Blouse,Shirts,Sand,XL,Silk,AW25,139.0,14,2025-09-02,4.5,2025,9,2,0.0
+KV-10815,Silk Blouse,Shirts,Black,XS,Silk,AW25,139.0,13,2025-09-17,3.5,2025,9,17,0.0
+KV-10816,Silk Blouse,Shirts,Black,S,Silk,AW25,139.0,17,2025-07-31,5.0,2025,7,31,0.0
+KV-10817,Silk Blouse,Shirts,Black,M,Silk,AW25,139.0,15,2025-09-01,4.0,2025,9,1,1.0
+KV-10818,Silk Blouse,Shirts,Black,XL,Silk,AW25,139.0,12,2025-08-29,4.9,2025,8,29,0.0
+KV-10819,Poplin Shirt,Shirts,Sand,XS,Cotton,AW25,65.0,10,2025-09-03,3.6,2025,9,3,0.0
+KV-10820,Poplin Shirt,Shirts,Sand,S,Cotton,AW25,65.0,18,2025-09-15,4.3,2025,9,15,0.0
+KV-10821,Poplin Shirt,Shirts,Sand,M,Cotton,AW25,65.0,16,2025-09-22,4.8,2025,9,22,0.0
+KV-10822,Poplin Shirt,Shirts,Sand,L,Cotton,AW25,65.0,17,2025-08-14,3.7,2025,8,14,0.0
+KV-10823,Poplin Shirt,Shirts,Sand,XL,Cotton,AW25,65.0,14,2025-09-14,4.16,2025,9,14,0.0
+KV-10824,Poplin Shirt,Shirts,Grey Melange,XS,Cotton,AW25,65.0,16,2025-08-19,4.26,2025,8,19,0.0
+KV-10825,Poplin Shirt,Shirts,Grey Melange,S,Cotton,AW25,65.0,12,2025-08-01,4.5,2025,8,1,0.0
+KV-10826,Poplin Shirt,Shirts,Grey Melange,M,Cotton,AW25,65.0,12,2025-09-04,4.1,2025,9,4,0.0
+KV-10827,Poplin Shirt,Shirts,Grey Melange,L,Cotton,AW25,65.0,14,2025-08-14,4.159999999999999,2025,8,14,0.0
+KV-10828,Poplin Shirt,Shirts,Grey Melange,XL,Cotton,AW25,65.0,19,2025-08-22,4.26,2025,8,22,1.0
+KV-10829,Poplin Shirt,Shirts,Navy,S,Cotton,AW25,65.0,11,2025-09-04,4.0,2025,9,4,0.0
+KV-10830,Poplin Shirt,Shirts,Navy,M,Cotton,AW25,65.0,18,2025-08-14,4.1,2025,8,14,0.0
+KV-10831,Poplin Shirt,Shirts,Navy,L,Cotton,AW25,65.0,15,2025-08-24,3.8,2025,8,24,0.0
+KV-10832,Poplin Shirt,Shirts,Navy,XL,Cotton,AW25,65.0,16,2025-08-08,3.9,2025,8,8,1.0
+KV-10833,Poplin Shirt,Shirts,Forest Green,XS,Cotton,AW25,65.0,8,2025-07-26,4.3,2025,7,26,0.0
+KV-10834,Poplin Shirt,Shirts,Forest Green,S,Cotton,AW25,65.0,12,2025-09-04,4.0,2025,9,4,0.0
+KV-10835,Poplin Shirt,Shirts,Forest Green,M,Cotton,AW25,65.0,15,2025-08-10,4.5,2025,8,10,0.0
+KV-10836,Poplin Shirt,Shirts,Forest Green,L,Cotton,AW25,65.0,21,2025-08-31,4.4,2025,8,31,0.0
+KV-10837,Poplin Shirt,Shirts,Forest Green,XL,Cotton,AW25,65.0,11,2025-09-07,3.6,2025,9,7,0.0
+KV-10838,Poplin Shirt,Shirts,Off White,XS,Cotton,AW25,65.0,14,2025-08-12,4.4,2025,8,12,0.0
+KV-10839,Poplin Shirt,Shirts,Off White,S,Cotton,AW25,65.0,19,2025-09-22,3.7,2025,9,22,0.0
+KV-10840,Poplin Shirt,Shirts,Off White,M,Cotton,AW25,65.0,14,2025-09-14,4.3,2025,9,14,1.0
+KV-10841,Poplin Shirt,Shirts,Off White,L,Cotton,AW25,65.0,16,2025-09-15,4.1,2025,9,15,0.0
+KV-10842,Poplin Shirt,Shirts,Off White,XL,Cotton,AW25,65.0,12,2025-09-02,4.5,2025,9,2,0.0
+KV-10843,Poplin Shirt,Shirts,Camel,XS,Cotton,AW25,65.0,14,2025-08-16,4.3,2025,8,16,0.0
+KV-10844,Poplin Shirt,Shirts,Camel,S,Cotton,AW25,65.0,14,2025-08-21,4.3,2025,8,21,0.0
+KV-10845,Poplin Shirt,Shirts,Camel,M,Cotton,AW25,65.0,15,2025-09-18,4.4,2025,9,18,0.0
+KV-10846,Poplin Shirt,Shirts,Camel,L,Cotton,AW25,65.0,6,2025-08-29,4.0,2025,8,29,0.0
+KV-10847,Poplin Shirt,Shirts,Camel,XL,Cotton,AW25,65.0,12,2025-08-28,4.7,2025,8,28,0.0
+KV-10848,Poplin Shirt,Shirts,Burgundy,XS,Cotton,AW25,65.0,10,2025-09-13,4.7,2025,9,13,0.0
+KV-10849,Poplin Shirt,Shirts,Burgundy,S,Cotton,AW25,65.0,16,2025-08-01,4.2,2025,8,1,0.0
+KV-10850,Poplin Shirt,Shirts,Burgundy,L,Cotton,AW25,65.0,18,2025-08-16,4.1,2025,8,16,0.0
+KV-10851,Poplin Shirt,Shirts,Burgundy,XL,Cotton,AW25,65.0,15,2025-08-05,4.2,2025,8,5,0.0
+KV-10852,Wool Coat,Outerwear,Forest Green,XS,Wool,AW25,249.0,22,2025-08-28,4.38,2025,8,28,0.0
+KV-10853,Wool Coat,Outerwear,Forest Green,S,Wool,AW25,249.0,14,2025-08-22,4.3,2025,8,22,0.0
+KV-10854,Wool Coat,Outerwear,Forest Green,M,Wool,AW25,249.0,15,2025-08-13,4.3,2025,8,13,0.0
+KV-10855,Wool Coat,Outerwear,Forest Green,L,Wool,AW25,249.0,17,2025-09-13,5.0,2025,9,13,1.0
+KV-10856,Wool Coat,Outerwear,Forest Green,XL,Wool,AW25,249.0,12,2025-09-14,4.1,2025,9,14,0.0
+KV-10857,Wool Coat,Outerwear,Burgundy,XS,Wool,AW25,249.0,18,2025-08-19,4.2,2025,8,19,0.0
+KV-10858,Wool Coat,Outerwear,Burgundy,S,Wool,AW25,249.0,9,2025-09-14,3.5,2025,9,14,0.0
+KV-10859,Wool Coat,Outerwear,Burgundy,M,Wool,AW25,249.0,13,2025-08-05,4.2,2025,8,5,1.0
+KV-10860,Wool Coat,Outerwear,Burgundy,L,Wool,AW25,249.0,6,2025-08-13,4.2,2025,8,13,0.0
+KV-10861,Wool Coat,Outerwear,Burgundy,XL,Wool,AW25,249.0,10,2025-08-09,4.7,2025,8,9,1.0
+KV-10862,Wool Coat,Outerwear,Off White,XS,Wool,AW25,249.0,11,2025-09-15,4.1,2025,9,15,0.0
+KV-10863,Wool Coat,Outerwear,Off White,S,Wool,AW25,249.0,14,2025-09-02,4.4,2025,9,2,0.0
+KV-10864,Wool Coat,Outerwear,Off White,M,Wool,AW25,249.0,19,2025-08-17,4.1,2025,8,17,0.0
+KV-10865,Wool Coat,Outerwear,Off White,L,Wool,AW25,249.0,9,2025-09-05,4.8,2025,9,5,0.0
+KV-10866,Wool Coat,Outerwear,Off White,XL,Wool,AW25,249.0,11,2025-08-07,3.7,2025,8,7,1.0
+KV-10867,Wool Coat,Outerwear,Grey Melange,XS,Wool,AW25,249.0,6,2025-09-21,5.0,2025,9,21,0.0
+KV-10868,Wool Coat,Outerwear,Grey Melange,S,Wool,AW25,249.0,12,2025-08-17,4.4,2025,8,17,0.0
+KV-10869,Wool Coat,Outerwear,Grey Melange,M,Wool,AW25,249.0,11,2025-07-29,4.6,2025,7,29,0.0
+KV-10870,Wool Coat,Outerwear,Grey Melange,L,Wool,AW25,249.0,15,2025-08-11,4.4,2025,8,11,0.0
+KV-10871,Wool Coat,Outerwear,Camel,XS,Wool,AW25,249.0,12,2025-08-08,4.3,2025,8,8,0.0
+KV-10872,Wool Coat,Outerwear,Camel,S,Wool,AW25,249.0,14,2025-09-03,4.1,2025,9,3,1.0
+KV-10873,Wool Coat,Outerwear,Camel,L,Wool,AW25,249.0,9,2025-08-12,3.8,2025,8,12,0.0
+KV-10874,Wool Coat,Outerwear,Camel,XL,Wool,AW25,249.0,17,2025-07-30,3.9,2025,7,30,0.0
+KV-10875,Wool Coat,Outerwear,Black,XS,Wool,AW25,249.0,22,2025-07-26,4.4,2025,7,26,1.0
+KV-10876,Wool Coat,Outerwear,Black,S,Wool,AW25,249.0,9,2025-08-31,4.5,2025,8,31,1.0
+KV-10877,Wool Coat,Outerwear,Black,M,Wool,AW25,249.0,13,2025-08-10,4.6,2025,8,10,0.0
+KV-10878,Wool Coat,Outerwear,Black,L,Wool,AW25,249.0,17,2025-08-17,4.8,2025,8,17,0.0
+KV-10879,Wool Coat,Outerwear,Black,XL,Wool,AW25,249.0,13,2025-09-03,4.0600000000000005,2025,9,3,0.0
+KV-10880,Wool Coat,Outerwear,Navy,XS,Wool,AW25,249.0,21,2025-08-31,4.2,2025,8,31,0.0
+KV-10881,Wool Coat,Outerwear,Navy,S,Wool,AW25,249.0,15,2025-08-02,3.8,2025,8,2,0.0
+KV-10882,Wool Coat,Outerwear,Navy,M,Wool,AW25,249.0,22,2025-09-06,4.6,2025,9,6,0.0
+KV-10883,Wool Coat,Outerwear,Navy,L,Wool,AW25,249.0,14,2025-09-07,3.8,2025,9,7,0.0
+KV-10884,Wool Coat,Outerwear,Navy,XL,Wool,AW25,249.0,9,2025-08-03,4.239999999999999,2025,8,3,0.0
+KV-10885,Cashmere Coat,Outerwear,Forest Green,XS,Cashmere,AW25,1299.0,23,2025-08-10,3.7,2025,8,10,1.0
+KV-10886,Cashmere Coat,Outerwear,Forest Green,S,Cashmere,AW25,1299.0,13,2025-08-01,4.6,2025,8,1,0.0
+KV-10887,Cashmere Coat,Outerwear,Forest Green,M,Cashmere,AW25,1299.0,10,2025-08-05,4.5,2025,8,5,1.0
+KV-10888,Cashmere Coat,Outerwear,Forest Green,L,Cashmere,AW25,1299.0,15,2025-09-06,4.8,2025,9,6,0.0
+KV-10889,Cashmere Coat,Outerwear,Forest Green,XL,Cashmere,AW25,1299.0,20,2025-08-28,4.1,2025,8,28,0.0
+KV-10890,Cashmere Coat,Outerwear,Burgundy,XS,Cashmere,AW25,1299.0,10,2025-08-23,3.7,2025,8,23,0.0
+KV-10891,Cashmere Coat,Outerwear,Burgundy,S,Cashmere,AW25,1299.0,14,2025-08-08,4.2,2025,8,8,0.0
+KV-10892,Cashmere Coat,Outerwear,Burgundy,M,Cashmere,AW25,1299.0,16,2025-09-19,4.2,2025,9,19,0.0
+KV-10893,Cashmere Coat,Outerwear,Burgundy,L,Cashmere,AW25,1299.0,13,2025-08-18,5.0,2025,8,18,0.0
+KV-10894,Cashmere Coat,Outerwear,Burgundy,XL,Cashmere,AW25,1299.0,20,2025-08-03,3.6,2025,8,3,0.0
+KV-10895,Cashmere Coat,Outerwear,Camel,XS,Cashmere,AW25,1299.0,17,2025-09-08,3.9,2025,9,8,0.0
+KV-10896,Cashmere Coat,Outerwear,Camel,S,Cashmere,AW25,1299.0,15,2025-08-09,4.46,2025,8,9,0.0
+KV-10897,Cashmere Coat,Outerwear,Camel,M,Cashmere,AW25,1299.0,19,2025-09-20,3.9,2025,9,20,0.0
+KV-10898,Cashmere Coat,Outerwear,Camel,L,Cashmere,AW25,1299.0,13,2025-08-03,4.58,2025,8,3,0.0
+KV-10899,Cashmere Coat,Outerwear,Camel,XL,Cashmere,AW25,1299.0,12,2025-08-17,5.0,2025,8,17,0.0
+KV-10900,Cashmere Coat,Outerwear,Off White,XS,Cashmere,AW25,1299.0,15,2025-08-21,3.6,2025,8,21,0.0
+KV-10901,Cashmere Coat,Outerwear,Off White,S,Cashmere,AW25,1299.0,11,2025-08-20,3.8,2025,8,20,0.0
+KV-10902,Cashmere Coat,Outerwear,Off White,M,Cashmere,AW25,1299.0,16,2025-09-05,4.300000000000001,2025,9,5,0.0
+KV-10903,Cashmere Coat,Outerwear,Off White,L,Cashmere,AW25,1299.0,12,2025-08-12,4.4,2025,8,12,0.0
+KV-10904,Cashmere Coat,Outerwear,Off White,XL,Cashmere,AW25,1299.0,8,2025-09-13,3.8,2025,9,13,1.0
+KV-10905,Cashmere Coat,Outerwear,Grey Melange,XS,Cashmere,AW25,1299.0,15,2025-09-05,5.0,2025,9,5,0.0
+KV-10906,Cashmere Coat,Outerwear,Grey Melange,S,Cashmere,AW25,1299.0,18,2025-08-18,4.7,2025,8,18,0.0
+KV-10907,Cashmere Coat,Outerwear,Grey Melange,XL,Cashmere,AW25,1299.0,9,2025-09-03,4.4,2025,9,3,0.0
+KV-10908,Cashmere Coat,Outerwear,Black,XS,Cashmere,AW25,1299.0,9,2025-09-12,4.8,2025,9,12,0.0
+KV-10909,Cashmere Coat,Outerwear,Black,S,Cashmere,AW25,1299.0,15,2025-09-22,5.0,2025,9,22,0.0
+KV-10910,Cashmere Coat,Outerwear,Black,M,Cashmere,AW25,1299.0,13,2025-09-10,4.4,2025,9,10,0.0
+KV-10911,Cashmere Coat,Outerwear,Black,L,Cashmere,AW25,1299.0,18,2025-08-17,4.6,2025,8,17,0.0
+KV-10912,Cashmere Coat,Outerwear,Black,XL,Cashmere,AW25,1299.0,10,2025-09-10,3.8,2025,9,10,0.0
+KV-10913,Cashmere Coat,Outerwear,Navy,XS,Cashmere,AW25,1299.0,11,2025-08-11,3.7,2025,8,11,1.0
+KV-10914,Cashmere Coat,Outerwear,Navy,S,Cashmere,AW25,1299.0,16,2025-08-21,4.1,2025,8,21,1.0
+KV-10915,Cashmere Coat,Outerwear,Navy,M,Cashmere,AW25,1299.0,12,2025-09-22,4.3,2025,9,22,0.0
+KV-10916,Cashmere Coat,Outerwear,Navy,L,Cashmere,AW25,1299.0,8,2025-08-30,3.9,2025,8,30,0.0
+KV-10917,Cashmere Coat,Outerwear,Navy,XL,Cashmere,AW25,1299.0,10,2025-08-18,4.34,2025,8,18,0.0
+KV-10918,Quilted Jacket,Outerwear,Off White,XS,Polyester,AW25,179.0,16,2025-08-28,5.0,2025,8,28,1.0
+KV-10919,Quilted Jacket,Outerwear,Off White,S,Polyester,AW25,179.0,19,2025-08-13,4.2,2025,8,13,1.0
+KV-10920,Quilted Jacket,Outerwear,Off White,M,Polyester,AW25,179.0,8,2025-08-28,4.0,2025,8,28,1.0
+KV-10921,Quilted Jacket,Outerwear,Off White,L,Polyester,AW25,179.0,22,2025-08-09,3.8,2025,8,9,1.0
+KV-10922,Quilted Jacket,Outerwear,Off White,XL,Polyester,AW25,179.0,16,2025-08-14,4.4,2025,8,14,0.0
+KV-10923,Quilted Jacket,Outerwear,Camel,XS,Polyester,AW25,179.0,13,2025-09-22,3.7,2025,9,22,0.0
+KV-10924,Quilted Jacket,Outerwear,Camel,M,Polyester,AW25,179.0,17,2025-08-29,4.5200000000000005,2025,8,29,0.0
+KV-10925,Quilted Jacket,Outerwear,Camel,L,Polyester,AW25,179.0,19,2025-08-08,4.4,2025,8,8,0.0
+KV-10926,Quilted Jacket,Outerwear,Camel,XL,Polyester,AW25,179.0,8,2025-09-11,4.3,2025,9,11,0.0
+KV-10927,Quilted Jacket,Outerwear,Navy,S,Polyester,AW25,179.0,12,2025-08-31,4.0,2025,8,31,0.0
+KV-10928,Quilted Jacket,Outerwear,Navy,M,Polyester,AW25,179.0,18,2025-09-18,4.2,2025,9,18,1.0
+KV-10929,Quilted Jacket,Outerwear,Navy,L,Polyester,AW25,179.0,15,2025-08-12,4.4,2025,8,12,0.0
+KV-10930,Quilted Jacket,Outerwear,Navy,XL,Polyester,AW25,179.0,14,2025-09-05,4.359999999999999,2025,9,5,1.0
+KV-10931,Quilted Jacket,Outerwear,Grey Melange,XS,Polyester,AW25,179.0,17,2025-07-31,4.5,2025,7,31,0.0
+KV-10932,Quilted Jacket,Outerwear,Grey Melange,S,Polyester,AW25,179.0,15,2025-07-28,5.0,2025,7,28,0.0
+KV-10933,Quilted Jacket,Outerwear,Grey Melange,M,Polyester,AW25,179.0,21,2025-09-01,3.9,2025,9,1,1.0
+KV-10934,Quilted Jacket,Outerwear,Grey Melange,L,Polyester,AW25,179.0,12,2025-08-15,4.8,2025,8,15,0.0
+KV-10935,Quilted Jacket,Outerwear,Grey Melange,XL,Polyester,AW25,179.0,14,2025-08-20,4.0,2025,8,20,1.0
+KV-10936,Quilted Jacket,Outerwear,Sand,XS,Polyester,AW25,179.0,15,2025-09-12,4.2,2025,9,12,1.0
+KV-10937,Quilted Jacket,Outerwear,Sand,S,Polyester,AW25,179.0,12,2025-08-08,4.18,2025,8,8,0.0
+KV-10938,Quilted Jacket,Outerwear,Sand,XL,Polyester,AW25,179.0,18,2025-09-19,4.2,2025,9,19,0.0
+KV-10939,Quilted Jacket,Outerwear,Forest Green,XS,Polyester,AW25,179.0,12,2025-09-06,4.7,2025,9,6,0.0
+KV-10940,Quilted Jacket,Outerwear,Forest Green,M,Polyester,AW25,179.0,14,2025-09-06,4.0,2025,9,6,0.0
+KV-10941,Quilted Jacket,Outerwear,Forest Green,L,Polyester,AW25,179.0,19,2025-09-15,3.5,2025,9,15,0.0
+KV-10942,Quilted Jacket,Outerwear,Forest Green,XL,Polyester,AW25,179.0,18,2025-09-11,4.0,2025,9,11,0.0
+KV-10943,Quilted Jacket,Outerwear,Black,XS,Polyester,AW25,179.0,13,2025-08-12,3.6,2025,8,12,0.0
+KV-10944,Quilted Jacket,Outerwear,Black,S,Polyester,AW25,179.0,17,2025-08-14,4.5,2025,8,14,0.0
+KV-10945,Quilted Jacket,Outerwear,Black,M,Polyester,AW25,179.0,15,2025-08-05,4.4799999999999995,2025,8,5,0.0
+KV-10946,Quilted Jacket,Outerwear,Black,L,Polyester,AW25,179.0,16,2025-08-26,4.1,2025,8,26,0.0
+KV-10947,Quilted Jacket,Outerwear,Black,XL,Polyester,AW25,179.0,23,2025-08-10,3.9,2025,8,10,0.0
+KV-10948,Trench Coat,Outerwear,Burgundy,XS,Cotton,AW25,299.0,11,2025-08-10,4.2,2025,8,10,0.0
+KV-10949,Trench Coat,Outerwear,Burgundy,S,Cotton,AW25,299.0,14,2025-09-06,4.7,2025,9,6,0.0
+KV-10950,Trench Coat,Outerwear,Burgundy,M,Cotton,AW25,299.0,9,2025-07-27,4.26,2025,7,27,0.0
+KV-10951,Trench Coat,Outerwear,Burgundy,L,Cotton,AW25,299.0,9,2025-08-28,4.8,2025,8,28,0.0
+KV-10952,Trench Coat,Outerwear,Burgundy,XL,Cotton,AW25,299.0,17,2025-07-26,4.3,2025,7,26,0.0
+KV-10953,Trench Coat,Outerwear,Camel,XS,Cotton,AW25,299.0,9,2025-08-19,4.2,2025,8,19,0.0
+KV-10954,Trench Coat,Outerwear,Camel,S,Cotton,AW25,299.0,12,2025-08-11,3.8,2025,8,11,0.0
+KV-10955,Trench Coat,Outerwear,Camel,M,Cotton,AW25,299.0,19,2025-08-20,4.16,2025,8,20,0.0
+KV-10956,Trench Coat,Outerwear,Camel,L,Cotton,AW25,299.0,9,2025-08-12,3.9,2025,8,12,0.0
+KV-10957,Trench Coat,Outerwear,Camel,XL,Cotton,AW25,299.0,11,2025-08-04,4.6,2025,8,4,0.0
+KV-10958,Trench Coat,Outerwear,Sand,XS,Cotton,AW25,299.0,15,2025-08-15,4.5,2025,8,15,0.0
+KV-10959,Trench Coat,Outerwear,Sand,S,Cotton,AW25,299.0,16,2025-08-03,3.5,2025,8,3,0.0
+KV-10960,Trench Coat,Outerwear,Sand,M,Cotton,AW25,299.0,14,2025-07-31,3.8,2025,7,31,0.0
+KV-10961,Trench Coat,Outerwear,Sand,L,Cotton,AW25,299.0,15,2025-08-22,3.7,2025,8,22,1.0
+KV-10962,Trench Coat,Outerwear,Sand,XL,Cotton,AW25,299.0,18,2025-09-22,4.4,2025,9,22,0.0
+KV-10963,Trench Coat,Outerwear,Off White,XS,Cotton,AW25,299.0,17,2025-09-12,4.3,2025,9,12,0.0
+KV-10964,Trench Coat,Outerwear,Off White,S,Cotton,AW25,299.0,15,2025-09-01,4.3,2025,9,1,0.0
+KV-10965,Trench Coat,Outerwear,Off White,M,Cotton,AW25,299.0,16,2025-07-31,4.5,2025,7,31,0.0
+KV-10966,Trench Coat,Outerwear,Off White,L,Cotton,AW25,299.0,14,2025-08-02,3.9,2025,8,2,0.0
+KV-10967,Trench Coat,Outerwear,Off White,XL,Cotton,AW25,299.0,9,2025-09-10,4.2,2025,9,10,0.0
+KV-10968,Trench Coat,Outerwear,Navy,XS,Cotton,AW25,299.0,11,2025-09-18,4.14,2025,9,18,0.0
+KV-10969,Trench Coat,Outerwear,Navy,S,Cotton,AW25,299.0,13,2025-07-29,4.4,2025,7,29,0.0
+KV-10970,Trench Coat,Outerwear,Navy,M,Cotton,AW25,299.0,12,2025-09-18,4.5,2025,9,18,0.0
+KV-10971,Trench Coat,Outerwear,Navy,XL,Cotton,AW25,299.0,12,2025-09-22,5.0,2025,9,22,0.0
+KV-10972,Trench Coat,Outerwear,Grey Melange,XS,Cotton,AW25,299.0,11,2025-09-15,3.8,2025,9,15,0.0
+KV-10973,Trench Coat,Outerwear,Grey Melange,S,Cotton,AW25,299.0,15,2025-09-01,4.4,2025,9,1,0.0
+KV-10974,Trench Coat,Outerwear,Grey Melange,M,Cotton,AW25,299.0,23,2025-08-06,3.7,2025,8,6,0.0
+KV-10975,Trench Coat,Outerwear,Grey Melange,L,Cotton,AW25,299.0,8,2025-08-08,4.2,2025,8,8,1.0
+KV-10976,Trench Coat,Outerwear,Grey Melange,XL,Cotton,AW25,299.0,12,2025-08-17,3.2,2025,8,17,0.0
+KV-10977,Trench Coat,Outerwear,Forest Green,XS,Cotton,AW25,299.0,11,2025-09-12,4.4,2025,9,12,0.0
+KV-10978,Trench Coat,Outerwear,Forest Green,S,Cotton,AW25,299.0,9,2025-08-07,3.7,2025,8,7,1.0
+KV-10979,Trench Coat,Outerwear,Forest Green,M,Cotton,AW25,299.0,8,2025-08-22,3.3,2025,8,22,0.0
+KV-10980,Trench Coat,Outerwear,Forest Green,L,Cotton,AW25,299.0,13,2025-08-14,3.5,2025,8,14,1.0
+KV-10981,Trench Coat,Outerwear,Forest Green,XL,Cotton,AW25,299.0,16,2025-08-28,4.1,2025,8,28,0.0
+KV-10982,Pleated Trousers,Trousers,Forest Green,XS,Wool,AW25,99.0,11,2025-07-31,4.8,2025,7,31,0.0
+KV-10983,Pleated Trousers,Trousers,Forest Green,S,Wool,AW25,99.0,12,2025-09-01,3.3,2025,9,1,0.0
+KV-10984,Pleated Trousers,Trousers,Forest Green,M,Wool,AW25,99.0,15,2025-09-16,3.9,2025,9,16,0.0
+KV-10985,Pleated Trousers,Trousers,Forest Green,L,Wool,AW25,99.0,13,2025-08-02,4.0,2025,8,2,0.0
+KV-10986,Pleated Trousers,Trousers,Forest Green,XL,Wool,AW25,99.0,18,2025-07-27,4.7,2025,7,27,0.0
+KV-10987,Pleated Trousers,Trousers,Grey Melange,S,Wool,AW25,99.0,20,2025-08-02,4.2,2025,8,2,1.0
+KV-10988,Pleated Trousers,Trousers,Grey Melange,M,Wool,AW25,99.0,10,2025-08-31,3.5,2025,8,31,0.0
+KV-10989,Pleated Trousers,Trousers,Grey Melange,L,Wool,AW25,99.0,15,2025-09-03,3.8,2025,9,3,1.0
+KV-10990,Pleated Trousers,Trousers,Grey Melange,XL,Wool,AW25,99.0,12,2025-08-22,4.2,2025,8,22,0.0
+KV-10991,Pleated Trousers,Trousers,Off White,XS,Wool,AW25,99.0,20,2025-09-10,4.3,2025,9,10,0.0
+KV-10992,Pleated Trousers,Trousers,Off White,S,Wool,AW25,99.0,13,2025-08-28,3.8,2025,8,28,0.0
+KV-10993,Pleated Trousers,Trousers,Off White,M,Wool,AW25,99.0,10,2025-08-16,4.7,2025,8,16,0.0
+KV-10994,Pleated Trousers,Trousers,Off White,L,Wool,AW25,99.0,14,2025-08-12,4.279999999999999,2025,8,12,0.0
+KV-10995,Pleated Trousers,Trousers,Off White,XL,Wool,AW25,99.0,15,2025-09-20,4.2,2025,9,20,0.0
+KV-10996,Pleated Trousers,Trousers,Camel,XS,Wool,AW25,99.0,14,2025-08-16,4.4,2025,8,16,0.0
+KV-10997,Pleated Trousers,Trousers,Camel,S,Wool,AW25,99.0,17,2025-08-31,4.5,2025,8,31,0.0
+KV-10998,Pleated Trousers,Trousers,Camel,M,Wool,AW25,99.0,10,2025-09-18,4.4,2025,9,18,0.0
+KV-10999,Pleated Trousers,Trousers,Camel,L,Wool,AW25,99.0,24,2025-08-13,4.1,2025,8,13,0.0
+KV-11000,Pleated Trousers,Trousers,Camel,XL,Wool,AW25,99.0,9,2025-08-24,4.7,2025,8,24,0.0
+KV-11001,Pleated Trousers,Trousers,Navy,XS,Wool,AW25,99.0,18,2025-09-20,4.7,2025,9,20,0.0
+KV-11002,Pleated Trousers,Trousers,Navy,S,Wool,AW25,99.0,18,2025-08-16,4.5,2025,8,16,1.0
+KV-11003,Pleated Trousers,Trousers,Navy,M,Wool,AW25,99.0,13,2025-08-31,4.12,2025,8,31,0.0
+KV-11004,Pleated Trousers,Trousers,Navy,L,Wool,AW25,99.0,14,2025-09-13,4.2,2025,9,13,0.0
+KV-11005,Pleated Trousers,Trousers,Navy,XL,Wool,AW25,99.0,10,2025-07-27,4.5,2025,7,27,0.0
+KV-11006,Pleated Trousers,Trousers,Burgundy,XS,Wool,AW25,99.0,13,2025-07-27,4.3,2025,7,27,0.0
+KV-11007,Pleated Trousers,Trousers,Burgundy,S,Wool,AW25,99.0,11,2025-09-22,4.3,2025,9,22,0.0
+KV-11008,Pleated Trousers,Trousers,Burgundy,M,Wool,AW25,99.0,10,2025-08-02,4.3,2025,8,2,1.0
+KV-11009,Pleated Trousers,Trousers,Burgundy,L,Wool,AW25,99.0,12,2025-09-13,5.0,2025,9,13,0.0
+KV-11010,Pleated Trousers,Trousers,Burgundy,XL,Wool,AW25,99.0,15,2025-08-18,4.4,2025,8,18,0.0
+KV-11011,Pleated Trousers,Trousers,Sand,XS,Wool,AW25,99.0,12,2025-08-14,3.5,2025,8,14,0.0
+KV-11012,Pleated Trousers,Trousers,Sand,S,Wool,AW25,99.0,16,2025-08-28,4.5,2025,8,28,0.0
+KV-11013,Pleated Trousers,Trousers,Sand,M,Wool,AW25,99.0,14,2025-09-07,3.8,2025,9,7,0.0
+KV-11014,Pleated Trousers,Trousers,Sand,L,Wool,AW25,99.0,13,2025-08-13,4.46,2025,8,13,1.0
+KV-11015,Pleated Trousers,Trousers,Sand,XL,Wool,AW25,99.0,12,2025-08-30,4.0,2025,8,30,0.0
+KV-11016,Wide-Leg Chinos,Trousers,Navy,XS,Cotton,AW25,79.0,13,2025-09-17,4.9,2025,9,17,0.0
+KV-11017,Wide-Leg Chinos,Trousers,Navy,S,Cotton,AW25,79.0,13,2025-08-25,4.1,2025,8,25,0.0
+KV-11018,Wide-Leg Chinos,Trousers,Navy,M,Cotton,AW25,79.0,12,2025-09-07,4.18,2025,9,7,0.0
+KV-11019,Wide-Leg Chinos,Trousers,Navy,L,Cotton,AW25,79.0,13,2025-09-09,4.1,2025,9,9,0.0
+KV-11020,Wide-Leg Chinos,Trousers,Navy,XL,Cotton,AW25,79.0,15,2025-08-18,3.9,2025,8,18,0.0
+KV-11021,Wide-Leg Chinos,Trousers,Black,XS,Cotton,AW25,79.0,9,2025-08-03,4.6,2025,8,3,0.0
+KV-11022,Wide-Leg Chinos,Trousers,Black,S,Cotton,AW25,79.0,13,2025-08-30,4.1,2025,8,30,0.0
+KV-11023,Wide-Leg Chinos,Trousers,Black,M,Cotton,AW25,79.0,19,2025-09-19,4.5,2025,9,19,0.0
+KV-11024,Wide-Leg Chinos,Trousers,Black,L,Cotton,AW25,79.0,17,2025-08-21,4.4,2025,8,21,0.0
+KV-11025,Wide-Leg Chinos,Trousers,Black,XL,Cotton,AW25,79.0,16,2025-07-31,4.2,2025,7,31,0.0
+KV-11026,Wide-Leg Chinos,Trousers,Sand,XS,Cotton,AW25,79.0,15,2025-08-11,4.3,2025,8,11,0.0
+KV-11027,Wide-Leg Chinos,Trousers,Sand,M,Cotton,AW25,79.0,13,2025-09-16,4.0,2025,9,16,0.0
+KV-11028,Wide-Leg Chinos,Trousers,Sand,L,Cotton,AW25,79.0,9,2025-08-05,4.4,2025,8,5,0.0
+KV-11029,Wide-Leg Chinos,Trousers,Sand,XL,Cotton,AW25,79.0,22,2025-09-11,4.7,2025,9,11,1.0
+KV-11030,Wide-Leg Chinos,Trousers,Off White,XS,Cotton,AW25,79.0,15,2025-08-23,4.0,2025,8,23,0.0
+KV-11031,Wide-Leg Chinos,Trousers,Off White,S,Cotton,AW25,79.0,21,2025-08-25,4.1,2025,8,25,0.0
+KV-11032,Wide-Leg Chinos,Trousers,Off White,M,Cotton,AW25,79.0,16,2025-08-03,4.3,2025,8,3,0.0
+KV-11033,Wide-Leg Chinos,Trousers,Off White,L,Cotton,AW25,79.0,14,2025-08-09,4.0,2025,8,9,0.0
+KV-11034,Wide-Leg Chinos,Trousers,Off White,XL,Cotton,AW25,79.0,19,2025-08-11,4.1,2025,8,11,0.0
+KV-11035,Wide-Leg Chinos,Trousers,Camel,XS,Cotton,AW25,79.0,16,2025-08-27,4.2,2025,8,27,0.0
+KV-11036,Wide-Leg Chinos,Trousers,Camel,S,Cotton,AW25,79.0,11,2025-08-24,4.1,2025,8,24,0.0
+KV-11037,Wide-Leg Chinos,Trousers,Camel,M,Cotton,AW25,79.0,13,2025-09-04,4.34,2025,9,4,0.0
+KV-11038,Wide-Leg Chinos,Trousers,Camel,L,Cotton,AW25,79.0,23,2025-09-05,4.1,2025,9,5,0.0
+KV-11039,Wide-Leg Chinos,Trousers,Camel,XL,Cotton,AW25,79.0,15,2025-08-09,3.5,2025,8,9,1.0
+KV-11040,Wide-Leg Chinos,Trousers,Burgundy,XS,Cotton,AW25,79.0,9,2025-08-15,4.7,2025,8,15,0.0
+KV-11041,Wide-Leg Chinos,Trousers,Burgundy,S,Cotton,AW25,79.0,11,2025-09-13,4.6,2025,9,13,0.0
+KV-11042,Wide-Leg Chinos,Trousers,Burgundy,M,Cotton,AW25,79.0,17,2025-08-08,4.3,2025,8,8,1.0
+KV-11043,Wide-Leg Chinos,Trousers,Burgundy,L,Cotton,AW25,79.0,14,2025-09-22,4.0,2025,9,22,0.0
+KV-11044,Wide-Leg Chinos,Trousers,Burgundy,XL,Cotton,AW25,79.0,12,2025-07-30,4.0,2025,7,30,0.0
+KV-11045,Wide-Leg Chinos,Trousers,Grey Melange,XS,Cotton,AW25,79.0,10,2025-07-27,4.1,2025,7,27,0.0
+KV-11046,Wide-Leg Chinos,Trousers,Grey Melange,S,Cotton,AW25,79.0,12,2025-08-08,4.4,2025,8,8,0.0
+KV-11047,Wide-Leg Chinos,Trousers,Grey Melange,M,Cotton,AW25,79.0,10,2025-09-22,3.5,2025,9,22,0.0
+KV-11048,Wide-Leg Chinos,Trousers,Grey Melange,L,Cotton,AW25,79.0,18,2025-09-07,4.0,2025,9,7,0.0
+KV-11049,Wide-Leg Chinos,Trousers,Grey Melange,XL,Cotton,AW25,79.0,16,2025-08-25,4.3,2025,8,25,0.0
+KV-11050,Linen Trousers,Trousers,Off White,XS,Linen,AW25,85.0,11,2025-08-31,4.1,2025,8,31,0.0
+KV-11051,Linen Trousers,Trousers,Off White,S,Linen,AW25,85.0,18,2025-08-14,4.4,2025,8,14,0.0
+KV-11052,Linen Trousers,Trousers,Off White,M,Linen,AW25,85.0,12,2025-08-01,4.4,2025,8,1,0.0
+KV-11053,Linen Trousers,Trousers,Off White,L,Linen,AW25,85.0,19,2025-07-30,4.8,2025,7,30,1.0
+KV-11054,Linen Trousers,Trousers,Off White,XL,Linen,AW25,85.0,15,2025-07-29,3.7,2025,7,29,0.0
+KV-11055,Linen Trousers,Trousers,Burgundy,XS,Linen,AW25,85.0,10,2025-07-27,4.16,2025,7,27,0.0
+KV-11056,Linen Trousers,Trousers,Burgundy,S,Linen,AW25,85.0,13,2025-08-03,3.9,2025,8,3,0.0
+KV-11057,Linen Trousers,Trousers,Burgundy,M,Linen,AW25,85.0,12,2025-09-23,4.2,2025,9,23,0.0
+KV-11058,Linen Trousers,Trousers,Burgundy,L,Linen,AW25,85.0,18,2025-08-02,4.3,2025,8,2,0.0
+KV-11059,Linen Trousers,Trousers,Burgundy,XL,Linen,AW25,85.0,10,2025-08-28,5.0,2025,8,28,0.0
+KV-11060,Linen Trousers,Trousers,Black,XS,Linen,AW25,85.0,14,2025-08-16,4.8,2025,8,16,1.0
+KV-11061,Linen Trousers,Trousers,Black,S,Linen,AW25,85.0,22,2025-08-27,5.0,2025,8,27,0.0
+KV-11062,Linen Trousers,Trousers,Black,M,Linen,AW25,85.0,14,2025-09-14,4.9,2025,9,14,0.0
+KV-11063,Linen Trousers,Trousers,Black,L,Linen,AW25,85.0,15,2025-07-30,3.8,2025,7,30,1.0
+KV-11064,Linen Trousers,Trousers,Black,XL,Linen,AW25,85.0,19,2025-08-09,3.6,2025,8,9,1.0
+KV-11065,Linen Trousers,Trousers,Grey Melange,S,Linen,AW25,85.0,18,2025-09-21,4.6,2025,9,21,0.0
+KV-11066,Linen Trousers,Trousers,Grey Melange,M,Linen,AW25,85.0,12,2025-09-21,3.8,2025,9,21,0.0
+KV-11067,Linen Trousers,Trousers,Grey Melange,XL,Linen,AW25,85.0,10,2025-09-22,3.9,2025,9,22,0.0
+KV-11068,Linen Trousers,Trousers,Forest Green,XS,Linen,AW25,85.0,11,2025-07-29,3.8,2025,7,29,0.0
+KV-11069,Linen Trousers,Trousers,Forest Green,S,Linen,AW25,85.0,11,2025-09-16,4.0,2025,9,16,0.0
+KV-11070,Linen Trousers,Trousers,Forest Green,M,Linen,AW25,85.0,17,2025-08-10,4.359999999999999,2025,8,10,0.0
+KV-11071,Linen Trousers,Trousers,Forest Green,L,Linen,AW25,85.0,17,2025-08-11,5.0,2025,8,11,0.0
+KV-11072,Linen Trousers,Trousers,Forest Green,XL,Linen,AW25,85.0,17,2025-08-21,3.8,2025,8,21,0.0
+KV-11073,Linen Trousers,Trousers,Camel,XS,Linen,AW25,85.0,12,2025-08-10,4.0,2025,8,10,0.0
+KV-11074,Linen Trousers,Trousers,Camel,S,Linen,AW25,85.0,13,2025-07-31,3.7,2025,7,31,0.0
+KV-11075,Linen Trousers,Trousers,Camel,M,Linen,AW25,85.0,20,2025-08-30,3.8,2025,8,30,0.0
+KV-11076,Linen Trousers,Trousers,Camel,L,Linen,AW25,85.0,14,2025-08-05,4.9,2025,8,5,0.0
+KV-11077,Linen Trousers,Trousers,Camel,XL,Linen,AW25,85.0,23,2025-08-06,4.040000000000001,2025,8,6,0.0
+KV-11078,Linen Trousers,Trousers,Navy,XS,Linen,AW25,85.0,16,2025-09-06,4.3,2025,9,6,0.0
+KV-11079,Linen Trousers,Trousers,Navy,S,Linen,AW25,85.0,14,2025-09-05,4.0,2025,9,5,0.0
+KV-11080,Linen Trousers,Trousers,Navy,M,Linen,AW25,85.0,9,2025-09-04,4.5,2025,9,4,0.0
+KV-11081,Linen Trousers,Trousers,Navy,L,Linen,AW25,85.0,14,2025-09-03,4.1,2025,9,3,0.0
+KV-11082,Linen Trousers,Trousers,Navy,XL,Linen,AW25,85.0,9,2025-08-20,4.0,2025,8,20,0.0
+KV-11083,Midi Dress,Dresses,Black,XS,Viscose,AW25,129.0,8,2025-09-19,4.2,2025,9,19,0.0
+KV-11084,Midi Dress,Dresses,Black,S,Viscose,AW25,129.0,10,2025-08-17,3.6,2025,8,17,1.0
+KV-11085,Midi Dress,Dresses,Black,M,Viscose,AW25,129.0,12,2025-08-29,4.3,2025,8,29,0.0
+KV-11086,Midi Dress,Dresses,Grey Melange,XS,Viscose,AW25,129.0,12,2025-08-07,3.5,2025,8,7,0.0
+KV-11087,Midi Dress,Dresses,Grey Melange,S,Viscose,AW25,129.0,13,2025-09-23,4.5,2025,9,23,0.0
+KV-11088,Midi Dress,Dresses,Grey Melange,M,Viscose,AW25,129.0,15,2025-08-11,4.2,2025,8,11,1.0
+KV-11089,Midi Dress,Dresses,Grey Melange,L,Viscose,AW25,129.0,11,2025-08-09,3.6,2025,8,9,0.0
+KV-11090,Midi Dress,Dresses,Grey Melange,XL,Viscose,AW25,129.0,13,2025-08-24,4.8,2025,8,24,0.0
+KV-11091,Midi Dress,Dresses,Burgundy,XS,Viscose,AW25,129.0,11,2025-08-24,4.6,2025,8,24,0.0
+KV-11092,Midi Dress,Dresses,Burgundy,S,Viscose,AW25,129.0,12,2025-08-20,4.3,2025,8,20,0.0
+KV-11093,Midi Dress,Dresses,Burgundy,M,Viscose,AW25,129.0,14,2025-09-09,4.3,2025,9,9,0.0
+KV-11094,Midi Dress,Dresses,Burgundy,L,Viscose,AW25,129.0,10,2025-08-25,4.5,2025,8,25,0.0
+KV-11095,Midi Dress,Dresses,Burgundy,XL,Viscose,AW25,129.0,14,2025-08-28,5.0,2025,8,28,1.0
+KV-11096,Midi Dress,Dresses,Navy,XS,Viscose,AW25,129.0,6,2025-09-05,3.7,2025,9,5,0.0
+KV-11097,Midi Dress,Dresses,Navy,S,Viscose,AW25,129.0,11,2025-09-16,5.0,2025,9,16,0.0
+KV-11098,Midi Dress,Dresses,Navy,M,Viscose,AW25,129.0,13,2025-08-19,4.0,2025,8,19,1.0
+KV-11099,Midi Dress,Dresses,Navy,L,Viscose,AW25,129.0,9,2025-08-14,5.0,2025,8,14,0.0
+KV-11100,Midi Dress,Dresses,Navy,XL,Viscose,AW25,129.0,11,2025-08-07,3.8,2025,8,7,0.0
+KV-11101,Midi Dress,Dresses,Forest Green,XS,Viscose,AW25,129.0,14,2025-08-05,4.5,2025,8,5,1.0
+KV-11102,Midi Dress,Dresses,Forest Green,S,Viscose,AW25,129.0,11,2025-09-14,4.0,2025,9,14,0.0
+KV-11103,Midi Dress,Dresses,Forest Green,L,Viscose,AW25,129.0,13,2025-08-05,3.6,2025,8,5,0.0
+KV-11104,Midi Dress,Dresses,Forest Green,XL,Viscose,AW25,129.0,10,2025-09-06,3.7,2025,9,6,0.0
+KV-11105,Midi Dress,Dresses,Off White,XS,Viscose,AW25,129.0,16,2025-09-06,3.7,2025,9,6,0.0
+KV-11106,Midi Dress,Dresses,Off White,S,Viscose,AW25,129.0,12,2025-08-26,4.5,2025,8,26,0.0
+KV-11107,Midi Dress,Dresses,Off White,M,Viscose,AW25,129.0,19,2025-07-30,4.0600000000000005,2025,7,30,0.0
+KV-11108,Midi Dress,Dresses,Off White,XL,Viscose,AW25,129.0,16,2025-08-28,3.2,2025,8,28,0.0
+KV-11109,Midi Dress,Dresses,Sand,XS,Viscose,AW25,129.0,17,2025-08-21,4.1,2025,8,21,1.0
+KV-11110,Midi Dress,Dresses,Sand,S,Viscose,AW25,129.0,13,2025-08-28,4.1,2025,8,28,0.0
+KV-11111,Midi Dress,Dresses,Sand,M,Viscose,AW25,129.0,12,2025-09-13,3.3,2025,9,13,0.0
+KV-11112,Midi Dress,Dresses,Sand,L,Viscose,AW25,129.0,6,2025-08-01,3.6,2025,8,1,0.0
+KV-11113,Midi Dress,Dresses,Sand,XL,Viscose,AW25,129.0,11,2025-09-06,4.3,2025,9,6,1.0
+KV-11114,Slip Dress,Dresses,Off White,XS,Silk,AW25,109.0,17,2025-09-17,4.5,2025,9,17,0.0
+KV-11115,Slip Dress,Dresses,Off White,S,Silk,AW25,109.0,13,2025-09-03,4.3,2025,9,3,0.0
+KV-11116,Slip Dress,Dresses,Off White,M,Silk,AW25,109.0,9,2025-08-16,4.2,2025,8,16,0.0
+KV-11117,Slip Dress,Dresses,Off White,L,Silk,AW25,109.0,16,2025-09-11,4.2,2025,9,11,0.0
+KV-11118,Slip Dress,Dresses,Off White,XL,Silk,AW25,109.0,10,2025-08-03,5.0,2025,8,3,0.0
+KV-11119,Slip Dress,Dresses,Navy,XS,Silk,AW25,109.0,17,2025-09-12,4.14,2025,9,12,0.0
+KV-11120,Slip Dress,Dresses,Navy,S,Silk,AW25,109.0,17,2025-09-17,4.6,2025,9,17,0.0
+KV-11121,Slip Dress,Dresses,Navy,M,Silk,AW25,109.0,12,2025-09-22,4.0,2025,9,22,0.0
+KV-11122,Slip Dress,Dresses,Navy,L,Silk,AW25,109.0,16,2025-09-11,4.5,2025,9,11,0.0
+KV-11123,Slip Dress,Dresses,Navy,XL,Silk,AW25,109.0,10,2025-08-31,3.8,2025,8,31,0.0
+KV-11124,Slip Dress,Dresses,Camel,XS,Silk,AW25,109.0,12,2025-08-26,4.2,2025,8,26,0.0
+KV-11125,Slip Dress,Dresses,Camel,S,Silk,AW25,109.0,12,2025-09-23,4.04,2025,9,23,0.0
+KV-11126,Slip Dress,Dresses,Camel,M,Silk,AW25,109.0,11,2025-09-14,3.8,2025,9,14,0.0
+KV-11127,Slip Dress,Dresses,Camel,L,Silk,AW25,109.0,12,2025-09-04,4.34,2025,9,4,0.0
+KV-11128,Slip Dress,Dresses,Camel,XL,Silk,AW25,109.0,16,2025-08-25,3.9,2025,8,25,0.0
+KV-11129,Slip Dress,Dresses,Sand,XS,Silk,AW25,109.0,16,2025-08-03,4.6,2025,8,3,0.0
+KV-11130,Slip Dress,Dresses,Sand,S,Silk,AW25,109.0,17,2025-09-01,4.08,2025,9,1,1.0
+KV-11131,Slip Dress,Dresses,Sand,M,Silk,AW25,109.0,25,2025-09-20,4.9,2025,9,20,0.0
+KV-11132,Slip Dress,Dresses,Sand,L,Silk,AW25,109.0,18,2025-09-16,3.5,2025,9,16,0.0
+KV-11133,Slip Dress,Dresses,Sand,XL,Silk,AW25,109.0,7,2025-08-10,4.3,2025,8,10,0.0
+KV-11134,Slip Dress,Dresses,Black,XS,Silk,AW25,109.0,8,2025-08-07,3.7,2025,8,7,0.0
+KV-11135,Slip Dress,Dresses,Black,S,Silk,AW25,109.0,18,2025-08-29,4.0,2025,8,29,0.0
+KV-11136,Slip Dress,Dresses,Black,M,Silk,AW25,109.0,12,2025-09-17,4.279999999999999,2025,9,17,0.0
+KV-11137,Slip Dress,Dresses,Black,L,Silk,AW25,109.0,13,2025-09-08,4.14,2025,9,8,1.0
+KV-11138,Slip Dress,Dresses,Forest Green,XS,Silk,AW25,109.0,13,2025-09-23,3.3,2025,9,23,0.0
+KV-11139,Slip Dress,Dresses,Forest Green,S,Silk,AW25,109.0,11,2025-08-15,4.9,2025,8,15,0.0
+KV-11140,Slip Dress,Dresses,Forest Green,M,Silk,AW25,109.0,18,2025-08-24,4.8,2025,8,24,0.0
+KV-11141,Slip Dress,Dresses,Forest Green,L,Silk,AW25,109.0,11,2025-09-03,3.5,2025,9,3,0.0
+KV-11142,Slip Dress,Dresses,Forest Green,XL,Silk,AW25,109.0,11,2025-08-03,4.3,2025,8,3,0.0
+KV-11143,Slip Dress,Dresses,Grey Melange,XS,Silk,AW25,109.0,17,2025-09-16,4.6,2025,9,16,0.0
+KV-11144,Slip Dress,Dresses,Grey Melange,S,Silk,AW25,109.0,11,2025-09-09,4.3,2025,9,9,0.0
+KV-11145,Slip Dress,Dresses,Grey Melange,M,Silk,AW25,109.0,9,2025-08-08,3.8,2025,8,8,0.0
+KV-11146,Slip Dress,Dresses,Grey Melange,L,Silk,AW25,109.0,15,2025-09-08,3.9,2025,9,8,1.0
+KV-11147,Slip Dress,Dresses,Grey Melange,XL,Silk,AW25,109.0,21,2025-09-21,3.7,2025,9,21,0.0
+KV-11148,Knit Dress,Dresses,Burgundy,XS,Merino Wool,AW25,149.0,14,2025-08-08,4.1,2025,8,8,0.0
+KV-11149,Knit Dress,Dresses,Burgundy,S,Merino Wool,AW25,149.0,9,2025-09-18,4.76,2025,9,18,0.0
+KV-11150,Knit Dress,Dresses,Burgundy,M,Merino Wool,AW25,149.0,14,2025-08-20,4.7,2025,8,20,1.0
+KV-11151,Knit Dress,Dresses,Burgundy,L,Merino Wool,AW25,149.0,21,2025-08-02,4.16,2025,8,2,0.0
+KV-11152,Knit Dress,Dresses,Burgundy,XL,Merino Wool,AW25,149.0,9,2025-08-15,4.52,2025,8,15,0.0
+KV-11153,Knit Dress,Dresses,Off White,XS,Merino Wool,AW25,149.0,14,2025-09-07,4.0,2025,9,7,0.0
+KV-11154,Knit Dress,Dresses,Off White,S,Merino Wool,AW25,149.0,17,2025-08-05,4.3,2025,8,5,1.0
+KV-11155,Knit Dress,Dresses,Off White,M,Merino Wool,AW25,149.0,16,2025-08-17,4.7,2025,8,17,1.0
+KV-11156,Knit Dress,Dresses,Off White,L,Merino Wool,AW25,149.0,16,2025-08-06,3.9,2025,8,6,0.0
+KV-11157,Knit Dress,Dresses,Off White,XL,Merino Wool,AW25,149.0,15,2025-07-27,4.5,2025,7,27,0.0
+KV-11158,Knit Dress,Dresses,Forest Green,XS,Merino Wool,AW25,149.0,11,2025-08-20,4.7,2025,8,20,0.0
+KV-11159,Knit Dress,Dresses,Forest Green,S,Merino Wool,AW25,149.0,11,2025-08-11,4.8,2025,8,11,0.0
+KV-11160,Knit Dress,Dresses,Forest Green,M,Merino Wool,AW25,149.0,12,2025-09-14,4.6,2025,9,14,0.0
+KV-11161,Knit Dress,Dresses,Forest Green,L,Merino Wool,AW25,149.0,16,2025-09-09,3.8,2025,9,9,0.0
+KV-11162,Knit Dress,Dresses,Forest Green,XL,Merino Wool,AW25,149.0,10,2025-08-26,4.4799999999999995,2025,8,26,0.0
+KV-11163,Knit Dress,Dresses,Grey Melange,XS,Merino Wool,AW25,149.0,13,2025-07-28,3.9,2025,7,28,0.0
+KV-11164,Knit Dress,Dresses,Grey Melange,S,Merino Wool,AW25,149.0,14,2025-08-27,4.1,2025,8,27,1.0
+KV-11165,Knit Dress,Dresses,Grey Melange,M,Merino Wool,AW25,149.0,12,2025-08-08,4.6,2025,8,8,0.0
+KV-11166,Knit Dress,Dresses,Grey Melange,XL,Merino Wool,AW25,149.0,10,2025-07-29,5.0,2025,7,29,0.0
+KV-11167,Knit Dress,Dresses,Camel,XS,Merino Wool,AW25,149.0,20,2025-08-19,4.8,2025,8,19,0.0
+KV-11168,Knit Dress,Dresses,Camel,S,Merino Wool,AW25,149.0,21,2025-07-29,4.4,2025,7,29,0.0
+KV-11169,Knit Dress,Dresses,Camel,M,Merino Wool,AW25,149.0,14,2025-09-14,5.0,2025,9,14,0.0
+KV-11170,Knit Dress,Dresses,Camel,XL,Merino Wool,AW25,149.0,18,2025-08-02,4.0,2025,8,2,1.0
+KV-11171,Knit Dress,Dresses,Sand,XS,Merino Wool,AW25,149.0,17,2025-09-02,4.4,2025,9,2,0.0
+KV-11172,Knit Dress,Dresses,Sand,S,Merino Wool,AW25,149.0,12,2025-08-25,4.0,2025,8,25,0.0
+KV-11173,Knit Dress,Dresses,Sand,M,Merino Wool,AW25,149.0,19,2025-09-14,3.7,2025,9,14,0.0
+KV-11174,Knit Dress,Dresses,Sand,L,Merino Wool,AW25,149.0,12,2025-07-29,4.6,2025,7,29,0.0
+KV-11175,Knit Dress,Dresses,Sand,XL,Merino Wool,AW25,149.0,11,2025-08-06,3.3,2025,8,6,1.0
+KV-11176,Knit Dress,Dresses,Navy,XS,Merino Wool,AW25,149.0,16,2025-07-27,5.0,2025,7,27,1.0
+KV-11177,Knit Dress,Dresses,Navy,S,Merino Wool,AW25,149.0,12,2025-08-28,4.7,2025,8,28,0.0
+KV-11178,Knit Dress,Dresses,Navy,M,Merino Wool,AW25,149.0,8,2025-08-23,4.8,2025,8,23,0.0
+KV-11179,Knit Dress,Dresses,Navy,L,Merino Wool,AW25,149.0,18,2025-08-04,3.9,2025,8,4,1.0
+KV-11180,Knit Dress,Dresses,Navy,XL,Merino Wool,AW25,149.0,13,2025-09-09,4.6,2025,9,9,1.0
+KV-11181,Silk Scarf,Accessories,Sand,One Size,Silk,AW25,49.0,17,2025-09-16,4.2,2025,9,16,0.0
+KV-11182,Silk Scarf,Accessories,Grey Melange,One Size,Silk,AW25,49.0,17,2025-08-14,3.6,2025,8,14,1.0
+KV-11183,Silk Scarf,Accessories,Camel,One Size,Silk,AW25,49.0,15,2025-09-03,4.3,2025,9,3,1.0
+KV-11184,Silk Scarf,Accessories,Navy,One Size,Silk,AW25,49.0,14,2025-08-30,3.8,2025,8,30,0.0
+KV-11185,Silk Scarf,Accessories,Burgundy,One Size,Silk,AW25,49.0,16,2025-08-16,5.0,2025,8,16,1.0
+KV-11186,Silk Scarf,Accessories,Off White,One Size,Silk,AW25,49.0,18,2025-08-11,5.0,2025,8,11,0.0
+KV-11187,Silk Scarf,Accessories,Forest Green,One Size,Silk,AW25,49.0,18,2025-08-07,3.6,2025,8,7,0.0
+KV-11188,Leather Belt,Accessories,Burgundy,One Size,Leather,AW25,39.0,12,2025-08-05,4.2,2025,8,5,0.0
+KV-11189,Leather Belt,Accessories,Sand,One Size,Leather,AW25,39.0,16,2025-09-19,4.1,2025,9,19,0.0
+KV-11190,Leather Belt,Accessories,Black,One Size,Leather,AW25,39.0,13,2025-08-01,4.4,2025,8,1,0.0
+KV-11191,Leather Belt,Accessories,Navy,One Size,Leather,AW25,39.0,10,2025-09-21,4.4,2025,9,21,0.0
+KV-11192,Leather Belt,Accessories,Grey Melange,One Size,Leather,AW25,39.0,17,2025-08-19,3.1,2025,8,19,0.0
+KV-11193,Leather Belt,Accessories,Off White,One Size,Leather,AW25,39.0,10,2025-09-08,4.1,2025,9,8,0.0
+KV-11194,Leather Belt,Accessories,Camel,One Size,Leather,AW25,39.0,21,2025-08-19,4.4,2025,8,19,0.0

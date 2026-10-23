@@ -1,0 +1,118 @@
+:root {
+  --bg: #e6e9ee;
+  --surface: #ffffff;
+  --surface-2: #f3f5f8;
+  --surface-3: #f7f8fa;
+  --ink: #141821;
+  --ink-2: #343b4a;
+  --muted: #4b5160;
+  --faint: #5f6573;
+  --line: #cfd4dc;
+  --line-soft: #e6e9ee;
+  --placeholder: #9aa1b0;
+  --accent: #0047ff;
+  --accent-ink: #0033b8;
+  --accent-soft: #e8eeff;
+  --accent-on: #ffffff;
+  --warn: #ffb000;
+  --warn-ink: #8a5a00;
+  --warn-soft: #fff4d6;
+  --invert-bg: #141821;
+  --invert-ink: #ffffff;
+  --invert-muted: #b3b9c6;
+  --invert-accent: #7d98ff;
+  --shadow: 0 1px 0 #cfd4dc;
+  --radius: 14px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --max: 1200px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1218;
+    --surface: #181c25;
+    --surface-2: #1f2430;
+    --surface-3: #1b2029;
+    --ink: #e6e9ee;
+    --ink-2: #cfd4dc;
+    --muted: #b3b9c6;
+    --faint: #9aa1b0;
+    --line: #343b4a;
+    --line-soft: #252b37;
+    --placeholder: #6b7384;
+    --accent: #7d98ff;
+    --accent-ink: #a9bbff;
+    --accent-soft: #1d2a52;
+    --accent-on: #0f1218;
+    --warn: #ffb000;
+    --warn-ink: #ffc94d;
+    --warn-soft: #3a2c06;
+    --invert-bg: #232938;
+    --invert-ink: #ffffff;
+    --invert-muted: #b3b9c6;
+    --invert-accent: #a9bbff;
+    --shadow: 0 1px 0 #252b37;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  color: var(--accent-ink);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

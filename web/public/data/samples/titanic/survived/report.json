@@ -1,0 +1,481 @@
+{
+    "metadata": {
+        "timestamp": "2026-10-23T09:20:44.986632",
+        "steps_taken": [
+            "Load Data",
+            "Standardization",
+            "Task Detection",
+            "Deduplication",
+            "Feature Selection",
+            "Outlier Handling",
+            "Outlier Handling",
+            "Outlier Handling",
+            "Pipeline Info",
+            "Imputation",
+            "Evaluation",
+            "Evaluation",
+            "Imputation",
+            "Imputation",
+            "Imputation",
+            "Output",
+            "Encoding",
+            "Encoding",
+            "Encoding",
+            "Encoding",
+            "Encoding",
+            "Scaling",
+            "Evaluation",
+            "Evaluation",
+            "Scaling",
+            "Output"
+        ],
+        "evaluation": {
+            "before": {
+                "rows": 1309,
+                "columns": 12,
+                "missing_values": 1844,
+                "missing_percentage": 11.739241151005857,
+                "duplicate_rows": 0,
+                "column_types": {
+                    "object": 6,
+                    "int64": 4,
+                    "float64": 2
+                },
+                "memory_usage_kb": 476.7626953125,
+                "estimated_outliers": 237
+            },
+            "after": {
+                "rows": 1309,
+                "columns": 12,
+                "missing_values": 0,
+                "missing_percentage": 0.0,
+                "duplicate_rows": 22,
+                "column_types": {
+                    "float64": 8,
+                    "int64": 4
+                },
+                "memory_usage_kb": 122.84765625,
+                "estimated_outliers": 272
+            }
+        },
+        "execution": {
+            "start_time": "2026-10-23T09:20:44.986664",
+            "end_time": "2026-10-23T09:20:45.634452",
+            "duration_seconds": 0.647788,
+            "rows_per_second": 2020.7228290737091,
+            "step_seconds": {
+                "load": 0.0015381660050479695,
+                "clean": 0.16565241599164438,
+                "duplicates": 0.0011695839930325747,
+                "impute": 0.4252638330217451,
+                "encode": 0.003060207993257791,
+                "scale": 0.03546291700331494,
+                "report": 0.008497417002217844
+            }
+        }
+    },
+    "changes_summary": [
+        {
+            "category": "Standardization",
+            "column": "home.dest",
+            "before": "Variants: ['Sweden  Worcester, MA']",
+            "after": "Merged into ['Sweden Worcester, MA']",
+            "affected_rows": 3
+        },
+        {
+            "category": "Outlier Capping",
+            "column": "age",
+            "before": "Values outside [-6.00, 66.00]",
+            "after": "Capped to boundaries (ML-ready output only)",
+            "affected_rows": 9
+        },
+        {
+            "category": "Outlier Capping",
+            "column": "sibsp",
+            "before": "Values outside [-1.50, 2.50]",
+            "after": "Capped to boundaries (ML-ready output only)",
+            "affected_rows": 57
+        },
+        {
+            "category": "Imputation",
+            "column": "age",
+            "before": "NaN",
+            "after": "Filled using mean",
+            "affected_rows": 263
+        },
+        {
+            "category": "Imputation",
+            "column": "fare",
+            "before": "NaN",
+            "after": "Filled using mean",
+            "affected_rows": 1
+        },
+        {
+            "category": "Imputation",
+            "column": "cabin",
+            "before": "NaN",
+            "after": "Category '(missing)'",
+            "affected_rows": 1014
+        },
+        {
+            "category": "Imputation",
+            "column": "embarked",
+            "before": "NaN",
+            "after": "Most Frequent Value",
+            "affected_rows": 2
+        },
+        {
+            "category": "Imputation",
+            "column": "home.dest",
+            "before": "NaN",
+            "after": "Category '(missing)'",
+            "affected_rows": 564
+        },
+        {
+            "category": "Encoding",
+            "column": "sex",
+            "before": "Categorical Column",
+            "after": "Expanded into 1 columns: ['sex_male']...",
+            "affected_rows": 1309
+        },
+        {
+            "category": "Encoding",
+            "column": "ticket",
+            "before": "Categorical Strings",
+            "after": "Encoded to Integers",
+            "affected_rows": 1309
+        },
+        {
+            "category": "Encoding",
+            "column": "cabin",
+            "before": "Categorical Strings",
+            "after": "Encoded to Integers",
+            "affected_rows": 1309
+        },
+        {
+            "category": "Encoding",
+            "column": "embarked",
+            "before": "Categorical Column",
+            "after": "Expanded into 2 columns: ['embarked_Q', 'embarked_S']...",
+            "affected_rows": 1309
+        },
+        {
+            "category": "Encoding",
+            "column": "home.dest",
+            "before": "Categorical Strings",
+            "after": "Encoded to Integers",
+            "affected_rows": 1309
+        },
+        {
+            "category": "Scaling",
+            "column": "pclass",
+            "before": "Range [1.00, 3.00]",
+            "after": "Scaled using robust",
+            "affected_rows": 1309
+        },
+        {
+            "category": "Scaling",
+            "column": "age",
+            "before": "Range [0.17, 66.00]",
+            "after": "Scaled using robust",
+            "affected_rows": 1309
+        },
+        {
+            "category": "Scaling",
+            "column": "sibsp",
+            "before": "Range [0.00, 2.00]",
+            "after": "Scaled using robust",
+            "affected_rows": 1309
+        },
+        {
+            "category": "Scaling",
+            "column": "parch",
+            "before": "Range [0.00, 9.00]",
+            "after": "Scaled using robust",
+            "affected_rows": 1309
+        },
+        {
+            "category": "Scaling",
+            "column": "ticket",
+            "before": "Range [0.00, 928.00]",
+            "after": "Scaled using robust",
+            "affected_rows": 1309
+        },
+        {
+            "category": "Scaling",
+            "column": "fare",
+            "before": "Range [0.00, 512.33]",
+            "after": "Scaled using robust",
+            "affected_rows": 1309
+        },
+        {
+            "category": "Scaling",
+            "column": "cabin",
+            "before": "Range [0.00, 186.00]",
+            "after": "Scaled using robust",
+            "affected_rows": 1309
+        },
+        {
+            "category": "Scaling",
+            "column": "home.dest",
+            "before": "Range [0.00, 368.00]",
+            "after": "Scaled using robust",
+            "affected_rows": 1309
+        }
+    ],
+    "decisions": [
+        {
+            "step": "Load Data",
+            "decision": "Success",
+            "reason": "Loaded file /Users/siddhantdalvi/DEV/pari-projects/Intelligent-Automation-Data-Preparation/samples/titanic.csv",
+            "details": {
+                "shape": [
+                    1309,
+                    12
+                ],
+                "columns": [
+                    "pclass",
+                    "survived",
+                    "name",
+                    "sex",
+                    "age",
+                    "sibsp",
+                    "parch",
+                    "ticket",
+                    "fare",
+                    "cabin",
+                    "embarked",
+                    "home.dest"
+                ],
+                "encoding": "utf-8-sig",
+                "delimiter": ","
+            }
+        },
+        {
+            "step": "Standardization",
+            "decision": "Merged Category Variants",
+            "reason": "Column home.dest had inconsistent spellings",
+            "details": {
+                "column": "home.dest",
+                "mapping": {
+                    "Sweden  Worcester, MA": "Sweden Worcester, MA"
+                }
+            }
+        },
+        {
+            "step": "Task Detection",
+            "decision": "Classification",
+            "reason": "Detected based on target 'survived' properties",
+            "details": {
+                "target_dtype": "int64",
+                "unique_values": 2,
+                "integer_valued": true
+            }
+        },
+        {
+            "step": "Deduplication",
+            "decision": "Skipped",
+            "reason": "No duplicates found",
+            "details": {}
+        },
+        {
+            "step": "Feature Selection",
+            "decision": "Excluded Identifiers",
+            "reason": "Columns with (almost) all-unique values carry no generalisable signal",
+            "details": {
+                "columns": [
+                    "name"
+                ]
+            }
+        },
+        {
+            "step": "Outlier Handling",
+            "decision": "Capping Applied",
+            "reason": "Rare outliers detected in age",
+            "details": {
+                "column": "age",
+                "ratio": "0.7%",
+                "action": "Winsorization",
+                "applies_to": "ML-ready output only"
+            }
+        },
+        {
+            "step": "Outlier Handling",
+            "decision": "Capping Applied",
+            "reason": "Rare outliers detected in sibsp",
+            "details": {
+                "column": "sibsp",
+                "ratio": "4.4%",
+                "action": "Winsorization",
+                "applies_to": "ML-ready output only"
+            }
+        },
+        {
+            "step": "Outlier Handling",
+            "decision": "Kept As-Is",
+            "reason": "High outlier count in fare, likely natural distribution",
+            "details": {
+                "column": "fare",
+                "ratio": "13.1%",
+                "action": "None"
+            }
+        },
+        {
+            "step": "Pipeline Info",
+            "decision": "Optimization Strategy",
+            "reason": "Steps are currently optimized independently (Imputation -> Encoding -> Scaling)",
+            "details": {}
+        },
+        {
+            "step": "Imputation",
+            "decision": "Optimizing...",
+            "reason": "Evaluating Top-K: ['knn', 'mean']",
+            "details": {}
+        },
+        {
+            "step": "Evaluation",
+            "decision": "knn",
+            "reason": "F1 Score: 0.7954",
+            "details": {}
+        },
+        {
+            "step": "Evaluation",
+            "decision": "mean",
+            "reason": "F1 Score: 0.7996",
+            "details": {}
+        },
+        {
+            "step": "Imputation",
+            "decision": "Mean (Winner)",
+            "reason": "Selected after evaluation (Score: 0.7996)",
+            "details": {
+                "candidates": [
+                    "knn",
+                    "mean"
+                ],
+                "scores": {
+                    "knn": 0.7953739346689899,
+                    "mean": 0.7996328404518228
+                },
+                "metric": "F1",
+                "evaluation_model": "RandomForestClassifier",
+                "best_score": 0.7996328404518228
+            }
+        },
+        {
+            "step": "Imputation",
+            "decision": "Most Frequent",
+            "reason": "Categorical columns (Default)",
+            "details": {
+                "columns": [
+                    "sex",
+                    "ticket",
+                    "embarked"
+                ]
+            }
+        },
+        {
+            "step": "Imputation",
+            "decision": "Missing Category",
+            "reason": "More than 10% missing: marked as '(missing)' instead of guessed",
+            "details": {
+                "columns": [
+                    "cabin",
+                    "home.dest"
+                ]
+            }
+        },
+        {
+            "step": "Output",
+            "decision": "Save Human Readable",
+            "reason": "Saved intermediate cleaned data",
+            "details": {
+                "path": "/var/folders/f7/pzqv0dfs0sb35xwygmrzg6mm0000gn/T/tmpr287wfyp/human_readable_data.csv"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "One-Hot Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "sex"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "Label Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "ticket"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "Label Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "cabin"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "One-Hot Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "embarked"
+            }
+        },
+        {
+            "step": "Encoding",
+            "decision": "Label Encoding",
+            "reason": "Predicted by Meta-Model",
+            "details": {
+                "column": "home.dest"
+            }
+        },
+        {
+            "step": "Scaling",
+            "decision": "Optimizing...",
+            "reason": "Evaluating Top-K: ['robust', 'standard']",
+            "details": {}
+        },
+        {
+            "step": "Evaluation",
+            "decision": "robust",
+            "reason": "F1 Score: 0.7286",
+            "details": {}
+        },
+        {
+            "step": "Evaluation",
+            "decision": "standard",
+            "reason": "F1 Score: 0.7210",
+            "details": {}
+        },
+        {
+            "step": "Scaling",
+            "decision": "Robust (Winner)",
+            "reason": "Selected after evaluation (Score: 0.7286)",
+            "details": {
+                "candidates": [
+                    "robust",
+                    "standard"
+                ],
+                "scores": {
+                    "robust": 0.72862137688348,
+                    "standard": 0.720991840254217
+                },
+                "metric": "F1",
+                "evaluation_model": "KNeighborsClassifier",
+                "best_score": 0.72862137688348
+            }
+        },
+        {
+            "step": "Output",
+            "decision": "Save ML Ready",
+            "reason": "Saved final processed data",
+            "details": {
+                "path": "/var/folders/f7/pzqv0dfs0sb35xwygmrzg6mm0000gn/T/tmpr287wfyp/processed_data.csv"
+            }
+        }
+    ]
+}

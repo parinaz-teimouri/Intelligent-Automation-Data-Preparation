@@ -38,6 +38,15 @@ def display(value):
 ISO_DATE = r"\d{4}-\d{2}-\d{2}(?:[ T]\d{2}:\d{2}(?::\d{2})?)?"
 
 
+def display_column(series):
+    """Like display(), but a numeric column with any fractions shows every value with 2 decimals (229.00, not 229)."""
+    if pd.api.types.is_float_dtype(series):
+        values = series.dropna()
+        if len(values) and not np.allclose(values, np.round(values)):
+            return series.map(lambda v: None if pd.isna(v) else (f"{v:.2f}" if abs(v) >= 1 else f"{v:.4g}")).astype(object)
+    return series.map(display).astype(object)
+
+
 def _logs(preparer, step=None, decision=None):
     return [d for d in preparer.logger.logs
             if (step is None or d["step"] == step) and (decision is None or d["decision"] == decision)]
@@ -65,9 +74,13 @@ def collect_facts(preparer):
         facts["standardization"][column] = action
         cells = changes_by_column.get(("Standardization", column), {}).get("affected_rows", 0)
         if action == "merge":
-            mapping = d["details"]["mapping"]
-            facts["merges"].append({"column": column, "cells": cells,
-                                    "examples": [[original, canonical] for original, canonical in list(mapping.items())[:4]]})
+            # Show the value with the most spellings; the others are counted
+            groups = {}
+            for original, canonical in d["details"]["mapping"].items():
+                groups.setdefault(canonical, []).append(original)
+            canonical = max(groups, key=lambda c: (len(groups[c]), c))
+            facts["merges"].append({"column": column, "cells": cells, "canonical": canonical,
+                                    "variants": groups[canonical][:3], "other_groups": len(groups) - 1})
         elif action == "number":
             texts = raw[column].dropna().astype(str)
             example = next((v for v in texts if not _is_plain_number(v)), texts.iloc[0])
@@ -150,11 +163,12 @@ def compare_cells(preparer, facts):
     removed = pd.Series(False, index=raw.index)
     removed[list(preparer.dropped_rows)] = True
 
-    before = raw.apply(lambda col: col.map(display)).astype(object)
+    before = raw.apply(display_column).astype(object)
     after = pd.DataFrame(index=raw.index, columns=raw.columns, dtype=object)
     for column in raw.columns:
         if column in clean.columns:
-            after[column] = clean[column].reindex(raw.index).map(display).astype(object)
+            after[column] = display_column(clean[column].astype(float) if _int_like(clean[column]) else clean[column]) \
+                .reindex(raw.index)
 
     kinds = pd.DataFrame("ok", index=raw.index, columns=raw.columns)
     reasons = pd.DataFrame(None, index=raw.index, columns=raw.columns, dtype=object)
@@ -225,12 +239,19 @@ def pick_preview_rows(kinds, reasons, removed, dropped_rows, max_rows):
     return sorted(dict.fromkeys(picked))
 
 
+def _int_like(series):
+    """Nullable integer columns (Int64) are shown through the float path so missing values stay None."""
+    return isinstance(series.dtype, pd.Int64Dtype)
+
+
 def pick_preview_columns(kinds, max_columns):
+    """The first column for orientation, then the columns with the most changes in the rows shown."""
     if kinds.shape[1] <= max_columns:
         return list(kinds.columns)
-    activity = kinds.isin(["fixed", "note"]).sum().sort_values(ascending=False)
-    keep = set(activity.index[:max_columns - 1]) | {kinds.columns[0]}
-    return [c for c in kinds.columns if c in keep][:max_columns]
+    activity = kinds.isin(["fixed"]).sum() * 2 + kinds.isin(["note"]).sum()
+    ranked = activity.drop(kinds.columns[0]).sort_values(ascending=False, kind="stable")
+    keep = set(ranked.index[:max_columns - 1]) | {kinds.columns[0]}
+    return [c for c in kinds.columns if c in keep]
 
 
 def _json_value(value):
@@ -254,7 +275,7 @@ def target_options(preparer, facts, max_categories=30):
 
 # --- Result ------------------------------------------------------------------------------
 
-def build_result(preparer, name, ml_csv, report_json, vendor=None, max_rows=8, max_columns=10):
+def build_result(preparer, name, ml_csv, report_json, vendor=None, max_rows=8, max_columns=8):
     """`name` is a string or {"en": ..., "de": ...}."""
     name = name if isinstance(name, dict) else {"en": name, "de": name}
     facts = collect_facts(preparer)
@@ -295,7 +316,7 @@ def build_result(preparer, name, ml_csv, report_json, vendor=None, max_rows=8, m
     add_issue("identifiers", len(facts["identifiers"]), facts["identifiers"])
 
     rows = pick_preview_rows(kinds, reasons, removed, preparer.dropped_rows, max_rows)
-    columns = pick_preview_columns(kinds, max_columns)
+    columns = pick_preview_columns(kinds.loc[rows], max_columns)
     reason_keys = {}
     preview_rows = []
     for idx in rows:

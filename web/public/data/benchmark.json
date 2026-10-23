@@ -1,0 +1,30 @@
+{
+ "datasets": [
+  "adult (OpenML)",
+  "breast_cancer (defects)",
+  "credit-g (OpenML)",
+  "diabetes (defects)",
+  "freelancers (repo)",
+  "titanic (OpenML)",
+  "wine (defects)"
+ ],
+ "repeats": 5,
+ "cleaning_vs_static": {
+  "wins": 24,
+  "ties": 5,
+  "losses": 6,
+  "mean_difference": 0.015921966824544442
+ },
+ "selection_vs_cleaning": {
+  "wins": 18,
+  "ties": 5,
+  "losses": 12,
+  "mean_difference": 0.001582287583372811
+ },
+ "full_vs_static": {
+  "wins": 28,
+  "ties": 0,
+  "losses": 7,
+  "mean_difference": 0.017504254407917252
+ }
+}

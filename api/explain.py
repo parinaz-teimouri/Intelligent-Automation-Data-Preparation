@@ -164,16 +164,22 @@ def decision_cards(facts):
     metric = facts.get("metric", "F1")
 
     for merge in facts["merges"]:
-        column = merge["column"]
-        examples = merge["examples"]
+        column, others = merge["column"], merge["other_groups"]
+
+        def merge_body(l, merge=merge, others=others):
+            variants = listing([quote(v, l) for v in merge["variants"]], l)
+            if l == "en":
+                text = f"{variants} now read {quote(merge['canonical'], l)}, the most common spelling"
+                text += f"; {num(others, l)} other value{'s' if others != 1 else ''} were unified the same way" if others else ""
+                return text + f" ({num(merge['cells'], l)} cells)."
+            text = f"{variants} lauten jetzt {quote(merge['canonical'], l)}, die häufigste Schreibweise"
+            text += f"; {num(others, l)} weitere{'r' if others == 1 else ''} Wert{'e' if others != 1 else ''} wurde{'n' if others != 1 else ''} genauso vereinheitlicht" if others else ""
+            return text + f" ({num(merge['cells'], l)} Zellen)."
+
         cards.append(_card(
             {"en": column.upper(), "de": column.upper()},
             both(lambda l: "Merged spelling variants" if l == "en" else "Schreibvarianten zusammengeführt"),
-            both(lambda l: (
-                f"{listing([quote(a, l) for a, _ in examples], l, 3)} now read {listing(sorted({quote(b, l) for _, b in examples}), l, 3)}, "
-                f"the most common spelling ({num(merge['cells'], l)} values)." if l == "en" else
-                f"{listing([quote(a, l) for a, _ in examples], l, 3)} lauten jetzt {listing(sorted({quote(b, l) for _, b in examples}), l, 3)}, "
-                f"die häufigste Schreibweise ({num(merge['cells'], l)} Werte).")),
+            both(merge_body),
         ))
 
     for number in facts["numbers"]:
@@ -233,9 +239,7 @@ def decision_cards(facts):
         cards.append(_card(
             {"en": "IDS", "de": "KENNUNGEN"},
             both(lambda l: "Kept identifiers out of the analysis" if l == "en" else "Kennungen nicht ausgewertet"),
-            both(lambda l: (
-                f"{listing(facts['identifiers'], l)} identify rows but predict nothing. They stay in the clean file." if l == "en" else
-                f"{listing(facts['identifiers'], l)} kennzeichnen Zeilen, sagen aber nichts vorher. Sie bleiben in der bereinigten Datei.")),
+            both(lambda l: _identifier_sentence(facts["identifiers"], l)),
         ))
 
     for capped in facts["capped"]:
@@ -312,17 +316,33 @@ def _tested_sentence(task, info, facts, metric, lang):
                    " Anhand der Statistik der Daten gewählt; mit einer Zielspalte werden die Optionen stattdessen getestet.")
 
 
+def _identifier_sentence(columns, lang):
+    one = len(columns) == 1
+    if lang == "en":
+        return (f"The column{'' if one else 's'} {listing(columns, lang)} identif{'ies' if one else 'y'} rows but "
+                f"predict{'s' if one else ''} nothing. {'It stays' if one else 'They stay'} in the clean file.")
+    return (f"Die Spalte{'' if one else 'n'} {listing(columns, lang)} kennzeichne{'t' if one else 'n'} Zeilen, "
+            f"sag{'t' if one else 'en'} aber nichts vorher. Sie bleib{'t' if one else 'en'} in der bereinigten Datei.")
+
+
 def _encoding_sentence(encoding, lang):
+    # Column names are never capitalised: the sentence starts with fixed words
+    groups = [(encoding.get("onehot"), "became yes/no columns (one per value)", "zu Ja/Nein-Spalten (eine pro Wert)"),
+              (encoding.get("label"), "became numbered codes, because they have many values",
+               "zu Nummerncodes, weil sie viele Werte haben")]
     parts = []
-    if encoding.get("onehot"):
-        parts.append((f"{listing(encoding['onehot'], lang)} became yes/no columns (one per value)" if lang == "en" else
-                      f"{listing(encoding['onehot'], lang)} wurden zu Ja/Nein-Spalten (eine pro Wert)"))
-    if encoding.get("label"):
-        parts.append((f"{listing(encoding['label'], lang)} became numbered codes, because they have many values" if lang == "en" else
-                      f"{listing(encoding['label'], lang)} wurden zu Nummerncodes, weil sie viele Werte haben"))
-    sentence = "; ".join(parts)
-    return sentence[0].upper() + sentence[1:] + ". This only affects the ML-ready file." if lang == "en" else \
-        sentence[0].upper() + sentence[1:] + ". Das betrifft nur die ML-Datei."
+    for columns, en, de in groups:
+        if not columns:
+            continue
+        if lang == "en":
+            parts.append(f"{listing(columns, lang)} {en}")
+        elif not parts:  # German main clause: verb second ("In der ML-Datei wurden X zu ...")
+            parts.append(f"wurden {listing(columns, lang)} {de}")
+        else:
+            parts.append(f"{listing(columns, lang)} wurden {de}")
+    if lang == "en":
+        return "In the ML-ready file, " + "; ".join(parts) + ". The clean file keeps the original text."
+    return "In der ML-Datei " + "; ".join(parts) + ". Die bereinigte Datei behält den ursprünglichen Text."
 
 
 # --- Automatic summary ---------------------------------------------------------------------
