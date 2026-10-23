@@ -8,9 +8,12 @@ from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from sklearn.model_selection import cross_val_score, KFold, StratifiedKFold
 from sklearn.preprocessing import FunctionTransformer, OrdinalEncoder
+import csv
+import io
 import os
 import re
 import json
+import time
 import warnings
 from datetime import datetime
 from meta_learning import MetaLearner, MetaFeatureExtractor
@@ -38,6 +41,39 @@ ABBREVIATION_MAX_CATEGORIES = 10
 # Categorical columns missing more than this share get an explicit "(missing)" category instead of a guess
 MISSING_CATEGORY_THRESHOLD = 0.1
 MISSING_CATEGORY = "(missing)"
+
+
+CSV_ENCODINGS = ("utf-8-sig", "cp1252", "latin-1")  # UTF-8 first; Excel on Windows exports cp1252
+CSV_DELIMITERS = (",", ";", "\t", "|")  # German Excel exports use ";"
+
+
+def _detect_delimiter(text):
+    """Picks the delimiter that splits the first lines into the most, consistently sized, columns."""
+    lines = text.splitlines()[:50]
+    best, best_columns = ",", 1
+    for delimiter in CSV_DELIMITERS:
+        counts = [len(row) for row in csv.reader(lines, delimiter=delimiter) if row]
+        if not counts:
+            continue
+        columns = max(set(counts), key=counts.count)
+        consistent = counts.count(columns) / len(counts) >= 0.9
+        if consistent and columns > best_columns:
+            best, best_columns = delimiter, columns
+    return best
+
+
+def read_csv_file(path):
+    """Reads a CSV whatever its encoding and delimiter; returns (DataFrame, {"encoding", "delimiter"})."""
+    with open(path, "rb") as f:
+        raw = f.read()
+    for encoding in CSV_ENCODINGS:
+        try:
+            text = raw.decode(encoding)
+            break
+        except UnicodeDecodeError:
+            continue
+    delimiter = _detect_delimiter(text)
+    return pd.read_csv(io.StringIO(text), sep=delimiter), {"encoding": encoding, "delimiter": delimiter}
 
 
 def _normalise_number(text, decimal_comma):
@@ -483,16 +519,17 @@ class AutoDataPreparer:
         """Loads data from CSV or Excel files."""
         _, ext = os.path.splitext(self.file_path)
         try:
+            file_format = {}
             if ext.lower() == '.csv':
-                self.data = pd.read_csv(self.file_path)
+                self.data, file_format = read_csv_file(self.file_path)
             elif ext.lower() in ['.xls', '.xlsx']:
                 self.data = pd.read_excel(self.file_path)
             else:
                 raise ValueError(f"Unsupported file format: {ext}")
-            
+
             self.raw_data_snapshot = self.data.copy()
-            self.logger.log("Load Data", "Success", f"Loaded file {self.file_path}", 
-                          {"shape": self.data.shape, "columns": list(self.data.columns)})
+            self.logger.log("Load Data", "Success", f"Loaded file {self.file_path}",
+                          {"shape": self.data.shape, "columns": list(self.data.columns), **file_format})
             
         except Exception as e:
             self.logger.log("Load Data", "Failed", str(e))
@@ -839,30 +876,39 @@ class AutoDataPreparer:
     def run_pipeline(self, output_path='processed_data.csv'):
         """Runs the full preparation pipeline."""
         self.start_time = datetime.now()
+        self.step_seconds = {}  # wall time per stage, shown as the live pipeline in the demo
         print("--- Pipeline Started ---")
-        self.load_data()
-        
+
+        def timed(step, method, *args):
+            started = time.perf_counter()
+            result = method(*args)
+            self.step_seconds[step] = self.step_seconds.get(step, 0.0) + time.perf_counter() - started
+            return result
+
+        timed("load", self.load_data)
+
         # Initial Evaluation
         initial_metrics = DataEvaluator.calculate_quality_metrics(self.data)
-        
+
         self.analyze_data()
-        self._separate_target() # Keep the target out of all feature preprocessing
+        timed("clean", self._separate_target) # Keep the target out of all feature preprocessing
         if self.standardize:
-            self.standardize_values() # Booleans, numbers stored as text, category spellings
-        self._detect_task_type() # Detect Classification vs Regression (on the repaired target)
-        self.parse_dates() # Safer Date Parsing
-        self.remove_duplicates() # After standardisation, so 'Male' and 'male' rows can match
+            timed("clean", self.standardize_values) # Booleans, numbers stored as text, category spellings
+        timed("clean", self._detect_task_type) # Detect Classification vs Regression (on the repaired target)
+        timed("clean", self.parse_dates) # Safer Date Parsing
+        timed("duplicates", self.remove_duplicates) # After standardisation, so 'Male' and 'male' rows can match
         if self.standardize:
-            self._separate_identifiers() # IDs / free text stay out of the ML features
+            timed("clean", self._separate_identifiers) # IDs / free text stay out of the ML features
         self._record_integer_columns()
-        self.clean_data() # Dynamic Outlier Handling
+        timed("clean", self.clean_data) # Dynamic Outlier Handling
 
         # Pipeline Level Log
         self.logger.log("Pipeline Info", "Optimization Strategy", "Steps are currently optimized independently (Imputation -> Encoding -> Scaling)")
-        
-        self.handle_missing_values() # Dynamic Strategy
-        self.enforce_types_and_rounding()
-        
+
+        timed("impute", self.handle_missing_values) # Dynamic Strategy
+        timed("impute", self.enforce_types_and_rounding)
+        self.human_readable_data = self._human_readable_frame().copy()
+
         # Save Human Readable Version
         dirname, basename = os.path.split(output_path)
         if basename.startswith('processed_'):
@@ -874,10 +920,11 @@ class AutoDataPreparer:
         self.save_data(human_readable_path, human_readable=True)
         self.logger.log("Output", "Save Human Readable", "Saved intermediate cleaned data", {"path": human_readable_path})
 
-        self.encode_categorical() # Dynamic Thresholds
-        self.encode_target()
-        self.scale_features() # Dynamic Scaler Selection
-        self.analyze_data() 
+        timed("encode", self.encode_categorical) # Dynamic Thresholds
+        timed("encode", self.encode_target)
+        timed("scale", self.scale_features) # Dynamic Scaler Selection
+        self.analyze_data()
+        report_started = time.perf_counter()
         self.save_data(output_path)
         self.logger.log("Output", "Save ML Ready", "Saved final processed data", {"path": output_path})
         
@@ -894,11 +941,13 @@ class AutoDataPreparer:
             "before": initial_metrics,
             "after": final_metrics
         }
+        self.step_seconds["report"] = time.perf_counter() - report_started
         self.logger.metadata["execution"] = {
             "start_time": self.start_time.isoformat(),
             "end_time": end_time.isoformat(),
             "duration_seconds": duration,
-            "rows_per_second": len(self.data) / duration if duration > 0 else 0
+            "rows_per_second": len(self.data) / duration if duration > 0 else 0,
+            "step_seconds": self.step_seconds
         }
         
         self.logger.save_report(report_path)
