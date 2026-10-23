@@ -7,7 +7,7 @@ prices stored as text, German number and date formats, yes/no text, duplicates, 
 gaps, prepares the data for machine learning and logs every decision. Where a target column is
 given, preparation strategies are not guessed but tested against it.
 
-**Live demo:** _link added after deployment_ · English and German
+**Live demo:** [parinaz-data-prep.vercel.app](https://parinaz-data-prep.vercel.app/) · English and German (the first upload can take about 30 seconds while the free API wakes up)
 
 ![The demo: a fashion catalog before and after cleaning, with the pipeline and the issues it fixed](docs/demo.png)
 
