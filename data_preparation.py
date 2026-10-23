@@ -103,6 +103,11 @@ def _name_tokens(name):
     return [token for token in re.split(r"[^a-z0-9]+", spaced.lower()) if token]
 
 
+def _named_like_id(name):
+    tokens = _name_tokens(name)
+    return bool(tokens) and (bool(ID_NAME_TOKENS & set(tokens)) or tokens[-1] in ID_NAME_SUFFIXES)
+
+
 def _is_identifier(name, series):
     """
     Identifier / free-text columns carry nothing that generalises:
@@ -117,9 +122,7 @@ def _is_identifier(name, series):
     if series.dtype == "object" and unique_ratio >= IDENTIFIER_UNIQUE_RATIO:
         return True
 
-    tokens = _name_tokens(name)
-    named_like_id = bool(tokens) and (bool(ID_NAME_TOKENS & set(tokens)) or tokens[-1] in ID_NAME_SUFFIXES)
-    if not named_like_id:
+    if not _named_like_id(name):
         return False
     if pd.api.types.is_numeric_dtype(series) and not np.allclose(non_null, np.round(non_null)):
         return False
@@ -367,47 +370,64 @@ class AutoDataPreparer:
 
     def standardize_values(self):
         """
-        Repairs inconsistent text values in feature columns:
+        Repairs inconsistent text values in feature columns and in the target:
         boolean-like text -> 0/1, numbers stored as text -> numeric, and spelling
         variants of the same category -> one label.
         """
         if self.data is None: return
 
         for col in self.data.select_dtypes(include=['object']).columns:
-            series = self.data[col]
-            non_null = series.dropna()
-            if len(non_null) == 0:
+            # IDs are kept exactly as written: "C536379" (a cancelled invoice) is not a broken number
+            if _named_like_id(col):
                 continue
-            tokens = non_null.astype(str).str.strip().str.casefold()
+            self.data[col] = self._standardize_series(col, self.data[col])
 
-            # 1. Booleans written as text ("Y", "False", "1", ...)
-            if set(tokens) <= TRUE_TOKENS | FALSE_TOKENS:
-                self.data[col] = tokens.map(lambda t: 1.0 if t in TRUE_TOKENS else 0.0).reindex(series.index)
-                self.logger.log("Standardization", "Boolean Text to 0/1", f"Column {col} holds yes/no style values",
-                                {"column": col, "values": sorted(set(non_null.astype(str)))})
-                self.logger.log_change("Standardization", col, "Yes/No style text", "0/1", len(non_null))
-                continue
+        # The target gets the same text repairs (never imputation or scaling), so a
+        # "89,90 €" price column is predicted as a number, not as text labels.
+        if self.target is not None and self.target.dtype == 'object':
+            cleaned = self._standardize_series(self.target_col, self.target)
+            unparseable = cleaned.isnull() & self.target.notnull()
+            self.target = cleaned
+            if unparseable.any():
+                self.data = self.data[~unparseable]
+                self._align_target()
+                self.logger.log("Target", "Dropped Rows", "Target values that could not be read as numbers",
+                                {"column": self.target_col, "count": int(unparseable.sum())})
 
-            # 2. Numbers stored as text ("$75", "USD 30", "84%")
-            parsed = _parse_numeric_text(series)
-            parse_rate = parsed.notna().sum() / len(non_null)
-            if parse_rate >= NUMERIC_PARSE_THRESHOLD:
-                unparseable = int(len(non_null) - parsed.notna().sum())
-                self.data[col] = parsed
-                self.logger.log("Standardization", "Text to Number", f"Column {col} holds numbers stored as text",
-                                {"column": col, "parse_rate": f"{parse_rate:.1%}", "unparseable_set_to_missing": unparseable})
-                self.logger.log_change("Standardization", col, "Numeric text (currency/percent)", "Number", len(non_null))
-                continue
+    def _standardize_series(self, col, series):
+        """Returns the repaired column (or the column unchanged) and logs what was done."""
+        non_null = series.dropna()
+        if len(non_null) == 0:
+            return series
+        tokens = non_null.astype(str).str.strip().str.casefold()
 
-            # 3. Spelling variants of the same category ("Male", "MALE", "m")
-            mapping = _category_mapping(series)
-            if mapping:
-                affected = int(series.isin(list(mapping)).sum())
-                self.data[col] = series.replace(mapping)
-                self.logger.log("Standardization", "Merged Category Variants", f"Column {col} had inconsistent spellings",
-                                {"column": col, "mapping": mapping})
-                self.logger.log_change("Standardization", col, f"Variants: {sorted(mapping)[:5]}",
-                                       f"Merged into {sorted(set(mapping.values()))}", affected)
+        # 1. Booleans written as text ("Y", "False", "Ja", ...)
+        if set(tokens) <= TRUE_TOKENS | FALSE_TOKENS:
+            self.logger.log("Standardization", "Boolean Text to 0/1", f"Column {col} holds yes/no style values",
+                            {"column": col, "values": sorted(set(non_null.astype(str)))})
+            self.logger.log_change("Standardization", col, "Yes/No style text", "0/1", len(non_null))
+            return tokens.map(lambda t: 1.0 if t in TRUE_TOKENS else 0.0).reindex(series.index)
+
+        # 2. Numbers stored as text ("$75", "89,90 €", "84%")
+        parsed = _parse_numeric_text(series)
+        parse_rate = parsed.notna().sum() / len(non_null)
+        if parse_rate >= NUMERIC_PARSE_THRESHOLD:
+            unparseable = int(len(non_null) - parsed.notna().sum())
+            self.logger.log("Standardization", "Text to Number", f"Column {col} holds numbers stored as text",
+                            {"column": col, "parse_rate": f"{parse_rate:.1%}", "unparseable_set_to_missing": unparseable})
+            self.logger.log_change("Standardization", col, "Numeric text (currency/percent)", "Number", len(non_null))
+            return parsed
+
+        # 3. Spelling variants of the same category ("Male", "MALE", "m")
+        mapping = _category_mapping(series)
+        if mapping:
+            affected = int(series.isin(list(mapping)).sum())
+            self.logger.log("Standardization", "Merged Category Variants", f"Column {col} had inconsistent spellings",
+                            {"column": col, "mapping": mapping})
+            self.logger.log_change("Standardization", col, f"Variants: {sorted(mapping)[:5]}",
+                                   f"Merged into {sorted(set(mapping.values()))}", affected)
+            return series.replace(mapping)
+        return series
 
     def _separate_identifiers(self):
         """Moves ID and free-text columns out of the features; they stay in the human-readable file."""
@@ -827,9 +847,9 @@ class AutoDataPreparer:
         
         self.analyze_data()
         self._separate_target() # Keep the target out of all feature preprocessing
-        self._detect_task_type() # Detect Classification vs Regression
         if self.standardize:
             self.standardize_values() # Booleans, numbers stored as text, category spellings
+        self._detect_task_type() # Detect Classification vs Regression (on the repaired target)
         self.parse_dates() # Safer Date Parsing
         self.remove_duplicates() # After standardisation, so 'Male' and 'male' rows can match
         if self.standardize:

@@ -163,3 +163,27 @@ def test_missing_identifier_values_are_kept_empty_not_invented(run_pipeline):
 
     assert "CustomerID" not in result.processed.columns
     assert result.human_readable["CustomerID"].isna().sum() == 3
+
+
+def test_messy_numeric_target_is_repaired_and_treated_as_regression(run_pipeline):
+    rng = np.random.default_rng(8)
+    x = rng.normal(size=120)
+    prices = 50 + 10 * x
+    formats = rng.choice(["{:.2f} €", "EUR {:.2f}"], size=120)
+    df = pd.DataFrame({"x": x, "price": [f.format(p).replace(".", ",") if "€" in f else f.format(p)
+                                         for f, p in zip(formats, prices)]})
+    result = run_pipeline(df, "price")
+
+    assert result.decisions("Task Detection")[0]["decision"] == "Regression"
+    np.testing.assert_allclose(np.sort(result.processed["price"]), np.sort(np.round(prices, 2)), atol=1e-9)
+    assert result.winner("Scaling")  # candidates were scored against the repaired target
+
+
+def test_id_columns_are_kept_exactly_as_written(run_pipeline):
+    # Mostly numeric invoice numbers with a few cancellations ("C...") must not be number-parsed
+    invoices = [str(536365 + i) for i in range(95)] + [f"C{536500 + i}" for i in range(5)]
+    df = pd.DataFrame({"InvoiceNo": invoices, "qty": np.arange(100), "x": np.linspace(0, 1, 100)})
+    result = run_pipeline(df)
+
+    assert not [d for d in result.decisions("Standardization") if d["details"]["column"] == "InvoiceNo"]
+    assert result.human_readable["InvoiceNo"].astype(str).str.startswith("C").sum() == 5
