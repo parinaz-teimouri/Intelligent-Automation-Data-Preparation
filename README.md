@@ -69,7 +69,7 @@ these datasets, and meta-features of a single column do not reliably predict the
 
 ## Run it locally
 
-Requires Python 3.11+ and, for the web app, Node.js 20.9+.
+Requires Python 3.11+ and, for the web app, Node.js 20.9+ with pnpm.
 
 ```bash
 python -m venv .venv && source .venv/bin/activate     # Windows: .venv\Scripts\activate
@@ -85,7 +85,7 @@ Demo app:
 
 ```bash
 uvicorn api.main:app --reload                         # API on http://localhost:8000
-cd web && npm install && npm run dev                  # site on http://localhost:3000
+cd web && pnpm install && pnpm dev                    # site on http://localhost:3000
 ```
 
 After changing the pipeline or the samples, regenerate the demo's pre-computed results with

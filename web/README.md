@@ -6,8 +6,8 @@ results in `public/data/`, uploads are sent to the FastAPI backend in `../api`.
 ## Develop
 
 ```bash
-npm install
-npm run dev                      # http://localhost:3000
+pnpm install
+pnpm dev                         # http://localhost:3000
 ```
 
 Start the API for uploads from the repository root: `uvicorn api.main:app --reload` (port 8000).
@@ -31,5 +31,5 @@ python -m api.export_samples     # from the repository root
 ## Build
 
 ```bash
-npm run build                    # static site in out/
+pnpm build                       # static site in out/
 ```
