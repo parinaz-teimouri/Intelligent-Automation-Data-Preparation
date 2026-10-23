@@ -187,3 +187,27 @@ def test_id_columns_are_kept_exactly_as_written(run_pipeline):
 
     assert not [d for d in result.decisions("Standardization") if d["details"]["column"] == "InvoiceNo"]
     assert result.human_readable["InvoiceNo"].astype(str).str.startswith("C").sum() == 5
+
+
+def test_capped_outliers_keep_real_values_in_the_readable_file(run_pipeline):
+    rng = np.random.default_rng(10)
+    quantity = rng.integers(1, 30, size=200).astype(float)
+    quantity[7] = 1400.0  # a real bulk order, rare enough to be capped for models
+    df = pd.DataFrame({"quantity": quantity, "x": rng.normal(size=200)})
+    result = run_pipeline(df)
+
+    assert result.human_readable["quantity"].max() == 1400
+    assert any(d["decision"] == "Capping Applied" for d in result.decisions("Outlier Handling"))
+    # ...while the ML-ready (scaled) column was capped before scaling
+    ml = result.processed["quantity"]
+    assert ml.max() - ml.median() < 10 * (ml.quantile(0.75) - ml.quantile(0.25))
+
+
+def test_high_cardinality_text_gaps_are_not_filled_with_a_guess(run_pipeline):
+    rng = np.random.default_rng(11)
+    descriptions = np.array([f"PRODUCT {i}" for i in rng.integers(0, 300, size=400)], dtype=object)
+    descriptions[[3, 50]] = None  # under 10% missing, but many distinct values
+    df = pd.DataFrame({"description": descriptions, "qty": rng.integers(1, 9, size=400)})
+    result = run_pipeline(df)
+
+    assert (result.human_readable["description"] == "(missing)").sum() == 2

@@ -41,6 +41,9 @@ ABBREVIATION_MAX_CATEGORIES = 10
 # Categorical columns missing more than this share get an explicit "(missing)" category instead of a guess
 MISSING_CATEGORY_THRESHOLD = 0.1
 MISSING_CATEGORY = "(missing)"
+# Text columns with more distinct values than this always get "(missing)": copying the most common
+# product description into an empty one would invent data
+MAX_FREQUENT_FILL_CATEGORIES = 50
 
 
 CSV_ENCODINGS = ("utf-8-sig", "cp1252", "latin-1")  # UTF-8 first; Excel on Windows exports cp1252
@@ -350,6 +353,8 @@ class AutoDataPreparer:
         self.optimize = optimize
         self.record_feedback = record_feedback
         self.chosen_strategies = {} # task -> strategy actually applied ("encoding": {column: strategy})
+        self.dropped_rows = {} # raw row label -> {"reason": ..., "of": original row for duplicates}
+        self.capped_values = {} # column -> original values of capped outliers (restored in the readable output)
         self.data = None
         self.raw_data_snapshot = None # Keep a copy for evaluation
         self.logger = DecisionLogger()
@@ -378,6 +383,7 @@ class AutoDataPreparer:
         missing = self.data[self.target_col].isnull()
         n_missing = int(missing.sum())
         if n_missing > 0:
+            self.dropped_rows.update({idx: {"reason": "missing_target"} for idx in self.data.index[missing]})
             self.data = self.data[~missing].copy()
             self.logger.log("Target", "Dropped Rows", "Rows without a target value cannot be used for supervised evaluation",
                            {"column": self.target_col, "count": n_missing})
@@ -425,6 +431,7 @@ class AutoDataPreparer:
             unparseable = cleaned.isnull() & self.target.notnull()
             self.target = cleaned
             if unparseable.any():
+                self.dropped_rows.update({idx: {"reason": "unreadable_target"} for idx in self.data.index[unparseable]})
                 self.data = self.data[~unparseable]
                 self._align_target()
                 self.logger.log("Target", "Dropped Rows", "Target values that could not be read as numbers",
@@ -548,7 +555,14 @@ class AutoDataPreparer:
         if self.data is None: return
 
         initial_rows = len(self.data)
-        duplicated = self._human_readable_frame().duplicated()
+        frame = self._human_readable_frame()
+        duplicated = frame.duplicated()
+        if duplicated.any():
+            # Remember which kept row each removed copy repeats
+            groups = frame.groupby(list(frame.columns), dropna=False, sort=False).ngroup()
+            first_of_group = pd.Series(groups.index[~duplicated], index=groups[~duplicated].values)
+            for idx in frame.index[duplicated]:
+                self.dropped_rows[idx] = {"reason": "duplicate", "of": first_of_group[groups[idx]]}
         self.data = self.data[~duplicated]
         self._align_target()
         dropped = initial_rows - len(self.data)
@@ -587,13 +601,16 @@ class AutoDataPreparer:
                 # If outliers are common (>5%), consider it a heavy-tailed distribution and leave them (or suggest log transform).
                 if 0 < outlier_ratio < 0.05:
                     outlier_count = outliers.sum()
+                    # Capping helps models; the human-readable file keeps the real values
+                    self.capped_values[col] = self.data.loc[outliers, col].copy()
                     self.data[col] = np.where(self.data[col] < lower_bound, lower_bound, self.data[col])
                     self.data[col] = np.where(self.data[col] > upper_bound, upper_bound, self.data[col])
-                    self.logger.log("Outlier Handling", "Capping Applied", f"Rare outliers detected in {col}", 
-                                  {"column": col, "ratio": f"{outlier_ratio:.1%}", "action": "Winsorization"})
-                    self.logger.log_change("Outlier Capping", col, 
-                                           f"Values outside [{lower_bound:.2f}, {upper_bound:.2f}]", 
-                                           "Capped to boundaries", int(outlier_count))
+                    self.logger.log("Outlier Handling", "Capping Applied", f"Rare outliers detected in {col}",
+                                  {"column": col, "ratio": f"{outlier_ratio:.1%}", "action": "Winsorization",
+                                   "applies_to": "ML-ready output only"})
+                    self.logger.log_change("Outlier Capping", col,
+                                           f"Values outside [{lower_bound:.2f}, {upper_bound:.2f}]",
+                                           "Capped to boundaries (ML-ready output only)", int(outlier_count))
                 elif outlier_ratio >= 0.05:
                     self.logger.log("Outlier Handling", "Kept As-Is", f"High outlier count in {col}, likely natural distribution", 
                                   {"column": col, "ratio": f"{outlier_ratio:.1%}", "action": "None"})
@@ -712,7 +729,8 @@ class AutoDataPreparer:
                 n_missing = int(self.data[col].isnull().sum())
                 if n_missing == 0:
                     frequent_cols.append(col)
-                elif n_missing / len(self.data) > MISSING_CATEGORY_THRESHOLD:
+                elif (n_missing / len(self.data) > MISSING_CATEGORY_THRESHOLD
+                      or self.data[col].nunique() > MAX_FREQUENT_FILL_CATEGORIES):
                     missing_cols.append(col)
                     self.data[col] = self.data[col].astype(object).where(self.data[col].notna(), MISSING_CATEGORY)
                     self.logger.log_change("Imputation", col, "NaN", f"Category '{MISSING_CATEGORY}'", n_missing)
@@ -764,7 +782,7 @@ class AutoDataPreparer:
                         self.data[f'{col}_month'] = self.data[col].dt.month
                         self.data[f'{col}_day'] = self.data[col].dt.day
                         self.logger.log("Feature Engineering", "Date Parsing", f"Identified date column: {col}", 
-                                      {"new_features": [f'{col}_year', f'{col}_month', f'{col}_day']})
+                                      {"column": col, "new_features": [f'{col}_year', f'{col}_month', f'{col}_day']})
                 except Exception:
                     pass
 
@@ -869,7 +887,12 @@ class AutoDataPreparer:
     def save_data(self, output_path, human_readable=False):
         """Saves the processed data (features plus target, and identifiers if human readable)."""
         if self.data is None: return
-        frame = self._human_readable_frame() if human_readable else self._with_target()
+        if human_readable:
+            frame = getattr(self, "human_readable_data", None)
+            if frame is None:
+                frame = self._human_readable_frame()
+        else:
+            frame = self._with_target()
         frame.to_csv(output_path, index=False)
         # print(f"\nProcessed data saved to {output_path}")
 
@@ -908,6 +931,9 @@ class AutoDataPreparer:
         timed("impute", self.handle_missing_values) # Dynamic Strategy
         timed("impute", self.enforce_types_and_rounding)
         self.human_readable_data = self._human_readable_frame().copy()
+        for col, originals in self.capped_values.items():
+            if col in self.human_readable_data.columns:
+                self.human_readable_data.loc[originals.index, col] = originals
 
         # Save Human Readable Version
         dirname, basename = os.path.split(output_path)
