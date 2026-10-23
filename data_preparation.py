@@ -16,68 +16,115 @@ from datetime import datetime
 from meta_learning import MetaLearner, MetaFeatureExtractor
 
 # Value standardisation
-TRUE_TOKENS = {"true", "yes", "y", "t", "1"}
-FALSE_TOKENS = {"false", "no", "n", "f", "0"}
-# Currency markers and percent signs around a number, e.g. "$75", "USD 30", "84%"
-NUMBER_DECORATION = re.compile(r"^\s*(?:USD|EUR|GBP|\$|€|£)\s*|\s*(?:USD|EUR|GBP|%)\s*$", re.IGNORECASE)
-THOUSANDS_SEPARATOR = re.compile(r"(?<=\d),(?=\d{3}\b)")
+TRUE_TOKENS = {"true", "yes", "y", "t", "1", "ja", "wahr"}
+FALSE_TOKENS = {"false", "no", "n", "f", "0", "nein", "falsch"}
+# Currency markers and percent signs around a number, e.g. "$75", "USD 30", "89,90 €", "84%"
+NUMBER_DECORATION = re.compile(r"^\s*(?:USD|EUR|GBP|CHF|\$|€|£)\s*|\s*(?:USD|EUR|GBP|CHF|\$|€|£|%)\s*$", re.IGNORECASE)
+# Number formats: "89,90" (decimal comma), "1.299,00" (German thousands), "1,200.50" (English thousands)
+DECIMAL_COMMA = re.compile(r"-?\d+,\d{1,2}")
+GERMAN_THOUSANDS = re.compile(r"-?\d{1,3}(?:\.\d{3})+(?:,\d+)?")
+ENGLISH_THOUSANDS = re.compile(r"-?\d{1,3}(?:,\d{3})+(?:\.\d+)?")
 NUMERIC_PARSE_THRESHOLD = 0.9
 # Dates need a separator between digit groups ("2021-05-12", "12/05/2021")
 DATE_LIKE = re.compile(r"\d{1,4}[-/.]\d{1,2}")
+# "01.12.2010" is day-first, as written in Germany
+DOTTED_DATE = re.compile(r"\d{1,2}\.\d{1,2}\.\d{2,4}")
 IDENTIFIER_UNIQUE_RATIO = 0.95
+# Name tokens that mark an identifier column ("customer_id", "CustomerID", "InvoiceNo", "sku")
+ID_NAME_TOKENS = {"id", "uuid", "sku", "ean", "gtin"}
+ID_NAME_SUFFIXES = {"no", "nr"}
 # Single-letter abbreviations ('m' -> 'male') are only merged in columns with at most this many categories
 ABBREVIATION_MAX_CATEGORIES = 10
+# Categorical columns missing more than this share get an explicit "(missing)" category instead of a guess
+MISSING_CATEGORY_THRESHOLD = 0.1
+MISSING_CATEGORY = "(missing)"
+
+
+def _normalise_number(text, decimal_comma):
+    """Rewrites one number in German or English notation into a plain '1234.5' form."""
+    if DECIMAL_COMMA.fullmatch(text):
+        return text.replace(",", ".")
+    # "1.299" alone is ambiguous: German thousands only when the column also uses decimal commas
+    if GERMAN_THOUSANDS.fullmatch(text) and ("," in text or decimal_comma):
+        return text.replace(".", "").replace(",", ".")
+    if ENGLISH_THOUSANDS.fullmatch(text):
+        return text.replace(",", "")
+    return text
 
 
 def _parse_numeric_text(series):
-    """Converts text like '$75', 'USD 1,200' or '84%' to numbers (NaN where not parseable)."""
-    cleaned = series.astype(str).str.strip()
-    cleaned = cleaned.str.replace(NUMBER_DECORATION, "", regex=True)
-    cleaned = cleaned.str.replace(THOUSANDS_SEPARATOR, "", regex=True)
-    return pd.to_numeric(cleaned, errors="coerce").where(series.notna())
+    """Converts text like '$75', '89,90 €', 'USD 1,200' or '84%' to numbers (NaN where not parseable)."""
+    cleaned = series.astype(str).str.strip().str.replace(NUMBER_DECORATION, "", regex=True).str.strip()
+    decimal_comma = bool(cleaned.str.fullmatch(DECIMAL_COMMA.pattern).any())
+    normalised = cleaned.map(lambda text: _normalise_number(text, decimal_comma))
+    return pd.to_numeric(normalised, errors="coerce").where(series.notna())
 
 
 def _category_mapping(series):
     """
     Maps spelling variants of the same category onto one canonical label.
-    Variants differing only in case/whitespace collapse to their most frequent spelling;
-    in small categorical columns a single-letter value is merged into the only longer value
-    starting with that letter (e.g. 'f' -> 'Female'). Returns {original: canonical} for values that change.
+    Variants differing only in case/whitespace are grouped; in small categorical columns a
+    single-letter value joins the only longer value starting with that letter (e.g. 'f' -> 'female').
+    The form used most overall wins (sizes keep 'M' when 'M'/'m' outnumber 'medium'; gender keeps
+    'Male' when 'Male'/'MALE'/'male' outnumber 'M'/'m'), written in its most frequent spelling.
+    Returns {original: canonical} for values that change.
     """
     values = series.dropna().astype(str)
-    keys = values.str.strip().str.replace(r"\s+", " ", regex=True).str.casefold()
-
-    canonical = {}  # key -> most frequent original spelling
-    for key, group in values.groupby(keys):
-        canonical[key] = group.str.strip().value_counts().index[0]
+    stripped = values.str.strip()
+    keys = stripped.str.replace(r"\s+", " ", regex=True).str.casefold()
+    spellings = {key: group.value_counts() for key, group in stripped.groupby(keys)}
 
     # In code-like columns with many values (e.g. ticker symbols) a single letter is a value of its own.
-    if len(canonical) > ABBREVIATION_MAX_CATEGORIES:
-        return {original: canonical[key] for original, key in zip(values, keys) if original != canonical[key]}
+    merged_into = {}
+    if len(spellings) <= ABBREVIATION_MAX_CATEGORIES:
+        for key in spellings:
+            if len(key) == 1:
+                longer = [k for k in spellings if len(k) > 1 and k.startswith(key)]
+                if len(longer) == 1:
+                    merged_into[key] = longer[0]
 
-    for key in list(canonical):
-        if len(key) == 1:
-            longer = [k for k in canonical if len(k) > 1 and k.startswith(key)]
-            if len(longer) == 1:
-                canonical[key] = canonical[longer[0]]
+    members = {}  # group -> keys merged into it
+    for key in spellings:
+        members.setdefault(merged_into.get(key, key), []).append(key)
+    canonical = {}
+    for group, keys_in_group in members.items():
+        # Ties resolve alphabetically so results are reproducible
+        winner = min(keys_in_group, key=lambda k: (-spellings[k].sum(), k))
+        counts = spellings[winner]
+        canonical[group] = min(counts.index, key=lambda s: (-counts[s], s))
 
-    return {original: canonical[key] for original, key in zip(values, keys) if original != canonical[key]}
+    return {original: canonical[merged_into.get(key, key)] for original, key in zip(values, keys)
+            if original != canonical[merged_into.get(key, key)]}
+
+
+def _name_tokens(name):
+    """'CustomerID' / 'customer_id' / 'Invoice No' -> ['customer', 'id'] etc."""
+    spaced = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", str(name))
+    return [token for token in re.split(r"[^a-z0-9]+", spaced.lower()) if token]
 
 
 def _is_identifier(name, series):
-    """Identifier / free-text columns: (almost) every value unique, so nothing generalises."""
+    """
+    Identifier / free-text columns carry nothing that generalises:
+    text where (almost) every value is unique, or columns named like an ID with many distinct values
+    (a customer ID repeats across orders but is still a key, not a measurement).
+    """
     non_null = series.dropna()
     if len(non_null) < 10:
         return False
-    unique_ratio = non_null.nunique() / len(non_null)
-    if unique_ratio < IDENTIFIER_UNIQUE_RATIO:
-        return False
-    if series.dtype == "object":
+    n_unique = non_null.nunique()
+    unique_ratio = n_unique / len(non_null)
+    if series.dtype == "object" and unique_ratio >= IDENTIFIER_UNIQUE_RATIO:
         return True
-    # Numeric columns only when named like an ID ("customer_id", "ID") and integer valued
-    name_tokens = re.split(r"[^a-z0-9]+", str(name).lower())
-    return "id" in name_tokens and pd.api.types.is_numeric_dtype(series) \
-        and bool(np.allclose(non_null, np.round(non_null)))
+
+    tokens = _name_tokens(name)
+    named_like_id = bool(tokens) and (bool(ID_NAME_TOKENS & set(tokens)) or tokens[-1] in ID_NAME_SUFFIXES)
+    if not named_like_id:
+        return False
+    if pd.api.types.is_numeric_dtype(series) and not np.allclose(non_null, np.round(non_null)):
+        return False
+    # A handful of repeating values ("store_id" with 5 stores) is a real category
+    return unique_ratio >= IDENTIFIER_UNIQUE_RATIO or n_unique >= max(20, 0.05 * len(non_null))
 
 
 def make_imputer(strategy):
@@ -599,17 +646,31 @@ class AutoDataPreparer:
                 imputer = make_imputer(strategy)
                 self.data[num_cols] = imputer.fit_transform(self.data[num_cols])
         
-        # Categorical Imputation
+        # Categorical Imputation: a few gaps get the most frequent value; many gaps get an explicit
+        # "(missing)" category, since copying one value into most rows would invent a pattern.
         cat_cols = self.data.select_dtypes(include=['object', 'category']).columns
         if len(cat_cols) > 0:
+            frequent_cols, missing_cols = [], []
             for col in cat_cols:
-                n_missing = self.data[col].isnull().sum()
-                if n_missing > 0:
-                    self.logger.log_change("Imputation", col, "NaN", "Most Frequent Value", int(n_missing))
-            
-            cat_imputer = SimpleImputer(strategy='most_frequent')
-            self.data[cat_cols] = cat_imputer.fit_transform(self.data[cat_cols])
-            self.logger.log("Imputation", "Most Frequent", "Categorical columns (Default)", {"columns": list(cat_cols)})
+                n_missing = int(self.data[col].isnull().sum())
+                if n_missing == 0:
+                    frequent_cols.append(col)
+                elif n_missing / len(self.data) > MISSING_CATEGORY_THRESHOLD:
+                    missing_cols.append(col)
+                    self.data[col] = self.data[col].astype(object).where(self.data[col].notna(), MISSING_CATEGORY)
+                    self.logger.log_change("Imputation", col, "NaN", f"Category '{MISSING_CATEGORY}'", n_missing)
+                else:
+                    frequent_cols.append(col)
+                    self.logger.log_change("Imputation", col, "NaN", "Most Frequent Value", n_missing)
+
+            if frequent_cols:
+                cat_imputer = SimpleImputer(strategy='most_frequent')
+                self.data[frequent_cols] = cat_imputer.fit_transform(self.data[frequent_cols])
+                self.logger.log("Imputation", "Most Frequent", "Categorical columns (Default)", {"columns": frequent_cols})
+            if missing_cols:
+                self.logger.log("Imputation", "Missing Category",
+                                f"More than {MISSING_CATEGORY_THRESHOLD:.0%} missing: marked as '{MISSING_CATEGORY}' instead of guessed",
+                                {"columns": missing_cols})
 
     def parse_dates(self):
         """Attempts to parse date columns safely."""
@@ -623,20 +684,23 @@ class AutoDataPreparer:
                 if len(non_na_sample) == 0: continue
 
                 # Only consider values shaped like dates (digit groups with a separator)
-                if non_na_sample.astype(str).str.contains(DATE_LIKE).mean() <= 0.8:
+                sample_text = non_na_sample.astype(str)
+                if sample_text.str.contains(DATE_LIKE).mean() <= 0.8:
                     continue
+                # German "01.12.2010" means 1 December
+                dayfirst = bool(sample_text.str.match(DOTTED_DATE).mean() > 0.8)
 
                 try:
                     # We check if >80% of non-null values can be parsed
                     with warnings.catch_warnings():
                         warnings.simplefilter("ignore", UserWarning)  # "could not infer format" noise
-                        parsed = pd.to_datetime(non_na_sample, errors='coerce')
+                        parsed = pd.to_datetime(non_na_sample, errors='coerce', dayfirst=dayfirst)
                     success_rate = parsed.notna().mean()
 
                     if success_rate > 0.8:
                         with warnings.catch_warnings():
                             warnings.simplefilter("ignore", UserWarning)
-                            self.data[col] = pd.to_datetime(self.data[col], errors='coerce')
+                            self.data[col] = pd.to_datetime(self.data[col], errors='coerce', dayfirst=dayfirst)
                         
                         # Extract useful features
                         self.data[f'{col}_year'] = self.data[col].dt.year

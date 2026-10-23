@@ -88,3 +88,78 @@ def test_binary_and_integer_columns_stay_whole_after_imputation(run_pipeline):
 
     assert set(result.human_readable["flag"].unique()) <= {0, 1}
     assert (result.human_readable["age"] % 1 == 0).all()
+
+
+# --- German / European formats --------------------------------------------------
+
+@pytest.mark.parametrize("text, expected", [
+    ("89,90 €", 89.90), ("EUR 89.90", 89.90), ("249 €", 249), ("1.299,00 €", 1299), ("12,5 %", 12.5),
+    ("CHF 12.50", 12.50), ("1,200.50", 1200.50), ("-3,5", -3.5),
+])
+def test_european_and_english_number_formats(text, expected):
+    assert _parse_numeric_text(pd.Series([text]))[0] == pytest.approx(expected)
+
+
+def test_dot_thousands_need_decimal_comma_context():
+    # In a column that uses decimal commas, "1.299" is one thousand two hundred ninety-nine...
+    assert list(_parse_numeric_text(pd.Series(["1.299 €", "89,90 €"]))) == pytest.approx([1299, 89.90])
+    # ...otherwise it stays an ordinary decimal number
+    assert _parse_numeric_text(pd.Series(["1.299"]))[0] == pytest.approx(1.299)
+
+
+def test_german_yes_no_becomes_zero_one(run_pipeline):
+    df = pd.DataFrame({"im_sale": ["Ja", "nein", "JA", "Nein"] * 15, "x": np.arange(60, dtype=float)})
+    result = run_pipeline(df)
+
+    assert list(result.human_readable["im_sale"][:4]) == [1, 0, 1, 0]
+
+
+def test_dotted_dates_are_day_first(run_pipeline):
+    dates = pd.date_range("2020-01-01", periods=60, freq="5D")
+    df = pd.DataFrame({"datum": dates.strftime("%d.%m.%Y"), "x": np.arange(60, dtype=float)})
+    result = run_pipeline(df)
+
+    assert list(result.human_readable["datum_month"]) == list(dates.month)
+    assert list(result.human_readable["datum_day"]) == list(dates.day)
+
+
+# --- Categories and identifiers ---------------------------------------------------
+
+def test_merged_abbreviations_take_the_most_frequent_spelling():
+    sizes = pd.Series(["M"] * 5 + ["medium"] * 2 + ["m"] + ["L"] * 3 + ["large"])
+    assert _category_mapping(sizes) == {"medium": "M", "m": "M", "large": "L"}
+
+
+def test_mostly_missing_category_gets_its_own_label(run_pipeline):
+    rng = np.random.default_rng(6)
+    cabin = rng.choice(["B5", "C22", "A23", "D10"], size=80).astype(object)
+    cabin[:60] = None  # 75% missing
+    port = rng.choice(["S", "C", "Q"], size=80, p=[0.7, 0.2, 0.1]).astype(object)
+    port[:3] = None  # under 10% missing
+    df = pd.DataFrame({"cabin": cabin, "port": port, "x": rng.normal(size=80)})
+    result = run_pipeline(df)
+
+    hr = result.human_readable
+    assert (hr["cabin"] == "(missing)").sum() == 60
+    assert "(missing)" not in set(hr["port"])
+    assert hr["port"].notna().all()
+
+
+def test_repeating_id_columns_are_identifiers():
+    customers = pd.Series(np.repeat(np.arange(17000, 17100), 3).astype(float))  # 100 customers, 3 orders each
+    assert _is_identifier("CustomerID", customers)
+    assert _is_identifier("InvoiceNo", pd.Series([f"5363{i:02d}" for i in range(50)] * 2))
+    # A small set of repeating codes is a real category, and 'number' alone is not an ID name
+    assert not _is_identifier("store_id", pd.Series([1, 2, 3, 4, 5] * 20))
+    assert not _is_identifier("number_of_rooms", pd.Series(range(100)))
+
+
+def test_missing_identifier_values_are_kept_empty_not_invented(run_pipeline):
+    rng = np.random.default_rng(7)
+    customer = np.repeat(np.arange(17000, 17040), 3).astype(float)
+    customer[[5, 50, 90]] = np.nan
+    df = pd.DataFrame({"CustomerID": customer, "qty": rng.integers(1, 20, size=120), "x": rng.normal(size=120)})
+    result = run_pipeline(df)
+
+    assert "CustomerID" not in result.processed.columns
+    assert result.human_readable["CustomerID"].isna().sum() == 3

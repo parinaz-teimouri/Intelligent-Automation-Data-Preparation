@@ -1,6 +1,6 @@
 # Benchmark results
 
-Generated 2026-10-22 20:17 by `benchmark.py` (5 repeats, scikit-learn 1.8.0, pandas 2.3.3). Meta-models: none trained, fixed rules used (run train_meta_model.py).
+Generated 2026-10-23 08:18 by `benchmark.py` (5 repeats, scikit-learn 1.8.0, pandas 2.3.3). Meta-models: none trained, fixed rules used (run train_meta_model.py).
 
 Score = macro F1 (classification) or R² (regression) on the evaluation half, 5-fold CV, averaged over a linear model and a random forest. Mean (std over repeats); best per row in bold.
 
@@ -9,12 +9,12 @@ Score = macro F1 (classification) or R² (regression) on the evaluation half, 5-
 | adult (OpenML) | classification | **0.772 (0.015)** | **0.772 (0.015)** | 0.772 (0.015) | 0.772 (0.015) |
 | breast_cancer (defects) | classification | 0.936 (0.010) | 0.950 (0.010) | 0.949 (0.007) | **0.953 (0.011)** |
 | credit-g (OpenML) | classification | 0.661 (0.013) | 0.667 (0.015) | 0.668 (0.015) | **0.668 (0.015)** |
-| diabetes (defects) | regression | 0.280 (0.054) | 0.303 (0.027) | **0.310 (0.036)** | 0.306 (0.030) |
-| freelancers (repo) | regression | -0.144 (0.037) | -0.111 (0.023) | **-0.111 (0.027)** | -0.112 (0.024) |
-| titanic (OpenML) | classification | 0.777 (0.020) | **0.783 (0.020)** | 0.779 (0.018) | 0.780 (0.018) |
-| wine (defects) | classification | 0.941 (0.024) | 0.961 (0.024) | 0.964 (0.015) | **0.972 (0.015)** |
-| **Mean rank** (1 = best) |  | 3.64 | 2.21 | 2.21 | 1.93 |
-| Mean preparation time (s) |  | 0.17 | 0.12 | 0.09 | 0.36 |
+| diabetes (defects) | regression | 0.280 (0.054) | 0.304 (0.027) | **0.309 (0.036)** | 0.306 (0.030) |
+| freelancers (repo) | regression | -0.155 (0.042) | -0.111 (0.023) | **-0.111 (0.027)** | -0.112 (0.024) |
+| titanic (OpenML) | classification | 0.777 (0.019) | **0.781 (0.020)** | 0.779 (0.020) | 0.777 (0.017) |
+| wine (defects) | classification | 0.941 (0.024) | 0.961 (0.024) | 0.964 (0.015) | **0.971 (0.014)** |
+| **Mean rank** (1 = best) |  | 3.50 | 2.21 | 2.07 | 2.21 |
+| Mean preparation time (s) |  | 0.17 | 0.12 | 0.08 | 0.36 |
 
 ## Head to head
 
@@ -22,10 +22,10 @@ Each dataset × repeat is one paired comparison on the identical split (score av
 
 | Comparison | Wins | Ties | Losses | Mean difference |
 | --- | ---: | ---: | ---: | ---: |
-| static + cleaning vs static | 23 | 5 | 7 | +0.0147 |
-| full system vs static + cleaning | 19 | 4 | 12 | +0.0018 |
-| full system vs meta-model only | 14 | 14 | 7 | +0.0011 |
-| full system vs static | 28 | 0 | 7 | +0.0165 |
+| static + cleaning vs static | 24 | 5 | 6 | +0.0159 |
+| full system vs static + cleaning | 18 | 5 | 12 | +0.0016 |
+| full system vs meta-model only | 10 | 17 | 8 | +0.0006 |
+| full system vs static | 28 | 0 | 7 | +0.0175 |
 
 ## Per downstream model
 
@@ -34,13 +34,13 @@ Each dataset × repeat is one paired comparison on the identical split (score av
 | breast_cancer (defects) | linear | 0.946 | 0.958 | 0.952 | 0.963 |
 | breast_cancer (defects) | random forest | 0.925 | 0.943 | 0.945 | 0.943 |
 | wine (defects) | linear | 0.931 | 0.963 | 0.954 | 0.968 |
-| wine (defects) | random forest | 0.951 | 0.960 | 0.975 | 0.975 |
+| wine (defects) | random forest | 0.951 | 0.960 | 0.975 | 0.973 |
 | diabetes (defects) | linear | 0.253 | 0.297 | 0.305 | 0.299 |
-| diabetes (defects) | random forest | 0.306 | 0.309 | 0.314 | 0.313 |
-| freelancers (repo) | linear | -0.209 | -0.120 | -0.121 | -0.121 |
-| freelancers (repo) | random forest | -0.079 | -0.103 | -0.100 | -0.103 |
-| titanic (OpenML) | linear | 0.783 | 0.786 | 0.776 | 0.774 |
-| titanic (OpenML) | random forest | 0.771 | 0.780 | 0.782 | 0.785 |
+| diabetes (defects) | random forest | 0.306 | 0.310 | 0.314 | 0.313 |
+| freelancers (repo) | linear | -0.214 | -0.120 | -0.121 | -0.121 |
+| freelancers (repo) | random forest | -0.096 | -0.103 | -0.100 | -0.103 |
+| titanic (OpenML) | linear | 0.781 | 0.781 | 0.774 | 0.771 |
+| titanic (OpenML) | random forest | 0.773 | 0.781 | 0.785 | 0.783 |
 | adult (OpenML) | linear | 0.770 | 0.770 | 0.771 | 0.771 |
 | adult (OpenML) | random forest | 0.773 | 0.773 | 0.772 | 0.772 |
 | credit-g (OpenML) | linear | 0.675 | 0.675 | 0.676 | 0.677 |
@@ -53,8 +53,8 @@ Each dataset × repeat is one paired comparison on the identical split (score av
 | breast_cancer (defects) | 373 | 31 | 31 | 31 |
 | wine (defects) | 198 | 14 | 14 | 14 |
 | diabetes (defects) | 318 | 11 | 11 | 11 |
-| freelancers (repo) | 1046 | 50 | 50 | 50 |
-| titanic (OpenML) | 1541 | 886 | 11 | 11 |
+| freelancers (repo) | 1047 | 50 | 50 | 50 |
+| titanic (OpenML) | 1543 | 888 | 11 | 11 |
 | adult (OpenML) | 90 | 90 | 90 | 90 |
 | credit-g (OpenML) | 48 | 48 | 48 | 48 |
 
