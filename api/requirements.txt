@@ -1,0 +1,10 @@
+# Runtime dependencies of the API only (the root requirements.txt also has dev and dashboard tools)
+fastapi==0.161.1
+uvicorn==0.54.0
+python-multipart==0.0.32
+numpy==2.3.5
+pandas==2.3.3
+scikit-learn==1.8.0
+scipy==1.16.3
+joblib==1.5.3
+openpyxl==3.1.5

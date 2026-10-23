@@ -1,0 +1,21 @@
+# Render blueprint for the API (Dashboard > New > Blueprint, then pick this repository).
+# The free plan sleeps after inactivity; the web app keeps working with its pre-computed samples meanwhile.
+services:
+  - type: web
+    name: data-prep-api
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      # The web app's address, e.g. https://data-prep.vercel.app (comma-separate several)
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: MAX_UPLOAD_BYTES
+        value: "5242880"
+      - key: MAX_ROWS
+        value: "20000"
+      - key: MAX_PARALLEL_JOBS
+        value: "1"
